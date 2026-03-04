@@ -134,8 +134,8 @@ st.markdown("""
         margin: 0 auto;
     }
     
-    /* Card Styles */
-    .custom-card {
+    /* Card Styles adapted for st.container */
+    div[data-testid="stVerticalBlock"] > div[style*="flex-direction: column"] > div[data-testid="stVerticalBlock"] {
         background-color: white;
         border-radius: 12px;
         padding: 25px 20px;
@@ -145,6 +145,18 @@ st.markdown("""
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    div[data-testid="stVerticalBlock"] > div[style*="flex-direction: column"] > div[data-testid="stVerticalBlock"]:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(255, 126, 95, 0.25);
+    }
+    
+    /* Remove default Streamlit container styling that messes with our card */
+    [data-testid="stVerticalBlockBorderWrapper"] {
+        border: none !important;
+        border-radius: 12px !important;
     }
     
     .card-icon {
@@ -172,16 +184,18 @@ st.markdown("""
         background-color: #ff7e5f;
         color: white;
         border: none;
-        border-radius: 6px;
+        border-radius: 8px;
         width: 100%;
-        padding: 10px;
+        padding: 12px;
         font-weight: 600;
-        transition: all 0.3s;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        margin-top: auto;
     }
     .stButton > button:hover {
         background-color: #e56d53;
         color: white;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        box-shadow: 0 4px 12px rgba(229, 109, 83, 0.4);
+        transform: translateY(-2px);
     }
 
     /* Other styles */
@@ -252,63 +266,56 @@ if page == "홈":
     col1, col2, col3 = st.columns(3)
     
     with col1:
-        st.markdown("""
-        <div class="custom-card">
+        with st.container(border=True):
+            st.markdown("""
             <div>
                 <div class="card-icon">👥</div>
                 <div class="card-title">동아리 디렉터리</div>
                 <div class="card-desc">등록된 동아리 목록을 확인하세요</div>
             </div>
-        </div>
-        """, unsafe_allow_html=True)
-        if st.button("바로가기", key="btn_directory"):
-            # Note: Streamlit radio buttons drive the state natively. 
-            # To click a button and change a radio button is hacky unles we use session state callbacks.
-            # We'll show a toast message here instead if clicked.
-            st.toast("상단 '동아리 목록' 탭을 클릭하여 이동해주세요!", icon="⬆️")
+            """, unsafe_allow_html=True)
+            if st.button("바로가기", key="btn_directory"):
+                st.toast("상단 '동아리 목록' 탭을 클릭하여 이동해주세요!", icon="⬆️")
 
     with col2:
-        st.markdown("""
-        <div class="custom-card">
+        with st.container(border=True):
+            st.markdown("""
             <div>
                 <div class="card-icon">🔔</div>
                 <div class="card-title">공지사항</div>
                 <div class="card-desc">연합회 공지 및 회의록 확인</div>
             </div>
-        </div>
-        """, unsafe_allow_html=True)
-        if st.button("바로가기", key="btn_announcements"):
-            st.toast("상단 '공지사항' 탭을 클릭하여 이동해주세요!", icon="⬆️")
+            """, unsafe_allow_html=True)
+            if st.button("바로가기", key="btn_announcements"):
+                st.toast("상단 '공지사항' 탭을 클릭하여 이동해주세요!", icon="⬆️")
 
     with col3:
-        st.markdown("""
-        <div class="custom-card">
+        with st.container(border=True):
+            st.markdown("""
             <div>
                 <div class="card-icon">📖</div>
                 <div class="card-title">세칙</div>
                 <div class="card-desc">동아리 연합회 운영 세칙</div>
             </div>
-        </div>
-        """, unsafe_allow_html=True)
-        if st.button("바로가기", key="btn_regulations"):
-            st.toast("상단 '세칙' 탭을 클릭하여 이동해주세요!", icon="⬆️")
+            """, unsafe_allow_html=True)
+            if st.button("바로가기", key="btn_regulations"):
+                st.toast("상단 '세칙' 탭을 클릭하여 이동해주세요!", icon="⬆️")
             
     # Add some spacing and the second row of cards
     st.markdown("<br>", unsafe_allow_html=True)
     
     col4, col5, col6 = st.columns(3)
     with col4:
-        st.markdown("""
-        <div class="custom-card">
+        with st.container(border=True):
+            st.markdown("""
             <div>
                 <div class="card-icon">🗂️</div>
                 <div class="card-title">조직도</div>
                 <div class="card-desc">연합회 임원진 소개</div>
             </div>
-        </div>
-        """, unsafe_allow_html=True)
-        if st.button("바로가기", key="btn_org"):
-            st.toast("상단 '조직도' 탭을 클릭하여 이동해주세요!", icon="⬆️")
+            """, unsafe_allow_html=True)
+            if st.button("바로가기", key="btn_org"):
+                st.toast("상단 '조직도' 탭을 클릭하여 이동해주세요!", icon="⬆️")
             
     with col5:
         st.empty() # Empty column to align with layout
