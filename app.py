@@ -230,11 +230,11 @@ img_tag = f'<img src="data:image/png;base64,{logo_base64}" class="banner-logo" /
 
 st.markdown(f"""
 <div class="main-banner">
-    <div class="banner-content">
-        {img_tag}
-        <h1>동아리 연합회 관리 시스템</h1>
-        <p>동아리 등록부터 활동 관리까지, 모든 것을 한 곳에서</p>
-    </div>
+<div class="banner-content">
+{img_tag}
+<h1>동아리 연합회 관리 시스템</h1>
+<p>동아리 등록부터 활동 관리까지, 모든 것을 한 곳에서</p>
+</div>
 </div>
 """, unsafe_allow_html=True)
 
