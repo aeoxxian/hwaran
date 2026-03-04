@@ -16,7 +16,9 @@ st.set_page_config(
 import base64
 
 # --- Load Logo ---
-LOGO_PATH = r"c:\Users\ja010\Desktop\hwaran\hwaran\logo\logo.png"
+# Create an absolute path dynamically based on the current file's directory
+current_dir = os.path.dirname(os.path.abspath(__file__))
+LOGO_PATH = os.path.join(current_dir, "logo", "logo.png")
 
 def get_base64_of_bin_file(bin_file):
     if os.path.exists(bin_file):
