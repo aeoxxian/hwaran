@@ -46,6 +46,7 @@ export const ADMIN_NAV = [
   { label: "기안 목록", href: "/admin/drafts", minLevel: 1 },
   { label: "기안 작성", href: "/admin/drafts/new", minLevel: 1 },
   { label: "서류신청 관리", href: "/admin/applications", minLevel: 2 },
+  { label: "커뮤니티 관리", href: "/admin/boards", minLevel: 2 },
   { label: "공지 작성", href: "/admin/notices/new", minLevel: 2 },
   { label: "알림", href: "/admin/notifications", minLevel: 1 },
 ] as const;

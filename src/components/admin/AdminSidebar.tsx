@@ -32,7 +32,7 @@ export default function AdminSidebar() {
 
       <nav className="flex-1 px-3 py-4 space-y-1">
         {visibleNav.map((item) => {
-          const isActive = pathname === item.href || (item.href !== "/admin" && pathname.startsWith(item.href));
+          const isActive = isAdminNavActive(pathname, item.href);
           return (
             <Link
               key={item.href}
@@ -68,8 +68,24 @@ function NavIcon({ label }: { label: string }) {
     "기안 목록": "📋",
     "기안 작성": "✏️",
     "서류신청 관리": "📁",
+    "커뮤니티 관리": "🛡️",
     "공지 작성": "📢",
     알림: "🔔",
   };
   return <span className="text-base">{icons[label] ?? "·"}</span>;
+}
+
+function isAdminNavActive(pathname: string, href: string): boolean {
+  if (href === "/admin") return pathname === "/admin";
+  if (href === "/admin/drafts/new") return pathname === "/admin/drafts/new";
+  if (href === "/admin/drafts") {
+    return pathname === "/admin/drafts" || /^\/admin\/drafts\/[^/]+$/.test(pathname);
+  }
+  if (href === "/admin/applications") {
+    return pathname === "/admin/applications" || /^\/admin\/applications\/[^/]+$/.test(pathname);
+  }
+  if (href === "/admin/boards") {
+    return pathname === "/admin/boards";
+  }
+  return pathname === href;
 }

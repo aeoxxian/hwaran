@@ -78,16 +78,34 @@ export interface BoardPost {
   id: string;
   title: string;
   content: string;
+  authorId?: string;
   author: string;
   createdAt: string;
+  updatedAt?: string;
   category: "qna" | "complaints" | "lost-found" | "promotions";
   status?: "대기" | "답변완료" | "해결" | "미해결";
+  visibility?: "public" | "internal";
+  approvalStatus?: "pending" | "approved" | "rejected";
   isAnonymous?: boolean;
   images?: string[];
+  attachments?: string[];
   reply?: string;
   replyDate?: string;
   clubId?: string;
   clubName?: string;
+  location?: string;
+  comments?: BoardComment[];
+}
+
+export interface BoardComment {
+  id: string;
+  postId: string;
+  content: string;
+  authorId: string;
+  authorName: string;
+  authorRole?: UserRole;
+  createdAt: string;
+  isAdminComment?: boolean;
 }
 
 export interface GalleryAlbum {

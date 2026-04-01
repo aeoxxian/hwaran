@@ -1,7 +1,7 @@
 import {
   Notice, Club, ClubMember, CalendarEvent, BoardPost,
   GalleryAlbum, Document, InventoryItem, Banner, ExternalChannel,
-  Draft, ClubApplication, AppNotification,
+  Draft, ClubApplication, AppNotification, BoardComment,
 } from "./types";
 
 export const mockNotices: Notice[] = [
@@ -142,6 +142,19 @@ export const mockBoardPosts: BoardPost[] = [
   { id: "6", title: "파란색 텀블러 발견", content: "학생식당에서 파란색 텀블러를 발견했습니다. 동아리연합회 사무실에 보관 중입니다.", author: "동아리연합회", createdAt: "2026-03-14", category: "lost-found", status: "미해결" },
   { id: "7", title: "[에너지탐험대] 3월 신규 회원 모집!", content: "에너지탐험대에서 새로운 회원을 모집합니다!\n\n에너지 기술에 관심 있는 분이라면 누구나 환영합니다.\n모집 기간: 3/15 ~ 3/25\n문의: @energy_explorers", author: "에너지탐험대", createdAt: "2026-03-15", category: "promotions", clubId: "1", clubName: "에너지탐험대" },
   { id: "8", title: "[하모니] 봄 정기 공연 안내", content: "하모니의 봄 정기 공연에 초대합니다!\n\n일시: 4월 5일 저녁 7시\n장소: 소공연장\n\n많은 관심 부탁드립니다.", author: "하모니", createdAt: "2026-03-20", category: "promotions", clubId: "2", clubName: "하모니" },
+];
+
+export const mockBoardComments: BoardComment[] = [
+  {
+    id: "bc1",
+    postId: "1",
+    content: "동아리연합회 홈페이지 내 예약 폼이 곧 오픈될 예정입니다.",
+    authorId: "admin-1",
+    authorName: "동아리연합회",
+    authorRole: "관리자",
+    createdAt: "2026-03-16",
+    isAdminComment: true,
+  },
 ];
 
 export const mockGalleryAlbums: GalleryAlbum[] = [

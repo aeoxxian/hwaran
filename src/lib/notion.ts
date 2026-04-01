@@ -20,6 +20,7 @@ export const databaseIds = {
   documents: process.env.NOTION_DOCUMENTS_DB || "",
   inventory: process.env.NOTION_INVENTORY_DB || "",
   banners: process.env.NOTION_BANNERS_DB || "",
+  boardComments: process.env.NOTION_BOARD_COMMENTS_DB || "",
   // 관리자 포털
   drafts: process.env.NOTION_DRAFTS_DB || "",
   applications: process.env.NOTION_APPLICATIONS_DB || "",

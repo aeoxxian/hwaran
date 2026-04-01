@@ -197,6 +197,19 @@ const databases: DbConfig[] = [
       활성여부: { checkbox: {} },
     },
   },
+  {
+    envKey: "NOTION_BOARD_COMMENTS_DB",
+    title: "게시판 댓글 (BoardComments)",
+    properties: {
+      게시글ID: { rich_text: {} },
+      내용: { rich_text: {} },
+      작성자ID: { rich_text: {} },
+      작성자명: { rich_text: {} },
+      작성자역할: { rich_text: {} },
+      관리자댓글여부: { checkbox: {} },
+      작성일: { date: {} },
+    },
+  },
   // ─── 관리자 포털 DB ───────────────────────────────────────
   {
     envKey: "NOTION_DRAFTS_DB",
