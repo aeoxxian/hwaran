@@ -1,4 +1,4 @@
-import { mockInventory } from "@/lib/mock-data";
+import { getInventory } from "@/lib/data";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = { title: "물품 관리" };
@@ -10,7 +10,9 @@ const statusColors: Record<string, string> = {
   "폐기": "badge bg-gray-light text-gray-text",
 };
 
-export default function InventoryPage() {
+export default async function InventoryPage() {
+  const inventory = await getInventory();
+
   return (
     <div className="container-page">
       <div className="mb-8">
@@ -20,10 +22,10 @@ export default function InventoryPage() {
 
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
         {[
-          { label: "전체", count: mockInventory.length, color: "bg-gray-light text-dark" },
-          { label: "사용가능", count: mockInventory.filter((i) => i.status === "사용가능").length, color: "bg-green-50 text-green-700" },
-          { label: "대여중", count: mockInventory.filter((i) => i.status === "대여중").length, color: "bg-yellow-50 text-yellow-700" },
-          { label: "수리중", count: mockInventory.filter((i) => i.status === "수리중").length, color: "bg-red-50 text-red-700" },
+          { label: "전체", count: inventory.length, color: "bg-gray-light text-dark" },
+          { label: "사용가능", count: inventory.filter((i) => i.status === "사용가능").length, color: "bg-green-50 text-green-700" },
+          { label: "대여중", count: inventory.filter((i) => i.status === "대여중").length, color: "bg-yellow-50 text-yellow-700" },
+          { label: "수리중", count: inventory.filter((i) => i.status === "수리중").length, color: "bg-red-50 text-red-700" },
         ].map((stat) => (
           <div key={stat.label} className={`rounded-xl p-4 text-center ${stat.color}`}>
             <div className="text-2xl font-bold">{stat.count}</div>
@@ -44,7 +46,7 @@ export default function InventoryPage() {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-border">
-            {mockInventory.map((item) => (
+            {inventory.map((item) => (
               <tr key={item.id} className="hover:bg-gray-light/50 transition-colors">
                 <td className="px-6 py-4 font-medium text-dark">{item.name}</td>
                 <td className="px-6 py-4 text-sm">{item.quantity}</td>

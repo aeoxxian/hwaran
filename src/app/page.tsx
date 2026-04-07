@@ -2,10 +2,20 @@ import HomeServiceLinks from "@/components/home/HomeServiceLinks";
 import MiniCalendar from "@/components/home/MiniCalendar";
 import ExternalLinks from "@/components/home/ExternalLinks";
 import Link from "next/link";
-import { mockNotices, mockEvents, mockExternalChannels } from "@/lib/mock-data";
+import { getNotices, getEvents, getExternalChannels, getInventory, getBoardPosts, getDocuments } from "@/lib/data";
 
-export default function HomePage() {
-  const pinnedNotices = mockNotices.filter((n) => n.isPinned).slice(0, 3);
+export default async function HomePage() {
+  const [notices, events, channels, inventory, lostFoundResult, documents] = await Promise.all([
+    getNotices(),
+    getEvents(),
+    getExternalChannels(),
+    getInventory(),
+    getBoardPosts("lost-found"),
+    getDocuments(),
+  ]);
+
+  const pinnedNotices = notices.filter((n) => n.isPinned).slice(0, 3);
+
   return (
     <>
       <section className="py-12 bg-white border-b border-gray-border">
@@ -33,12 +43,12 @@ export default function HomePage() {
               </div>
             </div>
 
-            <MiniCalendar events={mockEvents} />
+            <MiniCalendar events={events} />
           </div>
         </div>
       </section>
-      <HomeServiceLinks />
-      <ExternalLinks channels={mockExternalChannels} />
+      <HomeServiceLinks inventory={inventory} lostFound={lostFoundResult.posts} documents={documents} />
+      <ExternalLinks channels={channels} />
     </>
   );
 }

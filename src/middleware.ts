@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { jwtVerify } from "jose";
 
-const JWT_SECRET = process.env.JWT_SECRET || "hwaran-default-secret-change-me";
+const JWT_SECRET = process.env.JWT_SECRET || "";
 
 /** 관리자: Notion에 회장단·국장팀장·국원이 없고 "관리자"만 있어도 /admin 접근 가능 */
 const ADMIN_ROLES = ["회장단", "국장팀장", "국원", "관리자"];

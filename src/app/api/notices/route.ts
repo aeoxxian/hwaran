@@ -1,40 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
-import notion, { databaseIds, getTextProperty } from "@/lib/notion";
-import { mockNotices } from "@/lib/mock-data";
-import type { Notice } from "@/lib/types";
+import { getNotices } from "@/lib/data";
 import { verifyToken } from "@/lib/auth";
 import { getAdminLevel } from "@/lib/types";
+import notion, { databaseIds } from "@/lib/notion";
+import { mockNotices } from "@/lib/mock-data";
+import type { Notice } from "@/lib/types";
 
 const USE_MOCK = !process.env.NOTION_API_KEY || !databaseIds.notices;
 
 export async function GET() {
-  if (USE_MOCK) {
-    return NextResponse.json(mockNotices);
-  }
-
-  try {
-    const response = await notion.databases.query({
-      database_id: databaseIds.notices,
-      sorts: [{ property: "작성일", direction: "descending" }],
-    });
-
-    const notices: Notice[] = response.results.map((page) => {
-      const p = page as Record<string, unknown>;
-      return {
-        id: p.id as string,
-        title: getTextProperty(p, "제목"),
-        content: getTextProperty(p, "내용"),
-        author: getTextProperty(p, "작성자"),
-        createdAt: getTextProperty(p, "작성일"),
-        isPinned: getTextProperty(p, "중요여부") === "true",
-      };
-    });
-
-    return NextResponse.json(notices);
-  } catch (error) {
-    console.error("Failed to fetch notices:", error);
-    return NextResponse.json(mockNotices);
-  }
+  const notices = await getNotices();
+  return NextResponse.json(notices);
 }
 
 export async function POST(request: NextRequest) {

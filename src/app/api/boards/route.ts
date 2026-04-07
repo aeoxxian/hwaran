@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import notion, { databaseIds, getTextProperty, getFilesProperty } from "@/lib/notion";
+import notion, { databaseIds } from "@/lib/notion";
 import { verifyToken } from "@/lib/auth";
+import { getBoardPosts } from "@/lib/data";
 import { mockBoardPosts } from "@/lib/mock-data";
 import type { BoardPost, User } from "@/lib/types";
 
@@ -11,16 +12,11 @@ const USE_MOCK = !process.env.NOTION_API_KEY;
 
 function getDbIdForCategory(category: string): string {
   switch (category) {
-    case "qna":
-      return databaseIds.qna;
-    case "complaints":
-      return databaseIds.complaints;
-    case "lost-found":
-      return databaseIds.lostFound;
-    case "promotions":
-      return databaseIds.promotions;
-    default:
-      return "";
+    case "qna": return databaseIds.qna;
+    case "complaints": return databaseIds.complaints;
+    case "lost-found": return databaseIds.lostFound;
+    case "promotions": return databaseIds.promotions;
+    default: return "";
   }
 }
 
@@ -28,31 +24,6 @@ function getCurrentUser(request: NextRequest): User | null {
   const token = request.cookies.get("hwaran-token")?.value;
   if (!token) return null;
   return verifyToken(token);
-}
-
-function mapNotionPageToBoardPost(page: Record<string, unknown>, category: BoardCategory): BoardPost {
-  const author = getTextProperty(page, "작성자");
-  return {
-    id: page.id as string,
-    title: getTextProperty(page, "제목"),
-    content: getTextProperty(page, "내용") || getTextProperty(page, "설명"),
-    authorId: getTextProperty(page, "작성자ID") || undefined,
-    author: author || "익명",
-    createdAt: getTextProperty(page, "작성일"),
-    updatedAt: getTextProperty(page, "수정일") || undefined,
-    category,
-    status: (getTextProperty(page, "상태") || "대기") as BoardPost["status"],
-    visibility: (getTextProperty(page, "공개범위") as BoardPost["visibility"]) || "public",
-    approvalStatus: (getTextProperty(page, "승인상태") as BoardPost["approvalStatus"]) || "approved",
-    isAnonymous: getTextProperty(page, "익명여부") === "true",
-    images: getFilesProperty(page, "이미지"),
-    attachments: getFilesProperty(page, "첨부파일"),
-    reply: getTextProperty(page, "답변") || undefined,
-    replyDate: getTextProperty(page, "답변일") || undefined,
-    clubId: getTextProperty(page, "동아리ID") || undefined,
-    clubName: getTextProperty(page, "동아리명") || undefined,
-    location: getTextProperty(page, "장소") || undefined,
-  };
 }
 
 function isBoardCategory(value: string | null): value is BoardCategory {
@@ -63,47 +34,13 @@ export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const categoryParam = searchParams.get("category");
   const category: BoardCategory = isBoardCategory(categoryParam) ? categoryParam : "qna";
-  const search = (searchParams.get("search") || "").toLowerCase();
+  const search = searchParams.get("search") || "";
   const status = searchParams.get("status") || "";
   const page = Number(searchParams.get("page") || "1");
   const pageSize = Math.min(Number(searchParams.get("pageSize") || "20"), 100);
 
-  if (USE_MOCK || !getDbIdForCategory(category)) {
-    let posts = mockBoardPosts.filter((p) => p.category === category);
-    if (status) posts = posts.filter((p) => p.status === status);
-    if (search) {
-      posts = posts.filter(
-        (p) => p.title.toLowerCase().includes(search) || p.content.toLowerCase().includes(search)
-      );
-    }
-    const offset = (page - 1) * pageSize;
-    return NextResponse.json({ posts: posts.slice(offset, offset + pageSize), total: posts.length, page, pageSize });
-  }
-
-  try {
-    const response = await notion.databases.query({
-      database_id: getDbIdForCategory(category),
-      sorts: [{ property: "작성일", direction: "descending" }],
-      page_size: 100,
-    });
-
-    let posts = response.results.map((result) =>
-      mapNotionPageToBoardPost(result as Record<string, unknown>, category)
-    );
-    if (status) posts = posts.filter((p) => p.status === status);
-    if (search) {
-      posts = posts.filter(
-        (p) => p.title.toLowerCase().includes(search) || p.content.toLowerCase().includes(search)
-      );
-    }
-
-    const offset = (page - 1) * pageSize;
-    return NextResponse.json({ posts: posts.slice(offset, offset + pageSize), total: posts.length, page, pageSize });
-  } catch (error) {
-    console.error("Failed to fetch board posts:", error);
-    const posts = mockBoardPosts.filter((p) => p.category === category);
-    return NextResponse.json({ posts, total: posts.length, page: 1, pageSize: posts.length });
-  }
+  const { posts, total } = await getBoardPosts(category, { search, status, page, pageSize });
+  return NextResponse.json({ posts, total, page, pageSize });
 }
 
 export async function POST(request: NextRequest) {

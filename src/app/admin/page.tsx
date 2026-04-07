@@ -1,24 +1,6 @@
 import Link from "next/link";
 import StatusBadge from "@/components/admin/StatusBadge";
-import type { Draft, ClubApplication } from "@/lib/types";
-
-const BASE = process.env.NEXT_PUBLIC_URL || "http://localhost:3000";
-
-async function getDrafts(): Promise<Draft[]> {
-  try {
-    const res = await fetch(`${BASE}/api/admin/drafts`, { cache: "no-store" });
-    if (!res.ok) return [];
-    return (await res.json()).drafts || [];
-  } catch { return []; }
-}
-
-async function getApplications(): Promise<ClubApplication[]> {
-  try {
-    const res = await fetch(`${BASE}/api/admin/applications`, { cache: "no-store" });
-    if (!res.ok) return [];
-    return (await res.json()).applications || [];
-  } catch { return []; }
-}
+import { getDrafts, getApplications } from "@/lib/data";
 
 export const metadata = { title: "관리자 대시보드" };
 
@@ -39,30 +21,10 @@ export default async function AdminDashboardPage() {
 
       {/* 요약 카드 */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-        <SummaryCard
-          label="결재 대기 기안"
-          value={pendingDrafts.length}
-          color="amber"
-          href="/admin/drafts"
-        />
-        <SummaryCard
-          label="처리 대기 서류"
-          value={pendingApps.length}
-          color="blue"
-          href="/admin/applications"
-        />
-        <SummaryCard
-          label="전체 기안"
-          value={drafts.length}
-          color="gray"
-          href="/admin/drafts"
-        />
-        <SummaryCard
-          label="전체 서류신청"
-          value={applications.length}
-          color="gray"
-          href="/admin/applications"
-        />
+        <SummaryCard label="결재 대기 기안" value={pendingDrafts.length} color="amber" href="/admin/drafts" />
+        <SummaryCard label="처리 대기 서류" value={pendingApps.length} color="blue" href="/admin/applications" />
+        <SummaryCard label="전체 기안" value={drafts.length} color="gray" href="/admin/drafts" />
+        <SummaryCard label="전체 서류신청" value={applications.length} color="gray" href="/admin/applications" />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -70,9 +32,7 @@ export default async function AdminDashboardPage() {
         <div className="bg-white rounded-xl border border-gray-200 p-5">
           <div className="flex items-center justify-between mb-4">
             <h2 className="font-semibold text-gray-900">최근 기안</h2>
-            <Link href="/admin/drafts" className="text-xs text-primary hover:underline">
-              전체 보기 →
-            </Link>
+            <Link href="/admin/drafts" className="text-xs text-primary hover:underline">전체 보기 →</Link>
           </div>
           {recentDrafts.length === 0 ? (
             <p className="text-sm text-gray-400 text-center py-4">기안이 없습니다.</p>
@@ -99,9 +59,7 @@ export default async function AdminDashboardPage() {
         <div className="bg-white rounded-xl border border-gray-200 p-5">
           <div className="flex items-center justify-between mb-4">
             <h2 className="font-semibold text-gray-900">최근 서류신청</h2>
-            <Link href="/admin/applications" className="text-xs text-primary hover:underline">
-              전체 보기 →
-            </Link>
+            <Link href="/admin/applications" className="text-xs text-primary hover:underline">전체 보기 →</Link>
           </div>
           {recentApps.length === 0 ? (
             <p className="text-sm text-gray-400 text-center py-4">서류신청이 없습니다.</p>
@@ -127,30 +85,21 @@ export default async function AdminDashboardPage() {
 
       {/* 퀵 액션 */}
       <div className="mt-6 grid grid-cols-2 md:grid-cols-3 gap-4">
-        <Link
-          href="/admin/drafts/new"
-          className="flex items-center gap-3 bg-white border border-gray-200 rounded-xl p-4 hover:border-primary hover:shadow-sm transition-all"
-        >
+        <Link href="/admin/drafts/new" className="flex items-center gap-3 bg-white border border-gray-200 rounded-xl p-4 hover:border-primary hover:shadow-sm transition-all">
           <span className="text-2xl">✏️</span>
           <div>
             <p className="text-sm font-medium text-gray-900">기안 작성</p>
             <p className="text-xs text-gray-400">새 기안 상신</p>
           </div>
         </Link>
-        <Link
-          href="/admin/notices/new"
-          className="flex items-center gap-3 bg-white border border-gray-200 rounded-xl p-4 hover:border-primary hover:shadow-sm transition-all"
-        >
+        <Link href="/admin/notices/new" className="flex items-center gap-3 bg-white border border-gray-200 rounded-xl p-4 hover:border-primary hover:shadow-sm transition-all">
           <span className="text-2xl">📢</span>
           <div>
             <p className="text-sm font-medium text-gray-900">공지 작성</p>
             <p className="text-xs text-gray-400">새 공지사항 등록</p>
           </div>
         </Link>
-        <Link
-          href="/admin/notifications"
-          className="flex items-center gap-3 bg-white border border-gray-200 rounded-xl p-4 hover:border-primary hover:shadow-sm transition-all"
-        >
+        <Link href="/admin/notifications" className="flex items-center gap-3 bg-white border border-gray-200 rounded-xl p-4 hover:border-primary hover:shadow-sm transition-all">
           <span className="text-2xl">🔔</span>
           <div>
             <p className="text-sm font-medium text-gray-900">알림</p>
@@ -162,17 +111,7 @@ export default async function AdminDashboardPage() {
   );
 }
 
-function SummaryCard({
-  label,
-  value,
-  color,
-  href,
-}: {
-  label: string;
-  value: number;
-  color: "amber" | "blue" | "green" | "red" | "gray";
-  href: string;
-}) {
+function SummaryCard({ label, value, color, href }: { label: string; value: number; color: "amber" | "blue" | "green" | "red" | "gray"; href: string }) {
   const colorClass = {
     amber: "bg-amber-50 text-amber-700 border-amber-200",
     blue: "bg-blue-50 text-blue-700 border-blue-200",

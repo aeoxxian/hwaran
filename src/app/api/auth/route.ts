@@ -1,10 +1,21 @@
 import { NextRequest, NextResponse } from "next/server";
 import notion, { databaseIds, getTextProperty } from "@/lib/notion";
 import { hashPassword, verifyPassword, createToken } from "@/lib/auth";
+import { checkRateLimit, getClientIp, rateLimitResponse } from "@/lib/rate-limit";
 
 const USE_MOCK = !process.env.NOTION_API_KEY || !databaseIds.members;
 
 export async function POST(request: NextRequest) {
+  const ip = getClientIp(request);
+  const body = await request.json();
+  const { action } = body;
+
+  // Rate limiting: 로그인 5회/분, 회원가입 3회/분
+  const limit = action === "register"
+    ? checkRateLimit(`auth:register:${ip}`, 3)
+    : checkRateLimit(`auth:login:${ip}`, 5);
+  if (!limit.success) return rateLimitResponse(limit.resetMs);
+
   if (USE_MOCK) {
     return NextResponse.json(
       { error: "Notion API가 연결되지 않았습니다. .env.local을 설정해주세요." },
@@ -13,8 +24,6 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    const body = await request.json();
-    const { action } = body;
 
     if (action === "register") {
       const { name, email, password, clubId } = body;

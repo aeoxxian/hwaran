@@ -1,9 +1,5 @@
 import Link from "next/link";
-import {
-  mockInventory,
-  mockBoardPosts,
-  mockDocuments,
-} from "@/lib/mock-data";
+import type { InventoryItem, BoardPost, Document } from "@/lib/types";
 
 const shortcutTiles = [
   {
@@ -44,19 +40,21 @@ const shortcutTiles = [
   },
 ] as const;
 
-export default function HomeServiceLinks() {
-  const lostFound = mockBoardPosts
-    .filter((p) => p.category === "lost-found")
-    .slice(0, 4);
+interface HomeServiceLinksProps {
+  inventory: InventoryItem[];
+  lostFound: BoardPost[];
+  documents: Document[];
+}
 
-  const importantDocs = mockDocuments.filter(
+export default function HomeServiceLinks({ inventory, lostFound, documents }: HomeServiceLinksProps) {
+  const invTotal = inventory.length;
+  const invAvailable = inventory.filter((i) => i.status === "사용가능").length;
+  const invRented = inventory.filter((i) => i.status === "대여중").length;
+  const invRepair = inventory.filter((i) => i.status === "수리중").length;
+
+  const importantDocs = documents.filter(
     (d) => d.category === "회칙" || d.category === "양식"
   );
-
-  const invTotal = mockInventory.length;
-  const invAvailable = mockInventory.filter((i) => i.status === "사용가능").length;
-  const invRented = mockInventory.filter((i) => i.status === "대여중").length;
-  const invRepair = mockInventory.filter((i) => i.status === "수리중").length;
 
   return (
     <section className="py-16 bg-gray-light/50">
@@ -98,7 +96,7 @@ export default function HomeServiceLinks() {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-border">
-                    {mockInventory.slice(0, 4).map((item) => (
+                    {inventory.slice(0, 4).map((item) => (
                       <tr key={item.id} className="hover:bg-gray-light/40">
                         <td className="px-4 py-2.5 font-medium text-dark">{item.name}</td>
                         <td className="px-4 py-2.5 text-gray-text hidden sm:table-cell">{item.location}</td>
@@ -133,7 +131,7 @@ export default function HomeServiceLinks() {
                 {lostFound.length === 0 ? (
                   <p className="text-sm text-gray-text">등록된 글이 없습니다.</p>
                 ) : (
-                  lostFound.map((post) => (
+                  lostFound.slice(0, 4).map((post) => (
                     <div
                       key={post.id}
                       className="flex items-center justify-between gap-3 rounded-lg border border-gray-border bg-surface px-4 py-3"

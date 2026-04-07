@@ -1,12 +1,13 @@
 import Link from "next/link";
-import { mockNotices } from "@/lib/mock-data";
+import { getNotices } from "@/lib/data";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = { title: "공지사항" };
 
-export default function NoticesPage() {
-  const pinned = mockNotices.filter((n) => n.isPinned);
-  const regular = mockNotices.filter((n) => !n.isPinned);
+export default async function NoticesPage() {
+  const notices = await getNotices();
+  const pinned = notices.filter((n) => n.isPinned);
+  const regular = notices.filter((n) => !n.isPinned);
 
   return (
     <div className="container-page">
