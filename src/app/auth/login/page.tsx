@@ -37,7 +37,7 @@ function LoginForm() {
     <div className="min-h-[calc(100vh-200px)] flex items-center justify-center px-4 py-12">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <Image src="/logo.png" alt="화란 로고" width={80} height={80} className="mx-auto rounded-full" />
+          <Image src="/logo.png" alt="화란 로고" width={80} height={80} className="mx-auto rounded-lg" />
           <h1 className="text-2xl font-bold text-dark mt-4">{SITE_NAME}</h1>
           <p className="text-gray-text text-sm mt-1">{SITE_FULL_NAME}</p>
         </div>

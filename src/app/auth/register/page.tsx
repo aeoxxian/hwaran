@@ -1,12 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { SITE_NAME, SITE_FULL_NAME } from "@/lib/constants";
 import { useAuth } from "@/context/AuthContext";
-import { mockClubs } from "@/lib/mock-data";
+import type { Club } from "@/lib/types";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -14,6 +14,14 @@ export default function RegisterPage() {
   const [form, setForm] = useState({ name: "", email: "", password: "", passwordConfirm: "", clubId: "" });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [clubs, setClubs] = useState<Club[]>([]);
+
+  useEffect(() => {
+    fetch("/api/clubs")
+      .then((res) => res.json())
+      .then((data) => setClubs(Array.isArray(data) ? data : []))
+      .catch(() => {});
+  }, []);
 
   const updateField = (field: string, value: string) => {
     setForm((prev) => ({ ...prev, [field]: value }));
@@ -48,7 +56,7 @@ export default function RegisterPage() {
     <div className="min-h-[calc(100vh-200px)] flex items-center justify-center px-4 py-12">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <Image src="/logo.png" alt="화란 로고" width={80} height={80} className="mx-auto rounded-full" />
+          <Image src="/logo.png" alt="화란 로고" width={80} height={80} className="mx-auto rounded-lg" />
           <h1 className="text-2xl font-bold text-dark mt-4">{SITE_NAME}</h1>
           <p className="text-gray-text text-sm mt-1">{SITE_FULL_NAME}</p>
         </div>
@@ -113,7 +121,7 @@ export default function RegisterPage() {
                 className="input-field"
               >
                 <option value="">선택 안함</option>
-                {mockClubs.map((club) => (
+                {clubs.map((club) => (
                   <option key={club.id} value={club.id}>{club.name}</option>
                 ))}
               </select>

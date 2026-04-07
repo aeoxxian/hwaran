@@ -9,7 +9,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <Image src="/logo.png" alt="화란 로고" width={48} height={48} className="rounded-full" />
+              <Image src="/logo.png" alt="화란 로고" width={48} height={48} className="rounded-lg" />
               <div>
                 <h3 className="text-white font-bold text-lg">{SITE_NAME}</h3>
                 <p className="text-sm">{SITE_GENERATION} {SITE_FULL_NAME}</p>
