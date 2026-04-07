@@ -46,32 +46,32 @@ const orgData = {
         {
           name: "디자인팀",
           lead: { title: "팀장", name: "남은수" },
-          members: ["최민", "고이삭"],
+          members: ["장준형", "조윤서"],
         },
         {
-          name: "사이트개발팀",
+          name: "웹사이트 개발팀",
           lead: { title: "팀장", name: "김승우" },
-          members: ["조윤서"],
+          members: ["고이삭", "김현우"],
         },
       ],
-      members: ["김현우", "장준형"],
+      members: ["최민"],
     },
     {
       name: "동아리관리국",
       lead: { title: "국장", name: "송현우" },
       teams: [
         {
-          name: "대외업무팀",
+          name: "대내업무팀",
           lead: { title: "팀장", name: "노윤서" },
-          members: [],
+          members: ["송은율", "황아진"],
         },
         {
-          name: "대내업무팀",
+          name: "대외업무팀",
           lead: { title: "팀장", name: "주예슬" },
-          members: [],
+          members: ["백시연", "이중헌"],
         },
       ],
-      members: ["이중헌", "황아진", "백시연", "송은율"],
+      members: [],
     },
   ] as Department[],
 };
