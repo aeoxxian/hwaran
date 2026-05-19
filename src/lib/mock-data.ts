@@ -1,8 +1,10 @@
 import {
   Notice, Club, ClubMember, CalendarEvent, BoardPost,
   GalleryAlbum, Document, InventoryItem, Banner, ExternalChannel,
-  Draft, ClubApplication, AppNotification, BoardComment,
+  Draft, ClubApplication, AppNotification, BoardComment, ModerationLog,
 } from "./types";
+
+export const mockModerationLogs: ModerationLog[] = [];
 
 export const mockNotices: Notice[] = [
   {

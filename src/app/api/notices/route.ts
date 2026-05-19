@@ -1,10 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getNotices } from "@/lib/data";
-import { verifyToken } from "@/lib/auth";
-import { getAdminLevel } from "@/lib/types";
 import notion, { databaseIds } from "@/lib/notion";
 import { mockNotices } from "@/lib/mock-data";
 import type { Notice } from "@/lib/types";
+import { guard } from "@/lib/api-auth";
 
 const USE_MOCK = !process.env.NOTION_API_KEY || !databaseIds.notices;
 
@@ -14,11 +13,9 @@ export async function GET() {
 }
 
 export async function POST(request: NextRequest) {
-  const token = request.cookies.get("hwaran-token")?.value;
-  const user = token ? verifyToken(token) : null;
-  if (!user || getAdminLevel(user.role) < 2) {
-    return NextResponse.json({ error: "권한이 없습니다." }, { status: 403 });
-  }
+  const g = guard(request, { minAdminLevel: 2 });
+  if (!g.ok) return g.response;
+  const user = g.user;
 
   const body = await request.json();
 

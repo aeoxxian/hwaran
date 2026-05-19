@@ -1,14 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import { verifyToken } from "@/lib/auth";
-import { getAdminLevel } from "@/lib/types";
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
-
-function getUser(request: NextRequest) {
-  const token = request.cookies.get("hwaran-token")?.value;
-  if (!token) return null;
-  return verifyToken(token);
-}
+import { guard } from "@/lib/api-auth";
 
 const s3 = new S3Client({
   region: process.env.AWS_REGION || "ap-northeast-2",
@@ -19,10 +12,8 @@ const s3 = new S3Client({
 });
 
 export async function POST(request: NextRequest) {
-  const user = getUser(request);
-  if (!user || getAdminLevel(user.role) === 0) {
-    return NextResponse.json({ error: "권한이 없습니다." }, { status: 403 });
-  }
+  const g = guard(request, { minAdminLevel: 1 });
+  if (!g.ok) return g.response;
 
   const { filename, contentType } = await request.json();
   const bucket = process.env.AWS_S3_BUCKET;

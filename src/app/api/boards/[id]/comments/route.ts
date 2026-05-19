@@ -1,17 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import notion, { databaseIds, getTextProperty } from "@/lib/notion";
-import { verifyToken } from "@/lib/auth";
 import { getAdminLevel } from "@/lib/types";
 import { mockBoardComments } from "@/lib/mock-data";
-import type { BoardComment, User } from "@/lib/types";
+import type { BoardComment } from "@/lib/types";
+import { guard } from "@/lib/api-auth";
 
 const USE_MOCK = !process.env.NOTION_API_KEY || !databaseIds.boardComments;
-
-function getCurrentUser(request: NextRequest): User | null {
-  const token = request.cookies.get("hwaran-token")?.value;
-  if (!token) return null;
-  return verifyToken(token);
-}
 
 export async function GET(
   _request: NextRequest,
@@ -52,8 +46,9 @@ export async function POST(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
-  const user = getCurrentUser(request);
-  if (!user) return NextResponse.json({ error: "로그인이 필요합니다." }, { status: 401 });
+  const g = guard(request);
+  if (!g.ok) return g.response;
+  const user = g.user;
   const { id } = await params;
   const body = await request.json();
   const content = (body.content || "").trim();

@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import notion, { databaseIds } from "@/lib/notion";
-import { verifyToken } from "@/lib/auth";
 import { getBoardPosts } from "@/lib/data";
 import { mockBoardPosts } from "@/lib/mock-data";
-import type { BoardPost, User } from "@/lib/types";
+import type { BoardPost } from "@/lib/types";
+import { guard } from "@/lib/api-auth";
 
 type BoardCategory = BoardPost["category"];
 
@@ -18,12 +18,6 @@ function getDbIdForCategory(category: string): string {
     case "promotions": return databaseIds.promotions;
     default: return "";
   }
-}
-
-function getCurrentUser(request: NextRequest): User | null {
-  const token = request.cookies.get("hwaran-token")?.value;
-  if (!token) return null;
-  return verifyToken(token);
 }
 
 function isBoardCategory(value: string | null): value is BoardCategory {
@@ -44,6 +38,10 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
+  const g = guard(request);
+  if (!g.ok) return g.response;
+  const user = g.user;
+
   const body = await request.json();
   const category = body.category as BoardCategory;
   if (!category || !VALID_CATEGORIES.includes(category)) {
@@ -54,9 +52,8 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "제목과 내용을 입력해주세요." }, { status: 400 });
   }
 
-  const user = getCurrentUser(request);
-  const authorName = body.isAnonymous ? "익명" : user?.name || body.author || "익명";
-  const authorId = user?.id || "";
+  const authorName = body.isAnonymous ? "익명" : user.name;
+  const authorId = user.id;
   const today = new Date().toISOString().split("T")[0];
 
   if (USE_MOCK || !getDbIdForCategory(category)) {

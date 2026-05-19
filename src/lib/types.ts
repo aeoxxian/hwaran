@@ -222,6 +222,20 @@ export interface ClubApplication {
   reviewerName?: string;
 }
 
+export type ModerationAction = "approve" | "reject" | "resolve" | "pending";
+
+export interface ModerationLog {
+  id: string;
+  postId: string;
+  action: ModerationAction;
+  status: string;
+  note?: string;
+  actorId: string;
+  actorName: string;
+  actorRole: UserRole;
+  createdAt: string;
+}
+
 export type NotificationKind = "기안" | "서류신청" | "공지" | "기타";
 
 export interface AppNotification {

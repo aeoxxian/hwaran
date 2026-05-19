@@ -1,21 +1,18 @@
 import Link from "next/link";
-import { mockClubs, mockClubMembers } from "@/lib/mock-data";
+import { getClubById } from "@/lib/data";
 import { notFound } from "next/navigation";
 
 interface Props {
   params: Promise<{ id: string }>;
 }
 
-export async function generateStaticParams() {
-  return mockClubs.map((c) => ({ id: c.id }));
-}
+export const dynamic = "force-dynamic";
 
 export default async function ClubDetailPage({ params }: Props) {
   const { id } = await params;
-  const club = mockClubs.find((c) => c.id === id);
+  const { club, members } = await getClubById(id);
   if (!club) notFound();
 
-  const members = mockClubMembers.filter((m) => m.clubId === id);
   const leader = members.find((m) => m.role === "회장");
   const viceLeader = members.find((m) => m.role === "부회장");
   const regularMembers = members.filter((m) => m.role === "회원");
@@ -61,49 +58,53 @@ export default async function ClubDetailPage({ params }: Props) {
 
       <div>
         <h2 className="section-title mb-6">구성원</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {leader && (
-            <div className="card border-l-4 !border-l-primary">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-bold text-lg">
-                  {leader.name[0]}
-                </div>
-                <div>
-                  <span className="badge-primary text-xs">회장</span>
-                  <h3 className="font-semibold text-dark mt-1">{leader.name}</h3>
-                  {leader.introduction && <p className="text-sm text-gray-text">{leader.introduction}</p>}
-                </div>
-              </div>
-            </div>
-          )}
-          {viceLeader && (
-            <div className="card border-l-4 !border-l-primary-light">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-primary-light text-white flex items-center justify-center font-bold text-lg">
-                  {viceLeader.name[0]}
-                </div>
-                <div>
-                  <span className="badge bg-primary-100 text-primary text-xs">부회장</span>
-                  <h3 className="font-semibold text-dark mt-1">{viceLeader.name}</h3>
-                  {viceLeader.introduction && <p className="text-sm text-gray-text">{viceLeader.introduction}</p>}
+        {members.length === 0 ? (
+          <div className="card text-gray-text">아직 등록된 구성원이 없습니다.</div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {leader && (
+              <div className="card border-l-4 !border-l-primary">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-bold text-lg">
+                    {leader.name[0]}
+                  </div>
+                  <div>
+                    <span className="badge-primary text-xs">회장</span>
+                    <h3 className="font-semibold text-dark mt-1">{leader.name}</h3>
+                    {leader.introduction && <p className="text-sm text-gray-text">{leader.introduction}</p>}
+                  </div>
                 </div>
               </div>
-            </div>
-          )}
-          {regularMembers.map((member) => (
-            <div key={member.id} className="card">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-gray-light text-gray-text flex items-center justify-center font-bold text-lg">
-                  {member.name[0]}
-                </div>
-                <div>
-                  <span className="badge bg-gray-light text-gray-text text-xs">회원</span>
-                  <h3 className="font-semibold text-dark mt-1">{member.name}</h3>
+            )}
+            {viceLeader && (
+              <div className="card border-l-4 !border-l-primary-light">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-full bg-primary-light text-white flex items-center justify-center font-bold text-lg">
+                    {viceLeader.name[0]}
+                  </div>
+                  <div>
+                    <span className="badge bg-primary-100 text-primary text-xs">부회장</span>
+                    <h3 className="font-semibold text-dark mt-1">{viceLeader.name}</h3>
+                    {viceLeader.introduction && <p className="text-sm text-gray-text">{viceLeader.introduction}</p>}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
+            )}
+            {regularMembers.map((member) => (
+              <div key={member.id} className="card">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-full bg-gray-light text-gray-text flex items-center justify-center font-bold text-lg">
+                    {member.name[0]}
+                  </div>
+                  <div>
+                    <span className="badge bg-gray-light text-gray-text text-xs">회원</span>
+                    <h3 className="font-semibold text-dark mt-1">{member.name}</h3>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

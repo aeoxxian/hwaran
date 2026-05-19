@@ -1,8 +1,9 @@
 import Link from "next/link";
-import { mockBoardPosts } from "@/lib/mock-data";
+import { getRecentBoardPosts } from "@/lib/data";
+import type { BoardPost } from "@/lib/types";
 
 type BoardCard = {
-  key: "qna" | "complaints" | "lost-found" | "promotions";
+  key: BoardPost["category"];
   title: string;
   subtitle: string;
   href: string;
@@ -16,8 +17,19 @@ const BOARD_CARDS: BoardCard[] = [
 ];
 
 export const metadata = { title: "커뮤니티" };
+export const dynamic = "force-dynamic";
 
-export default function BoardsHubPage() {
+export default async function BoardsHubPage() {
+  const recents = await Promise.all(
+    BOARD_CARDS.map((b) =>
+      getRecentBoardPosts(b.key, 3).then((posts) => ({ key: b.key, posts })),
+    ),
+  );
+  const recentByCategory = Object.fromEntries(recents.map((r) => [r.key, r.posts])) as Record<
+    BoardPost["category"],
+    BoardPost[]
+  >;
+
   return (
     <div className="container-page">
       <div className="mb-8">
@@ -27,7 +39,7 @@ export default function BoardsHubPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         {BOARD_CARDS.map((board) => {
-          const latest = mockBoardPosts.filter((p) => p.category === board.key).slice(0, 3);
+          const latest = recentByCategory[board.key] || [];
           return (
             <section key={board.key} className="card">
               <div className="flex items-start justify-between gap-4 mb-3">
@@ -45,7 +57,10 @@ export default function BoardsHubPage() {
                 ) : (
                   latest.map((post) => (
                     <li key={post.id}>
-                      <Link href={board.href} className="text-sm text-dark hover:text-primary line-clamp-1">
+                      <Link
+                        href={`/boards/${board.key}/${post.id}`}
+                        className="text-sm text-dark hover:text-primary line-clamp-1"
+                      >
                         {post.title}
                       </Link>
                     </li>

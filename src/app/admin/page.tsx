@@ -1,8 +1,10 @@
 import Link from "next/link";
 import StatusBadge from "@/components/admin/StatusBadge";
+import RuntimeStatusCard from "@/components/admin/RuntimeStatusCard";
 import { getDrafts, getApplications } from "@/lib/data";
 
 export const metadata = { title: "관리자 대시보드" };
+export const dynamic = "force-dynamic";
 
 export default async function AdminDashboardPage() {
   const [drafts, applications] = await Promise.all([getDrafts(), getApplications()]);
@@ -17,6 +19,10 @@ export default async function AdminDashboardPage() {
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-gray-900">관리자 대시보드</h1>
         <p className="text-sm text-gray-500 mt-1">처리해야 하는 업무를 한눈에 확인하세요.</p>
+      </div>
+
+      <div className="mb-6">
+        <RuntimeStatusCard />
       </div>
 
       {/* 요약 카드 */}

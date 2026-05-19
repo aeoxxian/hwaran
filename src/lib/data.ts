@@ -51,6 +51,18 @@ async function queryAllPages(
 
 // ─── 공지사항 ──────────────────────────────────────────────
 
+function mapNotionToNotice(p: Record<string, unknown>): Notice {
+  return {
+    id: p.id as string,
+    title: getTextProperty(p, "제목"),
+    content: getTextProperty(p, "내용"),
+    author: getTextProperty(p, "작성자"),
+    createdAt: getTextProperty(p, "작성일"),
+    isPinned: getTextProperty(p, "중요여부") === "true",
+    attachments: getFilesProperty(p, "첨부파일"),
+  };
+}
+
 export async function getNotices(): Promise<Notice[]> {
   if (USE_MOCK || !databaseIds.notices) return mockNotices;
 
@@ -59,18 +71,23 @@ export async function getNotices(): Promise<Notice[]> {
       sorts: [{ property: "작성일", direction: "descending" }],
     });
 
-    return pages.map((p) => ({
-      id: p.id as string,
-      title: getTextProperty(p, "제목"),
-      content: getTextProperty(p, "내용"),
-      author: getTextProperty(p, "작성자"),
-      createdAt: getTextProperty(p, "작성일"),
-      isPinned: getTextProperty(p, "중요여부") === "true",
-      attachments: getFilesProperty(p, "첨부파일"),
-    }));
+    return pages.map(mapNotionToNotice);
   } catch (error) {
     console.error("Failed to fetch notices:", error);
     return mockNotices;
+  }
+}
+
+export async function getNoticeById(id: string): Promise<Notice | null> {
+  if (USE_MOCK || !databaseIds.notices) {
+    return mockNotices.find((n) => n.id === id) || null;
+  }
+  try {
+    const page = await notion.pages.retrieve({ page_id: id });
+    return mapNotionToNotice(page as Record<string, unknown>);
+  } catch (error) {
+    console.error("Failed to fetch notice:", error);
+    return mockNotices.find((n) => n.id === id) || null;
   }
 }
 
@@ -198,6 +215,40 @@ function mapNotionToBoardPost(page: Record<string, unknown>, category: BoardCate
     clubName: getTextProperty(page, "동아리명") || undefined,
     location: getTextProperty(page, "장소") || undefined,
   };
+}
+
+export async function getBoardPostById(id: string): Promise<BoardPost | null> {
+  if (USE_MOCK) {
+    return mockBoardPosts.find((p) => p.id === id) || null;
+  }
+
+  try {
+    const page = (await notion.pages.retrieve({ page_id: id })) as Record<string, unknown>;
+    const parent = page.parent as { database_id?: string } | undefined;
+    const dbId = parent?.database_id || "";
+    const category: BoardCategory =
+      dbId === databaseIds.qna
+        ? "qna"
+        : dbId === databaseIds.complaints
+        ? "complaints"
+        : dbId === databaseIds.lostFound
+        ? "lost-found"
+        : dbId === databaseIds.promotions
+        ? "promotions"
+        : "qna";
+    return mapNotionToBoardPost(page, category);
+  } catch (error) {
+    console.error("Failed to fetch board post:", error);
+    return mockBoardPosts.find((p) => p.id === id) || null;
+  }
+}
+
+export async function getRecentBoardPosts(
+  category: BoardCategory,
+  limit = 3,
+): Promise<BoardPost[]> {
+  const { posts } = await getBoardPosts(category, { pageSize: limit, page: 1 });
+  return posts.slice(0, limit);
 }
 
 export async function getBoardPosts(
@@ -339,6 +390,24 @@ export async function getExternalChannels(): Promise<ExternalChannel[]> {
 
 // ─── 관리자: 기안 ──────────────────────────────────────────
 
+function mapNotionToDraft(p: Record<string, unknown>): Draft {
+  return {
+    id: p.id as string,
+    title: getTextProperty(p, "제목"),
+    content: getTextProperty(p, "내용"),
+    type: getTextProperty(p, "유형") as Draft["type"],
+    status: getTextProperty(p, "상태") as Draft["status"],
+    authorId: getTextProperty(p, "작성자ID"),
+    authorName: getTextProperty(p, "작성자명"),
+    authorRole: getTextProperty(p, "작성자역할") as UserRole,
+    currentReviewerRole: (getTextProperty(p, "현재결재자역할") as UserRole) || undefined,
+    attachments: getFilesProperty(p, "첨부파일"),
+    comments: [] as DraftComment[],
+    createdAt: getTextProperty(p, "작성일"),
+    updatedAt: getTextProperty(p, "수정일"),
+  };
+}
+
 export async function getDrafts(): Promise<Draft[]> {
   if (USE_MOCK || !databaseIds.drafts) return mockDrafts;
 
@@ -347,28 +416,43 @@ export async function getDrafts(): Promise<Draft[]> {
       sorts: [{ property: "작성일", direction: "descending" }],
     });
 
-    return pages.map((p) => ({
-      id: p.id as string,
-      title: getTextProperty(p, "제목"),
-      content: getTextProperty(p, "내용"),
-      type: getTextProperty(p, "유형") as Draft["type"],
-      status: getTextProperty(p, "상태") as Draft["status"],
-      authorId: getTextProperty(p, "작성자ID"),
-      authorName: getTextProperty(p, "작성자명"),
-      authorRole: getTextProperty(p, "작성자역할") as UserRole,
-      currentReviewerRole: (getTextProperty(p, "현재결재자역할") as UserRole) || undefined,
-      attachments: getFilesProperty(p, "첨부파일"),
-      comments: [] as DraftComment[], // 댓글은 별도 조회 필요
-      createdAt: getTextProperty(p, "작성일"),
-      updatedAt: getTextProperty(p, "수정일"),
-    }));
+    return pages.map(mapNotionToDraft);
   } catch (error) {
     console.error("Failed to fetch drafts:", error);
     return mockDrafts;
   }
 }
 
+export async function getDraftById(id: string): Promise<Draft | null> {
+  if (USE_MOCK || !databaseIds.drafts) {
+    return mockDrafts.find((d) => d.id === id) || null;
+  }
+  try {
+    const page = await notion.pages.retrieve({ page_id: id });
+    return mapNotionToDraft(page as Record<string, unknown>);
+  } catch (error) {
+    console.error("Failed to fetch draft:", error);
+    return mockDrafts.find((d) => d.id === id) || null;
+  }
+}
+
 // ─── 관리자: 서류신청 ──────────────────────────────────────
+
+function mapNotionToApplication(p: Record<string, unknown>): ClubApplication {
+  return {
+    id: p.id as string,
+    title: getTextProperty(p, "제목"),
+    type: getTextProperty(p, "유형") as ClubApplication["type"],
+    clubName: getTextProperty(p, "동아리명"),
+    submitterName: getTextProperty(p, "제출자"),
+    submittedAt: getTextProperty(p, "제출일"),
+    status: getTextProperty(p, "상태") as ClubApplication["status"],
+    attachments: getFilesProperty(p, "첨부파일"),
+    reviewComment: getTextProperty(p, "검토의견") || undefined,
+    reviewedAt: getTextProperty(p, "검토일") || undefined,
+    reviewerName: getTextProperty(p, "검토자") || undefined,
+  };
+}
 
 export async function getApplications(): Promise<ClubApplication[]> {
   if (USE_MOCK || !databaseIds.applications) return mockApplications;
@@ -378,22 +462,23 @@ export async function getApplications(): Promise<ClubApplication[]> {
       sorts: [{ property: "제출일", direction: "descending" }],
     });
 
-    return pages.map((p) => ({
-      id: p.id as string,
-      title: getTextProperty(p, "제목"),
-      type: getTextProperty(p, "유형") as ClubApplication["type"],
-      clubName: getTextProperty(p, "동아리명"),
-      submitterName: getTextProperty(p, "제출자"),
-      submittedAt: getTextProperty(p, "제출일"),
-      status: getTextProperty(p, "상태") as ClubApplication["status"],
-      attachments: getFilesProperty(p, "첨부파일"),
-      reviewComment: getTextProperty(p, "검토의견") || undefined,
-      reviewedAt: getTextProperty(p, "검토일") || undefined,
-      reviewerName: getTextProperty(p, "검토자") || undefined,
-    }));
+    return pages.map(mapNotionToApplication);
   } catch (error) {
     console.error("Failed to fetch applications:", error);
     return mockApplications;
+  }
+}
+
+export async function getApplicationById(id: string): Promise<ClubApplication | null> {
+  if (USE_MOCK || !databaseIds.applications) {
+    return mockApplications.find((a) => a.id === id) || null;
+  }
+  try {
+    const page = await notion.pages.retrieve({ page_id: id });
+    return mapNotionToApplication(page as Record<string, unknown>);
+  } catch (error) {
+    console.error("Failed to fetch application:", error);
+    return mockApplications.find((a) => a.id === id) || null;
   }
 }
 

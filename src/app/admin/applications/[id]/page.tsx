@@ -2,27 +2,14 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import StatusBadge from "@/components/admin/StatusBadge";
 import ApplicationActions from "@/components/admin/ApplicationActions";
-import type { ClubApplication } from "@/lib/types";
-
-async function getApplication(id: string): Promise<ClubApplication | null> {
-  try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_URL || "http://localhost:3000"}/api/admin/applications/${id}`,
-      { cache: "no-store" }
-    );
-    if (!res.ok) return null;
-    const data = await res.json();
-    return data.application || null;
-  } catch {
-    return null;
-  }
-}
+import { getApplicationById } from "@/lib/data";
 
 export const metadata = { title: "서류 상세" };
+export const dynamic = "force-dynamic";
 
 export default async function ApplicationDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const app = await getApplication(id);
+  const app = await getApplicationById(id);
   if (!app) notFound();
 
   const canReview = app.status === "대기" || app.status === "1차검토중" || app.status === "최종검토중";
@@ -46,7 +33,6 @@ export default async function ApplicationDetailPage({ params }: { params: Promis
       </div>
 
       <div className="space-y-6">
-        {/* 첨부파일 */}
         <div className="bg-white border border-gray-200 rounded-xl p-6">
           <h2 className="font-semibold text-gray-900 mb-3">첨부파일</h2>
           {app.attachments.length === 0 ? (
@@ -64,7 +50,6 @@ export default async function ApplicationDetailPage({ params }: { params: Promis
           )}
         </div>
 
-        {/* 기존 검토 이력 */}
         {app.reviewComment && (
           <div className="bg-white border border-gray-200 rounded-xl p-6">
             <h2 className="font-semibold text-gray-900 mb-3">검토 결과</h2>
@@ -76,7 +61,6 @@ export default async function ApplicationDetailPage({ params }: { params: Promis
           </div>
         )}
 
-        {/* 승인/반려 액션 */}
         {canReview && <ApplicationActions applicationId={app.id} />}
       </div>
     </div>

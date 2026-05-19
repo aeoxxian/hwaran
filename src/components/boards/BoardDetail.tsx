@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
 import type { BoardPost } from "@/lib/types";
 import CommentThread from "./CommentThread";
+import ModerationLogList from "./ModerationLogList";
 
 type BoardCategory = BoardPost["category"];
 
@@ -97,7 +98,8 @@ export default function BoardDetail({ category, id }: { category: BoardCategory;
         )}
       </article>
 
-      <div className="max-w-4xl mt-4">
+      <div className="max-w-4xl mt-4 space-y-4">
+        {adminLevel > 0 && <ModerationLogList postId={id} />}
         <CommentThread postId={id} />
       </div>
     </div>

@@ -6,6 +6,7 @@ import { useState } from "react";
 import { NAV_ITEMS, SITE_NAME } from "@/lib/constants";
 import MobileNav from "./MobileNav";
 import NotificationBell from "@/components/admin/NotificationBell";
+import RuntimeModeBadge from "@/components/common/RuntimeModeBadge";
 import { useAuth } from "@/context/AuthContext";
 
 export default function Header() {
@@ -54,6 +55,7 @@ export default function Header() {
           </nav>
 
           <div className="hidden lg:flex items-center gap-2">
+            <RuntimeModeBadge compact />
             <NotificationBell />
             {user ? (
               <>

@@ -1,42 +1,27 @@
 import { NextRequest, NextResponse } from "next/server";
-import { verifyToken } from "@/lib/auth";
-import { getAdminLevel, type UserRole } from "@/lib/types";
+import { type UserRole } from "@/lib/types";
 import notion, { databaseIds } from "@/lib/notion";
 import { mockDrafts } from "@/lib/mock-data";
 import { NEXT_REVIEWER } from "@/lib/constants";
 import { sendNotificationEmail } from "@/lib/email";
+import { getDraftById } from "@/lib/data";
+import { guard } from "@/lib/api-auth";
 
 const USE_MOCK = !process.env.NOTION_API_KEY || !databaseIds.drafts;
-
-function getUser(request: NextRequest) {
-  const token = request.cookies.get("hwaran-token")?.value;
-  if (!token) return null;
-  return verifyToken(token);
-}
 
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
-  const user = getUser(request);
-  if (!user || getAdminLevel(user.role) === 0) {
-    return NextResponse.json({ error: "권한이 없습니다." }, { status: 403 });
-  }
+  const g = guard(request, { minAdminLevel: 1 });
+  if (!g.ok) return g.response;
 
   const { id } = await params;
-
-  if (USE_MOCK) {
-    const draft = mockDrafts.find((d) => d.id === id);
-    if (!draft) return NextResponse.json({ error: "기안을 찾을 수 없습니다." }, { status: 404 });
-    return NextResponse.json({ draft });
+  const draft = await getDraftById(id);
+  if (!draft) {
+    return NextResponse.json({ error: "기안을 찾을 수 없습니다." }, { status: 404 });
   }
-
-  try {
-    const page = await notion.pages.retrieve({ page_id: id });
-    return NextResponse.json({ draft: page });
-  } catch {
-    return NextResponse.json({ error: "기안 조회 실패" }, { status: 500 });
-  }
+  return NextResponse.json({ draft });
 }
 
 /** PATCH: 결재 액션 (승인 | 반려 | 검토의견 | 수정요청) */
@@ -44,14 +29,16 @@ export async function PATCH(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
-  const user = getUser(request);
-  if (!user || getAdminLevel(user.role) === 0) {
-    return NextResponse.json({ error: "권한이 없습니다." }, { status: 403 });
-  }
+  const g = guard(request, { minAdminLevel: 1 });
+  if (!g.ok) return g.response;
+  const user = g.user;
 
   const { id } = await params;
   const body = await request.json();
-  const { action, comment } = body as { action: "승인" | "반려" | "검토의견" | "수정요청"; comment?: string };
+  const { action, comment } = body as {
+    action: "승인" | "반려" | "검토의견" | "수정요청";
+    comment?: string;
+  };
 
   if (USE_MOCK) {
     const draft = mockDrafts.find((d) => d.id === id);
@@ -108,13 +95,16 @@ export async function PATCH(
       });
     }
 
-    await sendNotificationEmail({
-      to: process.env.ADMIN_EMAIL || "",
-      subject: `[화란] 기안 ${action} 처리`,
-      html: `<p>${user.name}님이 기안에 '${action}' 처리했습니다.</p>`,
-    });
+    if (process.env.ADMIN_EMAIL) {
+      await sendNotificationEmail({
+        to: process.env.ADMIN_EMAIL,
+        subject: `[화란] 기안 ${action} 처리`,
+        html: `<p>${user.name}님이 기안에 '${action}' 처리했습니다.</p>`,
+      });
+    }
 
-    return NextResponse.json({ success: true, newStatus });
+    const draft = await getDraftById(id);
+    return NextResponse.json({ success: true, newStatus, draft });
   } catch (e) {
     console.error(e);
     return NextResponse.json({ error: "결재 처리 실패" }, { status: 500 });
