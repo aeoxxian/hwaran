@@ -42,13 +42,19 @@ export const ADMIN_ROLE_LABELS: Record<string, string> = {
 
 /** 관리자 사이드바 메뉴 (역할별 접근 제어용 minLevel 포함) */
 export const ADMIN_NAV = [
-  { label: "대시보드", href: "/admin", minLevel: 1 },
-  { label: "기안 목록", href: "/admin/drafts", minLevel: 1 },
-  { label: "기안 작성", href: "/admin/drafts/new", minLevel: 1 },
-  { label: "서류신청 관리", href: "/admin/applications", minLevel: 2 },
-  { label: "커뮤니티 관리", href: "/admin/boards", minLevel: 2 },
-  { label: "공지 작성", href: "/admin/notices/new", minLevel: 2 },
-  { label: "알림", href: "/admin/notifications", minLevel: 1 },
+  { label: "대시보드", href: "/admin", minLevel: 1, group: "기본" },
+  { label: "기안 목록", href: "/admin/drafts", minLevel: 1, group: "결재" },
+  { label: "기안 작성", href: "/admin/drafts/new", minLevel: 1, group: "결재" },
+  { label: "서류신청 관리", href: "/admin/applications", minLevel: 2, group: "결재" },
+  { label: "커뮤니티 관리", href: "/admin/boards", minLevel: 2, group: "결재" },
+  { label: "공지 작성", href: "/admin/notices/new", minLevel: 2, group: "콘텐츠" },
+  { label: "자료실 관리", href: "/admin/content/documents", minLevel: 1, group: "콘텐츠" },
+  { label: "물품 관리", href: "/admin/content/inventory", minLevel: 1, group: "콘텐츠" },
+  { label: "캘린더 관리", href: "/admin/content/events", minLevel: 1, group: "콘텐츠" },
+  { label: "갤러리 관리", href: "/admin/content/gallery", minLevel: 1, group: "콘텐츠" },
+  { label: "동아리 관리", href: "/admin/content/clubs", minLevel: 2, group: "콘텐츠" },
+  { label: "조직도 관리", href: "/admin/content/orgchart", minLevel: 2, group: "콘텐츠" },
+  { label: "알림", href: "/admin/notifications", minLevel: 1, group: "기본" },
 ] as const;
 
 export const DRAFT_TYPE_OPTIONS: Array<{ value: string; label: string }> = [

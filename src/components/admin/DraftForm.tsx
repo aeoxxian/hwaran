@@ -15,31 +15,29 @@ export default function DraftForm() {
   const [error, setError] = useState("");
   const fileRef = useRef<HTMLInputElement>(null);
 
+  /**
+   * 파일을 Notion File Upload API로 직접 업로드합니다.
+   * 응답으로 받은 fileUploadId 토큰을 attachments에 담아 기안 상신 시 함께 전송하면,
+   * 서버에서 노션 페이지 생성 시 file_upload로 첨부합니다.
+   * (실패 시 에러를 throw하여 사용자에게 알립니다.)
+   */
   async function uploadFiles(): Promise<string[]> {
-    const urls: string[] = [];
+    const tokens: string[] = [];
     for (const file of files) {
-      const res = await fetch("/api/admin/upload", {
+      const formData = new FormData();
+      formData.append("file", file);
+      const res = await fetch("/api/admin/notion-upload", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ filename: file.name, contentType: file.type }),
+        body: formData,
       });
       if (!res.ok) {
-        const data = await res.json();
-        if (data.error?.includes("S3")) {
-          console.warn("S3 미설정 – 파일 업로드 건너뜀");
-          continue;
-        }
-        throw new Error(data.error);
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || `파일 업로드 실패: ${file.name}`);
       }
-      const { uploadUrl, fileUrl } = await res.json();
-      await fetch(uploadUrl, {
-        method: "PUT",
-        headers: { "Content-Type": file.type },
-        body: file,
-      });
-      urls.push(fileUrl);
+      const { fileUploadId } = await res.json();
+      tokens.push(fileUploadId);
     }
-    return urls;
+    return tokens;
   }
 
   async function handleSubmit(asDraft: boolean) {

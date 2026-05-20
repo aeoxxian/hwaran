@@ -2,6 +2,7 @@ import {
   Notice, Club, ClubMember, CalendarEvent, BoardPost,
   GalleryAlbum, Document, InventoryItem, Banner, ExternalChannel,
   Draft, ClubApplication, AppNotification, BoardComment, ModerationLog,
+  OrgChartMember,
 } from "./types";
 
 export const mockModerationLogs: ModerationLog[] = [];
@@ -196,6 +197,33 @@ export const mockExternalChannels: ExternalChannel[] = [
 ];
 
 export const clubCategories = ["전체", "학술", "공연", "봉사", "체육", "문화", "종교"];
+
+export const mockOrgChartMembers: OrgChartMember[] = [
+  { id: "o1", name: "김서정", title: "동아리연합회장", department: "회장단", order: 1 },
+  { id: "o2", name: "박은규", title: "동아리연합부회장", department: "회장단", order: 2 },
+  { id: "o3", name: "서민재", title: "국장", department: "행사기획국", order: 10 },
+  { id: "o4", name: "송정후", title: "국원", department: "행사기획국", order: 11 },
+  { id: "o5", name: "김윤서", title: "국원", department: "행사기획국", order: 12 },
+  { id: "o6", name: "전은비", title: "국장", department: "사무국", order: 20 },
+  { id: "o7", name: "이승훈", title: "국원", department: "사무국", order: 21 },
+  { id: "o8", name: "김도유", title: "국원", department: "사무국", order: 22 },
+  { id: "o9", name: "안정웅", title: "국원", department: "사무국", order: 23 },
+  { id: "o10", name: "이서빈", title: "국장", department: "홍보디자인국", order: 30 },
+  { id: "o11", name: "남은수", title: "팀장", department: "홍보디자인국", team: "디자인팀", order: 31 },
+  { id: "o12", name: "장준형", title: "팀원", department: "홍보디자인국", team: "디자인팀", order: 32 },
+  { id: "o13", name: "조윤서", title: "팀원", department: "홍보디자인국", team: "디자인팀", order: 33 },
+  { id: "o14", name: "김승우", title: "팀장", department: "홍보디자인국", team: "웹사이트 개발팀", order: 34 },
+  { id: "o15", name: "고이삭", title: "팀원", department: "홍보디자인국", team: "웹사이트 개발팀", order: 35 },
+  { id: "o16", name: "김현우", title: "팀원", department: "홍보디자인국", team: "웹사이트 개발팀", order: 36 },
+  { id: "o17", name: "최민", title: "국원", department: "홍보디자인국", order: 37 },
+  { id: "o18", name: "송현우", title: "국장", department: "동아리관리국", order: 40 },
+  { id: "o19", name: "노윤서", title: "팀장", department: "동아리관리국", team: "대내업무팀", order: 41 },
+  { id: "o20", name: "송은율", title: "팀원", department: "동아리관리국", team: "대내업무팀", order: 42 },
+  { id: "o21", name: "황아진", title: "팀원", department: "동아리관리국", team: "대내업무팀", order: 43 },
+  { id: "o22", name: "주예슬", title: "팀장", department: "동아리관리국", team: "대외업무팀", order: 44 },
+  { id: "o23", name: "백시연", title: "팀원", department: "동아리관리국", team: "대외업무팀", order: 45 },
+  { id: "o24", name: "이중헌", title: "팀원", department: "동아리관리국", team: "대외업무팀", order: 46 },
+];
 
 // ─── 관리자 포털 목업 데이터 ────────────────────────────────────
 

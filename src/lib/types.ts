@@ -236,6 +236,15 @@ export interface ModerationLog {
   createdAt: string;
 }
 
+export interface OrgChartMember {
+  id: string;
+  name: string;
+  title: string;
+  department: string;
+  team?: string;
+  order: number;
+}
+
 export type NotificationKind = "기안" | "서류신청" | "공지" | "기타";
 
 export interface AppNotification {

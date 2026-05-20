@@ -1,21 +1,9 @@
 import Link from "next/link";
 import StatusBadge from "@/components/admin/StatusBadge";
-import type { Draft } from "@/lib/types";
-
-async function getDrafts(): Promise<Draft[]> {
-  try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_URL || "http://localhost:3000"}/api/admin/drafts`, {
-      cache: "no-store",
-    });
-    if (!res.ok) return [];
-    const data = await res.json();
-    return data.drafts || [];
-  } catch {
-    return [];
-  }
-}
+import { getDrafts } from "@/lib/data";
 
 export const metadata = { title: "기안 목록" };
+export const dynamic = "force-dynamic";
 
 export default async function DraftsPage() {
   const drafts = await getDrafts();

@@ -74,11 +74,21 @@ export async function POST(request: NextRequest) {
 
     if (Array.isArray(attachments) && attachments.length > 0) {
       properties["첨부파일"] = {
-        files: attachments.map((url: string, index: number) => ({
-          name: `첨부파일-${index + 1}`,
-          type: "external",
-          external: { url },
-        })),
+        files: attachments.map((token: string, index: number) => {
+          const isExternalUrl = /^https?:\/\//i.test(token);
+          if (isExternalUrl) {
+            return {
+              name: `첨부파일-${index + 1}`,
+              type: "external" as const,
+              external: { url: token },
+            };
+          }
+          return {
+            name: `첨부파일-${index + 1}`,
+            type: "file_upload" as const,
+            file_upload: { id: token },
+          };
+        }),
       };
     }
 

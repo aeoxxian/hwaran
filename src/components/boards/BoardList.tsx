@@ -7,10 +7,10 @@ import type { BoardPost } from "@/lib/types";
 type BoardCategory = BoardPost["category"];
 
 const BOARD_META: Record<BoardCategory, { title: string; subtitle: string }> = {
-  qna: { title: "QnA Board", subtitle: "Ask questions and check replies." },
-  complaints: { title: "Complaints Board", subtitle: "Submit complaints and track status." },
-  "lost-found": { title: "Lost and Found", subtitle: "Register lost and found items." },
-  promotions: { title: "Club Promotions", subtitle: "Check club announcements and promotions." },
+  qna: { title: "문의 게시판", subtitle: "궁금한 점을 질문하고 답변을 확인하세요." },
+  complaints: { title: "민원 게시판", subtitle: "민원을 제출하고 처리 현황을 확인하세요." },
+  "lost-found": { title: "분실물 게시판", subtitle: "분실물과 습득물을 등록하고 확인하세요." },
+  promotions: { title: "동아리 홍보글", subtitle: "동아리 소식과 홍보 게시글을 확인하세요." },
 };
 
 export default function BoardList({ category }: { category: BoardCategory }) {
@@ -47,34 +47,34 @@ export default function BoardList({ category }: { category: BoardCategory }) {
           <input
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            placeholder="Search title/content"
+            placeholder="제목/내용 검색"
             className="input-field !py-2 !px-3 !w-56"
           />
           <Link href={`/boards/${category}/new`} className="btn-primary !px-4 !py-2">
-            Write
+            글쓰기
           </Link>
         </div>
       </div>
 
       {loading ? (
-        <div className="card text-gray-text">Loading...</div>
+        <div className="card text-gray-text">불러오는 중...</div>
       ) : filteredPosts.length === 0 ? (
-        <div className="card text-gray-text">No posts found.</div>
+        <div className="card text-gray-text">게시글이 없습니다.</div>
       ) : (
         <div className="space-y-3">
           {filteredPosts.map((post) => (
             <article key={post.id} className="card !p-4">
               <div className="flex items-center gap-2 mb-2">
                 {post.status && <span className="badge bg-gray-light text-gray-text">{post.status}</span>}
-                {post.approvalStatus === "pending" && <span className="badge-warning">Pending</span>}
-                {post.isAnonymous && <span className="badge bg-gray-light text-gray-text">Anonymous</span>}
+                {post.approvalStatus === "pending" && <span className="badge-warning">검토 중</span>}
+                {post.isAnonymous && <span className="badge bg-gray-light text-gray-text">익명</span>}
               </div>
               <Link href={`/boards/${category}/${post.id}`} className="block hover:opacity-85 transition-opacity">
                 <h3 className="font-semibold text-dark">{post.title}</h3>
                 <p className="text-sm text-gray-text mt-1 line-clamp-2">{post.content}</p>
               </Link>
               <div className="flex gap-3 mt-2 text-xs text-gray-text">
-                <span>{post.isAnonymous ? "Anonymous" : post.author}</span>
+                <span>{post.isAnonymous ? "익명" : post.author}</span>
                 <span>{post.createdAt}</span>
                 {post.clubName && <span>{post.clubName}</span>}
               </div>

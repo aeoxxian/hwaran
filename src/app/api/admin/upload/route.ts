@@ -11,11 +11,26 @@ const s3 = new S3Client({
   },
 });
 
+const ALLOWED_FOLDERS = new Set([
+  "drafts",
+  "documents",
+  "gallery",
+  "clubs",
+  "events",
+  "inventory",
+  "orgchart",
+  "notices",
+]);
+
+function sanitizeFilename(name: string): string {
+  return name.replace(/[^a-zA-Z0-9가-힣._-]/g, "_").slice(0, 200);
+}
+
 export async function POST(request: NextRequest) {
   const g = guard(request, { minAdminLevel: 1 });
   if (!g.ok) return g.response;
 
-  const { filename, contentType } = await request.json();
+  const { filename, contentType, folder } = await request.json();
   const bucket = process.env.AWS_S3_BUCKET;
 
   if (!bucket || !process.env.AWS_ACCESS_KEY_ID) {
@@ -25,7 +40,9 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const key = `drafts/${Date.now()}-${filename}`;
+  const safeFolder = typeof folder === "string" && ALLOWED_FOLDERS.has(folder) ? folder : "drafts";
+  const safeName = sanitizeFilename(typeof filename === "string" ? filename : "file");
+  const key = `${safeFolder}/${Date.now()}-${safeName}`;
   const command = new PutObjectCommand({
     Bucket: bucket,
     Key: key,

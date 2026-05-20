@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getEvents } from "@/lib/data";
-import notion, { databaseIds } from "@/lib/notion";
-
-const USE_MOCK = !process.env.NOTION_API_KEY || !databaseIds.events;
+import { getEvents, createEvent } from "@/lib/data";
+import { guard } from "@/lib/api-auth";
 
 export async function GET() {
   const events = await getEvents();
@@ -10,26 +8,26 @@ export async function GET() {
 }
 
 export async function POST(request: NextRequest) {
-  if (USE_MOCK) {
-    return NextResponse.json({ error: "Notion API가 연결되지 않았습니다." }, { status: 503 });
-  }
+  const g = guard(request, { minAdminLevel: 1 });
+  if (!g.ok) return g.response;
 
   try {
     const body = await request.json();
-    const response = await notion.pages.create({
-      parent: { database_id: databaseIds.events },
-      properties: {
-        제목: { title: [{ text: { content: body.title } }] },
-        시작일: { date: { start: body.startDate } },
-        종료일: { date: { start: body.endDate || body.startDate } },
-        동아리ID: { rich_text: [{ text: { content: body.clubId || "" } }] },
-        동아리명: { rich_text: [{ text: { content: body.clubName || "" } }] },
-        장소: { rich_text: [{ text: { content: body.location || "" } }] },
-        설명: { rich_text: [{ text: { content: body.description || "" } }] },
-        색상: { rich_text: [{ text: { content: body.color || "#E05252" } }] },
-      },
+    if (!body.title || !body.startDate) {
+      return NextResponse.json({ error: "제목과 시작일은 필수입니다." }, { status: 400 });
+    }
+
+    const event = await createEvent({
+      title: body.title,
+      startDate: body.startDate,
+      endDate: body.endDate || undefined,
+      clubId: body.clubId || undefined,
+      clubName: body.clubName || undefined,
+      location: body.location || undefined,
+      description: body.description || undefined,
+      color: body.color || "#E05252",
     });
-    return NextResponse.json({ id: response.id }, { status: 201 });
+    return NextResponse.json(event, { status: 201 });
   } catch (error) {
     console.error("Failed to create event:", error);
     return NextResponse.json({ error: "일정 등록에 실패했습니다." }, { status: 500 });

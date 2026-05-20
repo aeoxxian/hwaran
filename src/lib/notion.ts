@@ -25,6 +25,7 @@ export const databaseIds = {
   drafts: process.env.NOTION_DRAFTS_DB || "",
   applications: process.env.NOTION_APPLICATIONS_DB || "",
   notifications: process.env.NOTION_NOTIFICATIONS_DB || "",
+  orgchart: process.env.NOTION_ORGCHART_DB || "",
 };
 
 export function getTextProperty(page: Record<string, unknown>, prop: string): string {
