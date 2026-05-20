@@ -169,9 +169,10 @@ function buildClubProperties(input: Partial<ClubInput>): Record<string, unknown>
   const props: Record<string, unknown> = {};
   if (input.name !== undefined) props["이름"] = { title: [{ text: { content: input.name } }] };
   if (input.description !== undefined) props["소개"] = { rich_text: [{ text: { content: input.description } }] };
-  if (input.category !== undefined) props["분류"] = { rich_text: [{ text: { content: input.category } }] };
-  if (input.instagramUrl !== undefined) props["인스타그램"] = { rich_text: [{ text: { content: input.instagramUrl } }] };
-  if (input.memberCount !== undefined) props["회원수"] = { rich_text: [{ text: { content: String(input.memberCount) } }] };
+  // DB 스키마: 분류는 select 타입, 인스타그램은 url 타입, 회원수는 number 타입
+  if (input.category !== undefined) props["분류"] = { select: { name: input.category } };
+  if (input.instagramUrl !== undefined) props["인스타그램"] = { url: input.instagramUrl || null };
+  if (input.memberCount !== undefined) props["회원수"] = { number: input.memberCount };
   if (input.logo !== undefined) {
     props["로고"] = input.logo
       ? { files: [{ name: "logo", type: "external", external: { url: input.logo } }] }
@@ -664,8 +665,9 @@ export interface InventoryInput {
 function buildInventoryProperties(input: Partial<InventoryInput>): Record<string, unknown> {
   const props: Record<string, unknown> = {};
   if (input.name !== undefined) props["이름"] = { title: [{ text: { content: input.name } }] };
-  if (input.quantity !== undefined) props["수량"] = { rich_text: [{ text: { content: String(input.quantity) } }] };
-  if (input.status !== undefined) props["상태"] = { rich_text: [{ text: { content: input.status } }] };
+  // DB 스키마: 수량은 number 타입, 상태는 select 타입
+  if (input.quantity !== undefined) props["수량"] = { number: input.quantity };
+  if (input.status !== undefined) props["상태"] = { select: { name: input.status } };
   if (input.location !== undefined) props["보관위치"] = { rich_text: [{ text: { content: input.location } }] };
   if (input.note !== undefined) props["비고"] = { rich_text: [{ text: { content: input.note } }] };
   return props;

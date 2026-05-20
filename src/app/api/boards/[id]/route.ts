@@ -95,13 +95,12 @@ export async function PATCH(
       return NextResponse.json({ error: "수정 권한이 없습니다." }, { status: 403 });
     }
 
-    const properties: Record<string, unknown> = {
-      수정일: { date: { start: new Date().toISOString().split("T")[0] } },
-    };
+    // 수정일은 DB 스키마에 없으므로 제외, 실제 존재하는 속성만 업데이트합니다.
+    const properties: Record<string, unknown> = {};
     if (typeof body.title === "string") properties["제목"] = { title: [{ text: { content: body.title } }] };
     if (typeof body.content === "string") {
       properties[post.category === "lost-found" ? "설명" : "내용"] = {
-        rich_text: [{ text: { content: body.content } }],
+        rich_text: [{ text: { content: body.content.slice(0, 2000) } }],
       };
     }
     if (typeof body.location === "string" && post.category === "lost-found") {

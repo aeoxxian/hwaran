@@ -45,11 +45,11 @@ export default function BoardEditor({ category, postId }: BoardEditorProps) {
         });
         setAttachments(post.attachments || []);
       })
-      .catch(() => setError("Failed to load post."))
+      .catch(() => setError("게시글을 불러오는 데 실패했습니다."))
       .finally(() => setLoading(false));
   }, [isEditMode, postId]);
 
-  const pageTitle = useMemo(() => (isEditMode ? "Edit Post" : "Create Post"), [isEditMode]);
+  const pageTitle = useMemo(() => (isEditMode ? "게시글 수정" : "게시글 작성"), [isEditMode]);
 
   async function uploadFiles(): Promise<string[]> {
     const uploaded: string[] = [...attachments];
@@ -78,7 +78,7 @@ export default function BoardEditor({ category, postId }: BoardEditorProps) {
     e.preventDefault();
     setError("");
     if (!form.title.trim() || !form.content.trim()) {
-      setError("Title and content are required.");
+      setError("제목과 내용을 입력해주세요.");
       return;
     }
 
@@ -108,7 +108,7 @@ export default function BoardEditor({ category, postId }: BoardEditorProps) {
       router.push(nextId ? `/boards/${category}/${nextId}` : `/boards/${category}`);
       router.refresh();
     } catch {
-      setError("Request failed.");
+      setError("요청에 실패했습니다. 잠시 후 다시 시도해주세요.");
     } finally {
       setSaving(false);
     }
@@ -117,7 +117,7 @@ export default function BoardEditor({ category, postId }: BoardEditorProps) {
   if (loading) {
     return (
       <div className="container-page">
-        <div className="card text-gray-text">Loading...</div>
+        <div className="card text-gray-text">불러오는 중...</div>
       </div>
     );
   }
@@ -129,13 +129,13 @@ export default function BoardEditor({ category, postId }: BoardEditorProps) {
         <form onSubmit={handleSubmit} className="space-y-4">
           <input
             className="input-field"
-            placeholder="Title"
+            placeholder="제목"
             value={form.title}
             onChange={(e) => setForm((p) => ({ ...p, title: e.target.value }))}
           />
           <textarea
             className="input-field min-h-44"
-            placeholder="Content"
+            placeholder="내용"
             value={form.content}
             onChange={(e) => setForm((p) => ({ ...p, content: e.target.value }))}
           />
@@ -143,7 +143,7 @@ export default function BoardEditor({ category, postId }: BoardEditorProps) {
           {category === "lost-found" && (
             <input
               className="input-field"
-              placeholder="Location"
+              placeholder="장소 (분실/습득 위치)"
               value={form.location}
               onChange={(e) => setForm((p) => ({ ...p, location: e.target.value }))}
             />
@@ -159,10 +159,10 @@ export default function BoardEditor({ category, postId }: BoardEditorProps) {
             {(attachments.length > 0 || files.length > 0) && (
               <div className="mt-2 text-xs text-gray-text space-y-1">
                 {attachments.map((url, idx) => (
-                  <div key={`old-${idx}`}>Existing attachment {idx + 1}: {url}</div>
+                  <div key={`old-${idx}`}>기존 첨부파일 {idx + 1}: {url}</div>
                 ))}
                 {files.map((file, idx) => (
-                  <div key={`new-${idx}`}>New file: {file.name}</div>
+                  <div key={`new-${idx}`}>새 파일: {file.name}</div>
                 ))}
               </div>
             )}
@@ -171,7 +171,7 @@ export default function BoardEditor({ category, postId }: BoardEditorProps) {
           {category === "promotions" && (
             <input
               className="input-field"
-              placeholder="Club Name"
+              placeholder="동아리명"
               value={form.clubName}
               onChange={(e) => setForm((p) => ({ ...p, clubName: e.target.value }))}
             />
@@ -184,17 +184,17 @@ export default function BoardEditor({ category, postId }: BoardEditorProps) {
                 checked={form.isAnonymous}
                 onChange={(e) => setForm((p) => ({ ...p, isAnonymous: e.target.checked }))}
               />
-              Write anonymously
+              익명으로 작성
             </label>
           )}
 
           {error && <p className="text-sm text-red-600">{error}</p>}
           <div className="flex gap-2">
             <button disabled={saving} type="submit" className="btn-primary !px-4 !py-2">
-              {saving ? "Saving..." : isEditMode ? "Update" : "Create"}
+              {saving ? "저장 중..." : isEditMode ? "수정 완료" : "등록"}
             </button>
             <button type="button" onClick={() => router.back()} className="btn-outline !px-4 !py-2">
-              Cancel
+              취소
             </button>
           </div>
         </form>

@@ -81,29 +81,30 @@ export async function POST(request: NextRequest) {
   }
 
   try {
+    // Notion DB 스키마에 실제로 존재하는 공통 속성만 설정합니다.
+    // (작성자ID·공개범위·승인상태·수정일은 스키마에 없어 제외)
     const properties: Record<string, unknown> = {
       제목: { title: [{ text: { content: body.title } }] },
       작성일: { date: { start: today } },
-      수정일: { date: { start: today } },
-      작성자ID: { rich_text: [{ text: { content: authorId } }] },
       작성자: { rich_text: [{ text: { content: authorName } }] },
-      공개범위: { select: { name: body.visibility || "public" } },
-      승인상태: { select: { name: category === "promotions" ? "pending" : "approved" } },
     };
 
-    if (category === "qna" || category === "complaints" || category === "promotions") {
-      properties["내용"] = { rich_text: [{ text: { content: body.content } }] };
+    if (category === "qna") {
+      properties["내용"] = { rich_text: [{ text: { content: body.content.slice(0, 2000) } }] };
       properties["상태"] = { select: { name: "대기" } };
     }
     if (category === "complaints") {
+      properties["내용"] = { rich_text: [{ text: { content: body.content.slice(0, 2000) } }] };
+      properties["상태"] = { select: { name: "대기" } };
       properties["익명여부"] = { checkbox: Boolean(body.isAnonymous) };
     }
     if (category === "lost-found") {
-      properties["설명"] = { rich_text: [{ text: { content: body.content } }] };
+      properties["설명"] = { rich_text: [{ text: { content: body.content.slice(0, 2000) } }] };
       properties["장소"] = { rich_text: [{ text: { content: body.location || "" } }] };
       properties["상태"] = { select: { name: "미해결" } };
     }
     if (category === "promotions") {
+      properties["내용"] = { rich_text: [{ text: { content: body.content.slice(0, 2000) } }] };
       properties["동아리ID"] = { rich_text: [{ text: { content: body.clubId || "" } }] };
       properties["동아리명"] = { rich_text: [{ text: { content: body.clubName || "" } }] };
     }
