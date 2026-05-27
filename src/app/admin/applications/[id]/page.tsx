@@ -3,11 +3,13 @@ import { notFound } from "next/navigation";
 import StatusBadge from "@/components/admin/StatusBadge";
 import ApplicationActions from "@/components/admin/ApplicationActions";
 import { getApplicationById } from "@/lib/data";
+import { requireAdminLevel } from "@/lib/server-auth";
 
 export const metadata = { title: "서류 상세" };
 export const dynamic = "force-dynamic";
 
 export default async function ApplicationDetailPage({ params }: { params: Promise<{ id: string }> }) {
+  await requireAdminLevel(2);
   const { id } = await params;
   const app = await getApplicationById(id);
   if (!app) notFound();

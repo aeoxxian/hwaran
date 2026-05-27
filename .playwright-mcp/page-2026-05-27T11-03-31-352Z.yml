@@ -1,0 +1,182 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e4]:
+      - link "화 화란" [ref=e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e6]: 화
+        - generic [ref=e7]: 화란
+      - navigation [ref=e8]:
+        - link "소개" [ref=e10] [cursor=pointer]:
+          - /url: /about
+        - link "공지사항" [ref=e12] [cursor=pointer]:
+          - /url: /notices
+        - link "동아리 소개" [ref=e14] [cursor=pointer]:
+          - /url: /clubs
+        - link "캘린더" [ref=e16] [cursor=pointer]:
+          - /url: /calendar
+        - link "커뮤니티" [ref=e18] [cursor=pointer]:
+          - /url: /boards
+        - link "갤러리" [ref=e20] [cursor=pointer]:
+          - /url: /gallery
+        - link "자료실" [ref=e22] [cursor=pointer]:
+          - /url: /documents
+        - link "서류 양식" [ref=e24] [cursor=pointer]:
+          - /url: /forms
+        - link "물품 관리" [ref=e26] [cursor=pointer]:
+          - /url: /inventory
+      - generic [ref=e27]:
+        - generic "Notion OK · DB 20/20" [ref=e96]: NOTION LIVE
+        - button "알림" [ref=e99]:
+          - text: 🔔
+          - generic [ref=e100]: "1"
+        - link "관리자" [ref=e101] [cursor=pointer]:
+          - /url: /admin
+        - generic [ref=e102]: 테스트회장
+        - button "로그아웃" [ref=e103]
+  - main [ref=e30]:
+    - generic [ref=e31]:
+      - complementary [ref=e32]:
+        - generic [ref=e33]:
+          - link "화란" [ref=e34] [cursor=pointer]:
+            - /url: /
+          - paragraph [ref=e35]: 관리자 포털
+        - generic [ref=e104]:
+          - paragraph [ref=e105]: 테스트회장
+          - paragraph [ref=e106]: 회장단
+        - navigation [ref=e36]:
+          - generic [ref=e107]:
+            - paragraph [ref=e108]: 기본
+            - generic [ref=e109]:
+              - link "⊞ 대시보드" [ref=e110] [cursor=pointer]:
+                - /url: /admin
+                - generic [ref=e111]: ⊞
+                - text: 대시보드
+              - link "🔔 알림" [ref=e112] [cursor=pointer]:
+                - /url: /admin/notifications
+                - generic [ref=e113]: 🔔
+                - text: 알림
+          - generic [ref=e114]:
+            - paragraph [ref=e115]: 결재
+            - generic [ref=e116]:
+              - link "📋 기안 목록" [ref=e117] [cursor=pointer]:
+                - /url: /admin/drafts
+                - generic [ref=e118]: 📋
+                - text: 기안 목록
+              - link "✏️ 기안 작성" [ref=e119] [cursor=pointer]:
+                - /url: /admin/drafts/new
+                - generic [ref=e120]: ✏️
+                - text: 기안 작성
+              - link "📁 서류신청 관리" [ref=e121] [cursor=pointer]:
+                - /url: /admin/applications
+                - generic [ref=e122]: 📁
+                - text: 서류신청 관리
+              - link "🛡️ 커뮤니티 관리" [ref=e123] [cursor=pointer]:
+                - /url: /admin/boards
+                - generic [ref=e124]: 🛡️
+                - text: 커뮤니티 관리
+          - generic [ref=e125]:
+            - paragraph [ref=e126]: 콘텐츠
+            - generic [ref=e127]:
+              - link "· 공지 목록" [ref=e128] [cursor=pointer]:
+                - /url: /admin/notices
+                - generic [ref=e129]: ·
+                - text: 공지 목록
+              - link "📢 공지 작성" [ref=e130] [cursor=pointer]:
+                - /url: /admin/notices/new
+                - generic [ref=e131]: 📢
+                - text: 공지 작성
+              - link "📄 자료실 관리" [ref=e132] [cursor=pointer]:
+                - /url: /admin/content/documents
+                - generic [ref=e133]: 📄
+                - text: 자료실 관리
+              - link "📦 물품 관리" [ref=e134] [cursor=pointer]:
+                - /url: /admin/content/inventory
+                - generic [ref=e135]: 📦
+                - text: 물품 관리
+              - link "📅 캘린더 관리" [ref=e136] [cursor=pointer]:
+                - /url: /admin/content/events
+                - generic [ref=e137]: 📅
+                - text: 캘린더 관리
+              - link "🖼️ 갤러리 관리" [ref=e138] [cursor=pointer]:
+                - /url: /admin/content/gallery
+                - generic [ref=e139]: 🖼️
+                - text: 갤러리 관리
+              - link "🎯 동아리 관리" [ref=e140] [cursor=pointer]:
+                - /url: /admin/content/clubs
+                - generic [ref=e141]: 🎯
+                - text: 동아리 관리
+              - link "👥 조직도 관리" [ref=e142] [cursor=pointer]:
+                - /url: /admin/content/orgchart
+                - generic [ref=e143]: 👥
+                - text: 조직도 관리
+        - button "로그아웃" [ref=e38]
+      - main [ref=e40]:
+        - generic [ref=e144]:
+          - generic [ref=e145]:
+            - link "← 대시보드" [ref=e146] [cursor=pointer]:
+              - /url: /admin
+            - heading "공지 작성" [level=1] [ref=e147]
+            - paragraph [ref=e148]: 작성한 공지사항은 공지사항 게시판에 즉시 게시됩니다.
+          - generic [ref=e149]:
+            - generic [ref=e150]:
+              - generic [ref=e151]: 제목
+              - textbox "공지 제목을 입력하세요" [ref=e152]: "[E2E 테스트] 회장단 공지사항"
+            - generic [ref=e153]:
+              - generic [ref=e154]: 내용
+              - textbox "공지 내용을 작성하세요..." [ref=e155]: 이 공지는 E2E 테스트 용도로 작성되었습니다.
+            - generic [ref=e156]:
+              - checkbox "중요 공지 (상단 고정)" [checked] [ref=e157]
+              - generic [ref=e158]: 중요 공지 (상단 고정)
+            - generic [ref=e159]:
+              - link "취소" [ref=e160] [cursor=pointer]:
+                - /url: /admin
+              - button "공지 등록" [ref=e161]
+  - contentinfo [ref=e53]:
+    - generic [ref=e54]:
+      - generic [ref=e55]:
+        - generic [ref=e56]:
+          - generic [ref=e57]:
+            - generic [ref=e58]: 화
+            - generic [ref=e59]:
+              - heading "화란" [level=3] [ref=e60]
+              - paragraph [ref=e61]: 제4대 한국에너지공과대학교 동아리연합회
+          - paragraph [ref=e62]: 학우들의 동아리 활동이 아름답게 꽃피길 바라는 마음을 담아, 동아리 활동 지원과 행사 주최, 복지 향상을 위해 노력합니다.
+        - generic [ref=e63]:
+          - heading "바로가기" [level=4] [ref=e64]
+          - list [ref=e65]:
+            - listitem [ref=e66]:
+              - link "소개" [ref=e67] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=e68]:
+              - link "공지사항" [ref=e69] [cursor=pointer]:
+                - /url: /notices
+            - listitem [ref=e70]:
+              - link "동아리 소개" [ref=e71] [cursor=pointer]:
+                - /url: /clubs
+            - listitem [ref=e72]:
+              - link "캘린더" [ref=e73] [cursor=pointer]:
+                - /url: /calendar
+            - listitem [ref=e74]:
+              - link "갤러리" [ref=e75] [cursor=pointer]:
+                - /url: /gallery
+            - listitem [ref=e76]:
+              - link "자료실" [ref=e77] [cursor=pointer]:
+                - /url: /documents
+        - generic [ref=e78]:
+          - heading "연락처" [level=4] [ref=e79]
+          - list [ref=e80]:
+            - listitem [ref=e81]:
+              - img [ref=e82]
+              - generic [ref=e85]: 경상북도 나주시 한국에너지공과대학교
+            - listitem [ref=e86]:
+              - img [ref=e87]
+              - link "hwaran@kentech.ac.kr" [ref=e89] [cursor=pointer]:
+                - /url: mailto:hwaran@kentech.ac.kr
+            - listitem [ref=e90]:
+              - img [ref=e91]
+              - link "@hwaran_kentech" [ref=e93] [cursor=pointer]:
+                - /url: https://instagram.com/hwaran_kentech
+      - paragraph [ref=e95]: © 2026 제4대 한국에너지공과대학교 동아리연합회 화란. All Rights Reserved.
+  - button "Open Next.js Dev Tools" [ref=e167] [cursor=pointer]:
+    - img [ref=e168]
+  - alert [ref=e171]

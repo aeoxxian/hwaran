@@ -1,9 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
-import notion, { databaseIds, getTextProperty } from "@/lib/notion";
-import { mockBoardPosts, mockModerationLogs } from "@/lib/mock-data";
+import notion, { getTextProperty } from "@/lib/notion";
+import { mockBoardPosts } from "@/lib/mock-data";
 import { sendNotificationEmail } from "@/lib/email";
 import { guard } from "@/lib/api-auth";
-import type { ModerationLog } from "@/lib/types";
+import {
+  getModerationLogs,
+  createModerationLog,
+  createNotification,
+} from "@/lib/data";
 
 const USE_MOCK = !process.env.NOTION_API_KEY;
 
@@ -21,9 +25,7 @@ export async function GET(
   const g = guard(request, { minAdminLevel: 1 });
   if (!g.ok) return g.response;
   const { id } = await params;
-  const logs = mockModerationLogs
-    .filter((l) => l.postId === id)
-    .sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1));
+  const logs = await getModerationLogs(id);
   return NextResponse.json({ logs });
 }
 
@@ -40,11 +42,11 @@ export async function PATCH(
   const action = body.action as "approve" | "reject" | "resolve" | "pending";
   const note = body.note as string | undefined;
 
-  if (!action) {
-    return NextResponse.json({ error: "action 값이 필요합니다." }, { status: 400 });
+  if (!action || !STATUS_BY_ACTION[action]) {
+    return NextResponse.json({ error: "유효하지 않은 action입니다." }, { status: 400 });
   }
 
-  const nextStatus = STATUS_BY_ACTION[action] || "대기";
+  const nextStatus = STATUS_BY_ACTION[action];
   const requiresNote = action === "reject";
   if (requiresNote && !(note && note.trim().length > 0)) {
     return NextResponse.json(
@@ -53,8 +55,8 @@ export async function PATCH(
     );
   }
 
-  const log: ModerationLog = {
-    id: `mlog-${Date.now()}`,
+  // 로그 영속화 (mock / Notion 둘 다 createModerationLog가 분기)
+  const log = await createModerationLog({
     postId: id,
     action,
     status: nextStatus,
@@ -62,9 +64,7 @@ export async function PATCH(
     actorId: user.id,
     actorName: user.name,
     actorRole: user.role,
-    createdAt: new Date().toISOString(),
-  };
-  mockModerationLogs.push(log);
+  });
 
   if (USE_MOCK) {
     const target = mockBoardPosts.find((p) => p.id === id);
@@ -111,23 +111,14 @@ export async function PATCH(
       });
     }
 
-    if (databaseIds.notifications && authorId) {
+    if (authorId) {
       const baseUrl = process.env.NEXT_PUBLIC_URL || "http://localhost:3000";
-      await notion.pages.create({
-        parent: { database_id: databaseIds.notifications },
-        properties: {
-          제목: { title: [{ text: { content: `내 게시글이 ${nextStatus} 처리되었습니다` } }] },
-          메시지: {
-            rich_text: [
-              { text: { content: `${title || "게시글"} 처리 상태: ${nextStatus}${note ? ` · 사유: ${note}` : ""}` } },
-            ],
-          },
-          수신자ID: { rich_text: [{ text: { content: authorId } }] },
-          링크: { url: `${baseUrl}/admin/boards` },
-          읽음여부: { checkbox: false },
-          생성일: { date: { start: new Date().toISOString().split("T")[0] } },
-          유형: { select: { name: "기타" } },
-        },
+      await createNotification({
+        recipientId: authorId,
+        title: `내 게시글이 ${nextStatus} 처리되었습니다`,
+        message: `${title || "게시글"} 처리 상태: ${nextStatus}${note ? ` · 사유: ${note}` : ""}`,
+        link: `${baseUrl}/boards`,
+        kind: "기타",
       });
     }
 

@@ -19,7 +19,7 @@ export async function GET(
   try {
     const res = await notion.databases.query({
       database_id: databaseIds.boardComments,
-      filter: { property: "게시글ID", rich_text: { equals: id } },
+      filter: { property: "게시글ID", title: { equals: id } },
       sorts: [{ property: "작성일", direction: "ascending" }],
     });
     const comments: BoardComment[] = res.results.map((row) => {
@@ -74,7 +74,7 @@ export async function POST(
     const response = await notion.pages.create({
       parent: { database_id: databaseIds.boardComments },
       properties: {
-        게시글ID: { rich_text: [{ text: { content: id } }] },
+        게시글ID: { title: [{ text: { content: id } }] },
         내용: { rich_text: [{ text: { content } }] },
         작성자ID: { rich_text: [{ text: { content: user.id } }] },
         작성자명: { rich_text: [{ text: { content: user.name } }] },

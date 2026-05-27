@@ -1,0 +1,100 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e4]:
+      - link "화란 로고 화란" [ref=e5] [cursor=pointer]:
+        - /url: /
+        - img "화란 로고" [ref=e6]
+        - generic [ref=e7]: 화란
+      - navigation [ref=e8]:
+        - link "소개" [ref=e10] [cursor=pointer]:
+          - /url: /about
+        - link "공지사항" [ref=e12] [cursor=pointer]:
+          - /url: /notices
+        - link "동아리 소개" [ref=e14] [cursor=pointer]:
+          - /url: /clubs
+        - link "캘린더" [ref=e16] [cursor=pointer]:
+          - /url: /calendar
+        - link "커뮤니티" [ref=e18] [cursor=pointer]:
+          - /url: /boards
+        - link "갤러리" [ref=e20] [cursor=pointer]:
+          - /url: /gallery
+        - link "자료실" [ref=e22] [cursor=pointer]:
+          - /url: /documents
+        - link "서류 양식" [ref=e24] [cursor=pointer]:
+          - /url: /forms
+        - link "물품 관리" [ref=e26] [cursor=pointer]:
+          - /url: /inventory
+      - generic [ref=e27]:
+        - link "로그인" [ref=e28] [cursor=pointer]:
+          - /url: /auth/login
+        - link "회원가입" [ref=e29] [cursor=pointer]:
+          - /url: /auth/register
+  - main [ref=e30]:
+    - generic [ref=e31]:
+      - generic [ref=e32]:
+        - link "← 서류 양식 목록" [ref=e33] [cursor=pointer]:
+          - /url: /forms
+        - heading "동아리 등록 신청서 제출" [level=1] [ref=e34]
+        - paragraph [ref=e35]: 신규/재등록 동아리 등록 신청용
+        - paragraph [ref=e36]:
+          - text: "분류:"
+          - strong [ref=e37]: 동아리 등록
+          - text: "· 파일 유형:"
+          - strong [ref=e38]: docx
+      - generic [ref=e39]:
+        - paragraph [ref=e40]: 제출 절차
+        - list [ref=e41]:
+          - listitem [ref=e42]:
+            - text: 아래
+            - link "양식 파일" [ref=e43] [cursor=pointer]:
+              - /url: /forms/club_registration/club_registration_application.docx
+            - text: 을 다운로드합니다.
+          - listitem [ref=e44]: 양식을 작성한 뒤 파일을 저장합니다.
+          - listitem [ref=e45]: 아래 폼에서 작성한 파일을 첨부하고 제출하세요.
+      - generic [ref=e46]: 로그인 정보 확인 중...
+  - contentinfo [ref=e47]:
+    - generic [ref=e48]:
+      - generic [ref=e49]:
+        - generic [ref=e50]:
+          - generic [ref=e51]:
+            - img "화란 로고" [ref=e52]
+            - generic [ref=e53]:
+              - heading "화란" [level=3] [ref=e54]
+              - paragraph [ref=e55]: 제4대 한국에너지공과대학교 동아리연합회
+          - paragraph [ref=e56]: 학우들의 동아리 활동이 아름답게 꽃피길 바라는 마음을 담아, 동아리 활동 지원과 행사 주최, 복지 향상을 위해 노력합니다.
+        - generic [ref=e57]:
+          - heading "바로가기" [level=4] [ref=e58]
+          - list [ref=e59]:
+            - listitem [ref=e60]:
+              - link "소개" [ref=e61] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=e62]:
+              - link "공지사항" [ref=e63] [cursor=pointer]:
+                - /url: /notices
+            - listitem [ref=e64]:
+              - link "동아리 소개" [ref=e65] [cursor=pointer]:
+                - /url: /clubs
+            - listitem [ref=e66]:
+              - link "캘린더" [ref=e67] [cursor=pointer]:
+                - /url: /calendar
+            - listitem [ref=e68]:
+              - link "갤러리" [ref=e69] [cursor=pointer]:
+                - /url: /gallery
+            - listitem [ref=e70]:
+              - link "자료실" [ref=e71] [cursor=pointer]:
+                - /url: /documents
+        - generic [ref=e72]:
+          - heading "연락처" [level=4] [ref=e73]
+          - list [ref=e74]:
+            - listitem [ref=e75]:
+              - img [ref=e76]
+              - generic [ref=e79]: 경상북도 나주시 한국에너지공과대학교
+            - listitem [ref=e80]:
+              - img [ref=e81]
+              - link "hwaran@kentech.ac.kr" [ref=e83] [cursor=pointer]:
+                - /url: mailto:hwaran@kentech.ac.kr
+            - listitem [ref=e84]:
+              - img [ref=e85]
+              - link "@hwaran_kentech" [ref=e87] [cursor=pointer]:
+                - /url: https://instagram.com/hwaran_kentech
+      - paragraph [ref=e89]: © 2026 제4대 한국에너지공과대학교 동아리연합회 화란. All Rights Reserved.

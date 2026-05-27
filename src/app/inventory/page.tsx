@@ -57,6 +57,13 @@ export default async function InventoryPage() {
                 <td className="px-6 py-4 text-sm text-gray-text">{item.note || "-"}</td>
               </tr>
             ))}
+            {inventory.length === 0 && (
+              <tr>
+                <td colSpan={5} className="px-6 py-12 text-center text-sm text-gray-text">
+                  등록된 물품이 없습니다.
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>

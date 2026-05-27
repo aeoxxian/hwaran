@@ -22,6 +22,7 @@ export const NAV_ITEMS = [
   },
   { label: "갤러리", href: "/gallery" },
   { label: "자료실", href: "/documents" },
+  { label: "서류 양식", href: "/forms" },
   { label: "물품 관리", href: "/inventory" },
 ] as const;
 
@@ -47,6 +48,7 @@ export const ADMIN_NAV = [
   { label: "기안 작성", href: "/admin/drafts/new", minLevel: 1, group: "결재" },
   { label: "서류신청 관리", href: "/admin/applications", minLevel: 2, group: "결재" },
   { label: "커뮤니티 관리", href: "/admin/boards", minLevel: 2, group: "결재" },
+  { label: "공지 목록", href: "/admin/notices", minLevel: 2, group: "콘텐츠" },
   { label: "공지 작성", href: "/admin/notices/new", minLevel: 2, group: "콘텐츠" },
   { label: "자료실 관리", href: "/admin/content/documents", minLevel: 1, group: "콘텐츠" },
   { label: "물품 관리", href: "/admin/content/inventory", minLevel: 1, group: "콘텐츠" },

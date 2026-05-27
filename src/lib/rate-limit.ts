@@ -12,14 +12,22 @@ interface RateLimitEntry {
 
 const store = new Map<string, RateLimitEntry>();
 
-// 오래된 항목 정리 (5분마다)
-setInterval(() => {
-  const now = Date.now();
-  for (const [key, entry] of store) {
-    entry.timestamps = entry.timestamps.filter((t) => now - t < 60_000);
-    if (entry.timestamps.length === 0) store.delete(key);
-  }
-}, 5 * 60_000);
+// 오래된 항목 정리 (5분마다).
+// Next.js 핫리로드/모듈 재import 시 interval 누적을 막기 위해 전역 플래그로 1회만 등록.
+declare global {
+  var __hwaranRateLimitCleanup: NodeJS.Timeout | undefined;
+}
+if (!globalThis.__hwaranRateLimitCleanup) {
+  globalThis.__hwaranRateLimitCleanup = setInterval(() => {
+    const now = Date.now();
+    for (const [key, entry] of store) {
+      entry.timestamps = entry.timestamps.filter((t) => now - t < 60_000);
+      if (entry.timestamps.length === 0) store.delete(key);
+    }
+  }, 5 * 60_000);
+  // Node 프로세스가 이 타이머 때문에 살아 있는 일이 없도록 unref.
+  globalThis.__hwaranRateLimitCleanup.unref?.();
+}
 
 /**
  * Rate limit 체크

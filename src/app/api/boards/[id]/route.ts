@@ -71,6 +71,7 @@ export async function PATCH(
 
   const { id } = await params;
   const body = await request.json();
+  const today = new Date().toISOString().split("T")[0];
 
   if (USE_MOCK) {
     const target = mockBoardPosts.find((p) => p.id === id);
@@ -82,7 +83,7 @@ export async function PATCH(
     target.title = body.title ?? target.title;
     target.content = body.content ?? target.content;
     target.location = body.location ?? target.location;
-    target.updatedAt = new Date().toISOString().split("T")[0];
+    target.updatedAt = today;
     target.attachments = body.attachments ?? target.attachments;
     target.images = body.images ?? target.images;
     return NextResponse.json({ post: target });
@@ -95,16 +96,36 @@ export async function PATCH(
       return NextResponse.json({ error: "수정 권한이 없습니다." }, { status: 403 });
     }
 
-    // 수정일은 DB 스키마에 없으므로 제외, 실제 존재하는 속성만 업데이트합니다.
-    const properties: Record<string, unknown> = {};
+    const properties: Record<string, unknown> = {
+      수정일: { date: { start: today } },
+    };
     if (typeof body.title === "string") properties["제목"] = { title: [{ text: { content: body.title } }] };
     if (typeof body.content === "string") {
-      properties[post.category === "lost-found" ? "설명" : "내용"] = {
+      const contentProp = post.category === "lost-found" ? "설명" : "내용";
+      properties[contentProp] = {
         rich_text: [{ text: { content: body.content.slice(0, 2000) } }],
       };
     }
     if (typeof body.location === "string" && post.category === "lost-found") {
       properties["장소"] = { rich_text: [{ text: { content: body.location } }] };
+    }
+    if (Array.isArray(body.attachments)) {
+      properties["첨부파일"] = {
+        files: body.attachments.map((url: string, index: number) => ({
+          name: `첨부파일-${index + 1}`,
+          type: "external",
+          external: { url },
+        })),
+      };
+    }
+    if (Array.isArray(body.images)) {
+      properties["이미지"] = {
+        files: body.images.map((url: string, index: number) => ({
+          name: `이미지-${index + 1}`,
+          type: "external",
+          external: { url },
+        })),
+      };
     }
 
     await notion.pages.update({

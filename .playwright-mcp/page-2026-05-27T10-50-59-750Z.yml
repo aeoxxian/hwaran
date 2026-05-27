@@ -1,0 +1,90 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e4]:
+      - link "화 화란" [ref=e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e6]: 화
+        - generic [ref=e7]: 화란
+      - navigation [ref=e8]:
+        - link "소개" [ref=e10] [cursor=pointer]:
+          - /url: /about
+        - link "공지사항" [ref=e12] [cursor=pointer]:
+          - /url: /notices
+        - link "동아리 소개" [ref=e14] [cursor=pointer]:
+          - /url: /clubs
+        - link "캘린더" [ref=e16] [cursor=pointer]:
+          - /url: /calendar
+        - link "커뮤니티" [ref=e18] [cursor=pointer]:
+          - /url: /boards
+        - link "갤러리" [ref=e20] [cursor=pointer]:
+          - /url: /gallery
+        - link "자료실" [ref=e22] [cursor=pointer]:
+          - /url: /documents
+        - link "서류 양식" [ref=e24] [cursor=pointer]:
+          - /url: /forms
+        - link "물품 관리" [ref=e26] [cursor=pointer]:
+          - /url: /inventory
+      - generic [ref=e27]:
+        - link "로그인" [ref=e28] [cursor=pointer]:
+          - /url: /auth/login
+        - link "회원가입" [ref=e29] [cursor=pointer]:
+          - /url: /auth/register
+  - main [ref=e30]:
+    - generic [ref=e32]:
+      - heading "게시글 작성" [level=1] [ref=e33]
+      - generic [ref=e34]:
+        - textbox "제목" [ref=e35]
+        - textbox "내용" [ref=e36]
+        - button "Choose File" [ref=e38]
+        - generic [ref=e39]:
+          - checkbox "익명으로 작성" [ref=e40]
+          - text: 익명으로 작성
+        - generic [ref=e41]:
+          - button "등록" [ref=e42]
+          - button "취소" [ref=e43]
+  - contentinfo [ref=e44]:
+    - generic [ref=e45]:
+      - generic [ref=e46]:
+        - generic [ref=e47]:
+          - generic [ref=e48]:
+            - generic [ref=e49]: 화
+            - generic [ref=e50]:
+              - heading "화란" [level=3] [ref=e51]
+              - paragraph [ref=e52]: 제4대 한국에너지공과대학교 동아리연합회
+          - paragraph [ref=e53]: 학우들의 동아리 활동이 아름답게 꽃피길 바라는 마음을 담아, 동아리 활동 지원과 행사 주최, 복지 향상을 위해 노력합니다.
+        - generic [ref=e54]:
+          - heading "바로가기" [level=4] [ref=e55]
+          - list [ref=e56]:
+            - listitem [ref=e57]:
+              - link "소개" [ref=e58] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=e59]:
+              - link "공지사항" [ref=e60] [cursor=pointer]:
+                - /url: /notices
+            - listitem [ref=e61]:
+              - link "동아리 소개" [ref=e62] [cursor=pointer]:
+                - /url: /clubs
+            - listitem [ref=e63]:
+              - link "캘린더" [ref=e64] [cursor=pointer]:
+                - /url: /calendar
+            - listitem [ref=e65]:
+              - link "갤러리" [ref=e66] [cursor=pointer]:
+                - /url: /gallery
+            - listitem [ref=e67]:
+              - link "자료실" [ref=e68] [cursor=pointer]:
+                - /url: /documents
+        - generic [ref=e69]:
+          - heading "연락처" [level=4] [ref=e70]
+          - list [ref=e71]:
+            - listitem [ref=e72]:
+              - img [ref=e73]
+              - generic [ref=e76]: 경상북도 나주시 한국에너지공과대학교
+            - listitem [ref=e77]:
+              - img [ref=e78]
+              - link "hwaran@kentech.ac.kr" [ref=e80] [cursor=pointer]:
+                - /url: mailto:hwaran@kentech.ac.kr
+            - listitem [ref=e81]:
+              - img [ref=e82]
+              - link "@hwaran_kentech" [ref=e84] [cursor=pointer]:
+                - /url: https://instagram.com/hwaran_kentech
+      - paragraph [ref=e86]: © 2026 제4대 한국에너지공과대학교 동아리연합회 화란. All Rights Reserved.

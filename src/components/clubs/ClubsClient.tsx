@@ -39,35 +39,43 @@ export default function ClubsClient({ clubs, categories }: ClubsClientProps) {
         ))}
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filtered.map((club) => (
-          <Link key={club.id} href={`/clubs/${club.id}`} className="card group !p-0 overflow-hidden">
-            <div className="h-40 bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center">
-              <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center text-primary text-2xl font-bold">
-                {club.name[0]}
-              </div>
-            </div>
-            <div className="p-5">
-              <div className="flex items-center gap-2 mb-2">
-                <span className="badge-primary">{club.category}</span>
-                <span className="text-xs text-gray-text">{club.memberCount}명</span>
-              </div>
-              <h3 className="text-lg font-bold text-dark group-hover:text-primary transition-colors">
-                {club.name}
-              </h3>
-              <p className="text-sm text-gray-text mt-1 line-clamp-2">{club.description}</p>
-              {club.instagramUrl && (
-                <div className="mt-3 flex items-center gap-1 text-xs text-gray-text">
-                  <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069z" />
-                  </svg>
-                  Instagram
+      {filtered.length === 0 ? (
+        <div className="text-center text-gray-text py-12">
+          {clubs.length === 0
+            ? "등록된 동아리가 없습니다."
+            : "선택한 분류에 해당하는 동아리가 없습니다."}
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filtered.map((club) => (
+            <Link key={club.id} href={`/clubs/${club.id}`} className="card group !p-0 overflow-hidden">
+              <div className="h-40 bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center">
+                <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center text-primary text-2xl font-bold">
+                  {club.name[0]}
                 </div>
-              )}
-            </div>
-          </Link>
-        ))}
-      </div>
+              </div>
+              <div className="p-5">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="badge-primary">{club.category}</span>
+                  <span className="text-xs text-gray-text">{club.memberCount}명</span>
+                </div>
+                <h3 className="text-lg font-bold text-dark group-hover:text-primary transition-colors">
+                  {club.name}
+                </h3>
+                <p className="text-sm text-gray-text mt-1 line-clamp-2">{club.description}</p>
+                {club.instagramUrl && (
+                  <div className="mt-3 flex items-center gap-1 text-xs text-gray-text">
+                    <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069z" />
+                    </svg>
+                    Instagram
+                  </div>
+                )}
+              </div>
+            </Link>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

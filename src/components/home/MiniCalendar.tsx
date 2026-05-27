@@ -9,7 +9,10 @@ interface MiniCalendarProps {
 }
 
 export default function MiniCalendar({ events }: MiniCalendarProps) {
-  const [currentDate, setCurrentDate] = useState(new Date(2026, 2, 1));
+  const [currentDate, setCurrentDate] = useState(() => {
+    const now = new Date();
+    return new Date(now.getFullYear(), now.getMonth(), 1);
+  });
   const year = currentDate.getFullYear();
   const month = currentDate.getMonth();
   const firstDay = new Date(year, month, 1).getDay();
@@ -51,10 +54,12 @@ export default function MiniCalendar({ events }: MiniCalendarProps) {
       <div className="grid grid-cols-7 gap-1">
         {days.map((day, idx) => {
           const dayEvents = day ? getEventsForDay(day) : [];
+          const today = new Date();
+          const isToday = day !== null && day === today.getDate() && month === today.getMonth() && year === today.getFullYear();
           return (
-            <div key={idx} className={`h-9 rounded text-center text-xs flex items-center justify-center relative ${day ? "bg-gray-light/60 text-dark" : "bg-transparent"}`}>
+            <div key={idx} className={`h-9 rounded text-center text-xs flex items-center justify-center relative ${!day ? "bg-transparent" : isToday ? "bg-primary text-white font-semibold" : "bg-gray-light/60 text-dark"}`}>
               {day && <span>{day}</span>}
-              {dayEvents.length > 0 && <span className="absolute bottom-0.5 w-1.5 h-1.5 rounded-full bg-primary" />}
+              {dayEvents.length > 0 && <span className={`absolute bottom-0.5 w-1.5 h-1.5 rounded-full ${isToday ? "bg-white" : "bg-primary"}`} />}
             </div>
           );
         })}

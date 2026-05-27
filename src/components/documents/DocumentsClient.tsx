@@ -63,6 +63,15 @@ export default function DocumentsClient({ documents }: { documents: Document[] }
                 </td>
               </tr>
             ))}
+            {filtered.length === 0 && (
+              <tr>
+                <td colSpan={4} className="px-6 py-12 text-center text-sm text-gray-text">
+                  {documents.length === 0
+                    ? "등록된 자료가 없습니다."
+                    : "선택한 분류에 해당하는 자료가 없습니다."}
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>

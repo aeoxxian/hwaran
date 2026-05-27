@@ -1,0 +1,106 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e4]:
+      - link "화란 로고 화란" [ref=e5] [cursor=pointer]:
+        - /url: /
+        - img "화란 로고" [ref=e6]
+        - generic [ref=e7]: 화란
+      - navigation [ref=e8]:
+        - link "소개" [ref=e10] [cursor=pointer]:
+          - /url: /about
+        - link "공지사항" [ref=e12] [cursor=pointer]:
+          - /url: /notices
+        - link "동아리 소개" [ref=e14] [cursor=pointer]:
+          - /url: /clubs
+        - link "캘린더" [ref=e16] [cursor=pointer]:
+          - /url: /calendar
+        - link "커뮤니티" [ref=e18] [cursor=pointer]:
+          - /url: /boards
+        - link "갤러리" [ref=e20] [cursor=pointer]:
+          - /url: /gallery
+        - link "자료실" [ref=e22] [cursor=pointer]:
+          - /url: /documents
+        - link "물품 관리" [ref=e24] [cursor=pointer]:
+          - /url: /inventory
+      - generic [ref=e25]:
+        - generic "Notion OK · DB 20/20" [ref=e26]: NOTION LIVE
+        - link "로그인" [ref=e28] [cursor=pointer]:
+          - /url: /auth/login
+        - link "회원가입" [ref=e29] [cursor=pointer]:
+          - /url: /auth/register
+  - main [ref=e30]:
+    - generic [ref=e31]:
+      - generic [ref=e32]:
+        - heading "물품 관리" [level=1] [ref=e33]
+        - paragraph [ref=e34]: 동아리연합회 물품 현황을 확인하세요
+      - generic [ref=e35]:
+        - generic [ref=e36]:
+          - generic [ref=e37]: "0"
+          - generic [ref=e38]: 전체
+        - generic [ref=e39]:
+          - generic [ref=e40]: "0"
+          - generic [ref=e41]: 사용가능
+        - generic [ref=e42]:
+          - generic [ref=e43]: "0"
+          - generic [ref=e44]: 대여중
+        - generic [ref=e45]:
+          - generic [ref=e46]: "0"
+          - generic [ref=e47]: 수리중
+      - table [ref=e49]:
+        - rowgroup [ref=e50]:
+          - row "물품명 수량 상태 보관 위치 비고" [ref=e51]:
+            - columnheader "물품명" [ref=e52]
+            - columnheader "수량" [ref=e53]
+            - columnheader "상태" [ref=e54]
+            - columnheader "보관 위치" [ref=e55]
+            - columnheader "비고" [ref=e56]
+        - rowgroup
+  - contentinfo [ref=e57]:
+    - generic [ref=e58]:
+      - generic [ref=e59]:
+        - generic [ref=e60]:
+          - generic [ref=e61]:
+            - img "화란 로고" [ref=e62]
+            - generic [ref=e63]:
+              - heading "화란" [level=3] [ref=e64]
+              - paragraph [ref=e65]: 제4대 한국에너지공과대학교 동아리연합회
+          - paragraph [ref=e66]: 학우들의 동아리 활동이 아름답게 꽃피길 바라는 마음을 담아, 동아리 활동 지원과 행사 주최, 복지 향상을 위해 노력합니다.
+        - generic [ref=e67]:
+          - heading "바로가기" [level=4] [ref=e68]
+          - list [ref=e69]:
+            - listitem [ref=e70]:
+              - link "소개" [ref=e71] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=e72]:
+              - link "공지사항" [ref=e73] [cursor=pointer]:
+                - /url: /notices
+            - listitem [ref=e74]:
+              - link "동아리 소개" [ref=e75] [cursor=pointer]:
+                - /url: /clubs
+            - listitem [ref=e76]:
+              - link "캘린더" [ref=e77] [cursor=pointer]:
+                - /url: /calendar
+            - listitem [ref=e78]:
+              - link "갤러리" [ref=e79] [cursor=pointer]:
+                - /url: /gallery
+            - listitem [ref=e80]:
+              - link "자료실" [ref=e81] [cursor=pointer]:
+                - /url: /documents
+        - generic [ref=e82]:
+          - heading "연락처" [level=4] [ref=e83]
+          - list [ref=e84]:
+            - listitem [ref=e85]:
+              - img [ref=e86]
+              - generic [ref=e89]: 경상북도 나주시 한국에너지공과대학교
+            - listitem [ref=e90]:
+              - img [ref=e91]
+              - link "hwaran@kentech.ac.kr" [ref=e93] [cursor=pointer]:
+                - /url: mailto:hwaran@kentech.ac.kr
+            - listitem [ref=e94]:
+              - img [ref=e95]
+              - link "@hwaran_kentech" [ref=e97] [cursor=pointer]:
+                - /url: https://instagram.com/hwaran_kentech
+      - paragraph [ref=e99]: © 2026 제4대 한국에너지공과대학교 동아리연합회 화란. All Rights Reserved.
+  - button "Open Next.js Dev Tools" [ref=e105] [cursor=pointer]:
+    - img [ref=e106]
+  - alert [ref=e109]

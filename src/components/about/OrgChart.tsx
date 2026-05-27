@@ -81,7 +81,7 @@ export default async function OrgChart() {
   return (
     <div className="card">
       <div className="flex items-center gap-3 mb-8">
-        <Image src="/logo.png" alt="화란 로고" width={36} height={36} className="rounded-lg" />
+        <Image src="/logo_white.webp" alt="화란 로고" width={36} height={36} className="rounded-lg" />
         <h2 className="text-2xl font-bold text-dark">제4대 동아리연합회 화란 조직도</h2>
       </div>
 

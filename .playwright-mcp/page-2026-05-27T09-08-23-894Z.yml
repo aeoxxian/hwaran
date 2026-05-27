@@ -1,0 +1,160 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e4]:
+      - link "화란 로고 화란" [ref=e5] [cursor=pointer]:
+        - /url: /
+        - img "화란 로고" [ref=e6]
+        - generic [ref=e7]: 화란
+      - navigation [ref=e8]:
+        - link "소개" [ref=e10] [cursor=pointer]:
+          - /url: /about
+        - link "공지사항" [ref=e12] [cursor=pointer]:
+          - /url: /notices
+        - link "동아리 소개" [ref=e14] [cursor=pointer]:
+          - /url: /clubs
+        - link "캘린더" [ref=e16] [cursor=pointer]:
+          - /url: /calendar
+        - link "커뮤니티" [ref=e18] [cursor=pointer]:
+          - /url: /boards
+        - link "갤러리" [ref=e20] [cursor=pointer]:
+          - /url: /gallery
+        - link "자료실" [ref=e22] [cursor=pointer]:
+          - /url: /documents
+        - link "물품 관리" [ref=e24] [cursor=pointer]:
+          - /url: /inventory
+      - generic [ref=e25]:
+        - link "로그인" [ref=e26] [cursor=pointer]:
+          - /url: /auth/login
+        - link "회원가입" [ref=e27] [cursor=pointer]:
+          - /url: /auth/register
+  - main [ref=e28]:
+    - generic [ref=e29]:
+      - complementary [ref=e30]:
+        - generic [ref=e31]:
+          - link "화란" [ref=e32] [cursor=pointer]:
+            - /url: /
+          - paragraph [ref=e33]: 관리자 포털
+        - navigation [ref=e34]
+        - button "로그아웃" [ref=e36]
+      - main [ref=e38]:
+        - generic [ref=e39]:
+          - generic [ref=e40]:
+            - heading "관리자 대시보드" [level=1] [ref=e41]
+            - paragraph [ref=e42]: 처리해야 하는 업무를 한눈에 확인하세요.
+          - generic [ref=e44]: 운영 상태를 확인하는 중입니다...
+          - generic [ref=e45]:
+            - link "결재 대기 기안 3" [ref=e46] [cursor=pointer]:
+              - /url: /admin/drafts
+              - paragraph [ref=e47]: 결재 대기 기안
+              - paragraph [ref=e48]: "3"
+            - link "처리 대기 서류 0" [ref=e49] [cursor=pointer]:
+              - /url: /admin/applications
+              - paragraph [ref=e50]: 처리 대기 서류
+              - paragraph [ref=e51]: "0"
+            - link "전체 기안 3" [ref=e52] [cursor=pointer]:
+              - /url: /admin/drafts
+              - paragraph [ref=e53]: 전체 기안
+              - paragraph [ref=e54]: "3"
+            - link "전체 서류신청 0" [ref=e55] [cursor=pointer]:
+              - /url: /admin/applications
+              - paragraph [ref=e56]: 전체 서류신청
+              - paragraph [ref=e57]: "0"
+          - generic [ref=e58]:
+            - generic [ref=e59]:
+              - generic [ref=e60]:
+                - heading "최근 기안" [level=2] [ref=e61]
+                - link "전체 보기 →" [ref=e62] [cursor=pointer]:
+                  - /url: /admin/drafts
+              - list [ref=e63]:
+                - listitem [ref=e64]:
+                  - generic [ref=e65]:
+                    - link "난" [ref=e66] [cursor=pointer]:
+                      - /url: /admin/drafts/366ce5c2-b899-8187-9435-e350db6a0a69
+                    - paragraph [ref=e67]: demo_acc · 2026-05-20
+                  - generic [ref=e68]: 최종검토중
+                - listitem [ref=e69]:
+                  - generic [ref=e70]:
+                    - link "test" [ref=e71] [cursor=pointer]:
+                      - /url: /admin/drafts/366ce5c2-b899-81d1-a095-f3e2b6a8c01e
+                    - paragraph [ref=e72]: demo_acc · 2026-05-20
+                  - generic [ref=e73]: 최종검토중
+                - listitem [ref=e74]:
+                  - generic [ref=e75]:
+                    - link "test" [ref=e76] [cursor=pointer]:
+                      - /url: /admin/drafts/335ce5c2-b899-8155-b744-f2bd2efb3963
+                    - paragraph [ref=e77]: demo_acc · 2026-04-01
+                  - generic [ref=e78]: 최종검토중
+            - generic [ref=e79]:
+              - generic [ref=e80]:
+                - heading "최근 서류신청" [level=2] [ref=e81]
+                - link "전체 보기 →" [ref=e82] [cursor=pointer]:
+                  - /url: /admin/applications
+              - paragraph [ref=e83]: 서류신청이 없습니다.
+          - generic [ref=e84]:
+            - link "✏️ 기안 작성 새 기안 상신" [ref=e85] [cursor=pointer]:
+              - /url: /admin/drafts/new
+              - generic [ref=e86]: ✏️
+              - generic [ref=e87]:
+                - paragraph [ref=e88]: 기안 작성
+                - paragraph [ref=e89]: 새 기안 상신
+            - link "📢 공지 작성 새 공지사항 등록" [ref=e90] [cursor=pointer]:
+              - /url: /admin/notices/new
+              - generic [ref=e91]: 📢
+              - generic [ref=e92]:
+                - paragraph [ref=e93]: 공지 작성
+                - paragraph [ref=e94]: 새 공지사항 등록
+            - link "🔔 알림 내 알림 확인" [ref=e95] [cursor=pointer]:
+              - /url: /admin/notifications
+              - generic [ref=e96]: 🔔
+              - generic [ref=e97]:
+                - paragraph [ref=e98]: 알림
+                - paragraph [ref=e99]: 내 알림 확인
+  - contentinfo [ref=e100]:
+    - generic [ref=e101]:
+      - generic [ref=e102]:
+        - generic [ref=e103]:
+          - generic [ref=e104]:
+            - img "화란 로고" [ref=e105]
+            - generic [ref=e106]:
+              - heading "화란" [level=3] [ref=e107]
+              - paragraph [ref=e108]: 제4대 한국에너지공과대학교 동아리연합회
+          - paragraph [ref=e109]: 학우들의 동아리 활동이 아름답게 꽃피길 바라는 마음을 담아, 동아리 활동 지원과 행사 주최, 복지 향상을 위해 노력합니다.
+        - generic [ref=e110]:
+          - heading "바로가기" [level=4] [ref=e111]
+          - list [ref=e112]:
+            - listitem [ref=e113]:
+              - link "소개" [ref=e114] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=e115]:
+              - link "공지사항" [ref=e116] [cursor=pointer]:
+                - /url: /notices
+            - listitem [ref=e117]:
+              - link "동아리 소개" [ref=e118] [cursor=pointer]:
+                - /url: /clubs
+            - listitem [ref=e119]:
+              - link "캘린더" [ref=e120] [cursor=pointer]:
+                - /url: /calendar
+            - listitem [ref=e121]:
+              - link "갤러리" [ref=e122] [cursor=pointer]:
+                - /url: /gallery
+            - listitem [ref=e123]:
+              - link "자료실" [ref=e124] [cursor=pointer]:
+                - /url: /documents
+        - generic [ref=e125]:
+          - heading "연락처" [level=4] [ref=e126]
+          - list [ref=e127]:
+            - listitem [ref=e128]:
+              - img [ref=e129]
+              - generic [ref=e132]: 경상북도 나주시 한국에너지공과대학교
+            - listitem [ref=e133]:
+              - img [ref=e134]
+              - link "hwaran@kentech.ac.kr" [ref=e136] [cursor=pointer]:
+                - /url: mailto:hwaran@kentech.ac.kr
+            - listitem [ref=e137]:
+              - img [ref=e138]
+              - link "@hwaran_kentech" [ref=e140] [cursor=pointer]:
+                - /url: https://instagram.com/hwaran_kentech
+      - paragraph [ref=e142]: © 2026 제4대 한국에너지공과대학교 동아리연합회 화란. All Rights Reserved.
+  - button "Open Next.js Dev Tools" [ref=e148] [cursor=pointer]:
+    - img [ref=e149]
+  - alert [ref=e152]

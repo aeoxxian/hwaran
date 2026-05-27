@@ -1,0 +1,97 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e4]:
+      - link "화란 로고 화란" [ref=e5] [cursor=pointer]:
+        - /url: /
+        - img "화란 로고" [ref=e6]
+        - generic [ref=e7]: 화란
+      - navigation [ref=e8]:
+        - link "소개" [ref=e10] [cursor=pointer]:
+          - /url: /about
+        - link "공지사항" [ref=e12] [cursor=pointer]:
+          - /url: /notices
+        - link "동아리 소개" [ref=e14] [cursor=pointer]:
+          - /url: /clubs
+        - link "캘린더" [ref=e16] [cursor=pointer]:
+          - /url: /calendar
+        - link "커뮤니티" [ref=e18] [cursor=pointer]:
+          - /url: /boards
+        - link "갤러리" [ref=e20] [cursor=pointer]:
+          - /url: /gallery
+        - link "자료실" [ref=e22] [cursor=pointer]:
+          - /url: /documents
+        - link "물품 관리" [ref=e24] [cursor=pointer]:
+          - /url: /inventory
+      - generic [ref=e25]:
+        - generic "Notion OK · DB 20/20" [ref=e81]: NOTION LIVE
+        - link "로그인" [ref=e26] [cursor=pointer]:
+          - /url: /auth/login
+        - link "회원가입" [ref=e27] [cursor=pointer]:
+          - /url: /auth/register
+  - main [ref=e28]:
+    - generic [ref=e102]:
+      - article [ref=e103]:
+        - generic [ref=e104]:
+          - generic [ref=e105]:
+            - heading "은규형 진짜 밥사주세요" [level=1] [ref=e106]
+            - generic [ref=e107]:
+              - generic [ref=e108]: tester
+              - generic [ref=e109]: 2026-05-26
+          - link "목록" [ref=e110] [cursor=pointer]:
+            - /url: /boards/qna
+        - generic [ref=e111]: 아니 진짜 밥사주시리라 믿어요.
+      - generic [ref=e113]:
+        - heading "댓글 (0)" [level=2] [ref=e114]:
+          - text: 댓글
+          - generic [ref=e115]: (0)
+        - paragraph [ref=e116]: 아직 작성된 댓글이 없습니다.
+        - paragraph [ref=e117]: 댓글을 작성하려면 로그인해주세요.
+  - contentinfo [ref=e38]:
+    - generic [ref=e39]:
+      - generic [ref=e40]:
+        - generic [ref=e41]:
+          - generic [ref=e42]:
+            - img "화란 로고" [ref=e43]
+            - generic [ref=e44]:
+              - heading "화란" [level=3] [ref=e45]
+              - paragraph [ref=e46]: 제4대 한국에너지공과대학교 동아리연합회
+          - paragraph [ref=e47]: 학우들의 동아리 활동이 아름답게 꽃피길 바라는 마음을 담아, 동아리 활동 지원과 행사 주최, 복지 향상을 위해 노력합니다.
+        - generic [ref=e48]:
+          - heading "바로가기" [level=4] [ref=e49]
+          - list [ref=e50]:
+            - listitem [ref=e51]:
+              - link "소개" [ref=e52] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=e53]:
+              - link "공지사항" [ref=e54] [cursor=pointer]:
+                - /url: /notices
+            - listitem [ref=e55]:
+              - link "동아리 소개" [ref=e56] [cursor=pointer]:
+                - /url: /clubs
+            - listitem [ref=e57]:
+              - link "캘린더" [ref=e58] [cursor=pointer]:
+                - /url: /calendar
+            - listitem [ref=e59]:
+              - link "갤러리" [ref=e60] [cursor=pointer]:
+                - /url: /gallery
+            - listitem [ref=e61]:
+              - link "자료실" [ref=e62] [cursor=pointer]:
+                - /url: /documents
+        - generic [ref=e63]:
+          - heading "연락처" [level=4] [ref=e64]
+          - list [ref=e65]:
+            - listitem [ref=e66]:
+              - img [ref=e67]
+              - generic [ref=e70]: 경상북도 나주시 한국에너지공과대학교
+            - listitem [ref=e71]:
+              - img [ref=e72]
+              - link "hwaran@kentech.ac.kr" [ref=e74] [cursor=pointer]:
+                - /url: mailto:hwaran@kentech.ac.kr
+            - listitem [ref=e75]:
+              - img [ref=e76]
+              - link "@hwaran_kentech" [ref=e78] [cursor=pointer]:
+                - /url: https://instagram.com/hwaran_kentech
+      - paragraph [ref=e80]: © 2026 제4대 한국에너지공과대학교 동아리연합회 화란. All Rights Reserved.
+  - button "Open Next.js Dev Tools" [ref=e97] [cursor=pointer]:
+    - img [ref=e98]
+  - alert [ref=e101]: 화란 | 한국에너지공과대학교 동아리연합회

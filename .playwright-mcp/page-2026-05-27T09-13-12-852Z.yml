@@ -1,0 +1,79 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e4]:
+      - link "화란 로고 화란" [ref=e5] [cursor=pointer]:
+        - /url: /
+        - img "화란 로고" [ref=e6]
+        - generic [ref=e7]: 화란
+      - navigation [ref=e8]:
+        - link "소개" [ref=e10] [cursor=pointer]:
+          - /url: /about
+        - link "공지사항" [ref=e12] [cursor=pointer]:
+          - /url: /notices
+        - link "동아리 소개" [ref=e14] [cursor=pointer]:
+          - /url: /clubs
+        - link "캘린더" [ref=e16] [cursor=pointer]:
+          - /url: /calendar
+        - link "커뮤니티" [ref=e18] [cursor=pointer]:
+          - /url: /boards
+        - link "갤러리" [ref=e20] [cursor=pointer]:
+          - /url: /gallery
+        - link "자료실" [ref=e22] [cursor=pointer]:
+          - /url: /documents
+        - link "물품 관리" [ref=e24] [cursor=pointer]:
+          - /url: /inventory
+      - generic [ref=e25]:
+        - link "로그인" [ref=e26] [cursor=pointer]:
+          - /url: /auth/login
+        - link "회원가입" [ref=e27] [cursor=pointer]:
+          - /url: /auth/register
+  - main [ref=e28]
+  - contentinfo [ref=e78]:
+    - generic [ref=e79]:
+      - generic [ref=e80]:
+        - generic [ref=e81]:
+          - generic [ref=e82]:
+            - img "화란 로고" [ref=e83]
+            - generic [ref=e84]:
+              - heading "화란" [level=3] [ref=e85]
+              - paragraph [ref=e86]: 제4대 한국에너지공과대학교 동아리연합회
+          - paragraph [ref=e87]: 학우들의 동아리 활동이 아름답게 꽃피길 바라는 마음을 담아, 동아리 활동 지원과 행사 주최, 복지 향상을 위해 노력합니다.
+        - generic [ref=e88]:
+          - heading "바로가기" [level=4] [ref=e89]
+          - list [ref=e90]:
+            - listitem [ref=e91]:
+              - link "소개" [ref=e92] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=e93]:
+              - link "공지사항" [ref=e94] [cursor=pointer]:
+                - /url: /notices
+            - listitem [ref=e95]:
+              - link "동아리 소개" [ref=e96] [cursor=pointer]:
+                - /url: /clubs
+            - listitem [ref=e97]:
+              - link "캘린더" [ref=e98] [cursor=pointer]:
+                - /url: /calendar
+            - listitem [ref=e99]:
+              - link "갤러리" [ref=e100] [cursor=pointer]:
+                - /url: /gallery
+            - listitem [ref=e101]:
+              - link "자료실" [ref=e102] [cursor=pointer]:
+                - /url: /documents
+        - generic [ref=e103]:
+          - heading "연락처" [level=4] [ref=e104]
+          - list [ref=e105]:
+            - listitem [ref=e106]:
+              - img [ref=e107]
+              - generic [ref=e110]: 경상북도 나주시 한국에너지공과대학교
+            - listitem [ref=e111]:
+              - img [ref=e112]
+              - link "hwaran@kentech.ac.kr" [ref=e114] [cursor=pointer]:
+                - /url: mailto:hwaran@kentech.ac.kr
+            - listitem [ref=e115]:
+              - img [ref=e116]
+              - link "@hwaran_kentech" [ref=e118] [cursor=pointer]:
+                - /url: https://instagram.com/hwaran_kentech
+      - paragraph [ref=e120]: © 2026 제4대 한국에너지공과대학교 동아리연합회 화란. All Rights Reserved.
+  - button "Open Next.js Dev Tools" [ref=e126] [cursor=pointer]:
+    - img [ref=e127]
+  - alert [ref=e130]

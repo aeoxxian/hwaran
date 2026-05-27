@@ -1,0 +1,107 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e4]:
+      - link "화란 로고 화란" [ref=e5] [cursor=pointer]:
+        - /url: /
+        - img "화란 로고" [ref=e6]
+        - generic [ref=e7]: 화란
+      - navigation [ref=e8]:
+        - link "소개" [ref=e10] [cursor=pointer]:
+          - /url: /about
+        - link "공지사항" [ref=e12] [cursor=pointer]:
+          - /url: /notices
+        - link "동아리 소개" [ref=e14] [cursor=pointer]:
+          - /url: /clubs
+        - link "캘린더" [ref=e16] [cursor=pointer]:
+          - /url: /calendar
+        - link "커뮤니티" [ref=e18] [cursor=pointer]:
+          - /url: /boards
+        - link "갤러리" [ref=e20] [cursor=pointer]:
+          - /url: /gallery
+        - link "자료실" [ref=e22] [cursor=pointer]:
+          - /url: /documents
+        - link "물품 관리" [ref=e24] [cursor=pointer]:
+          - /url: /inventory
+      - generic [ref=e25]:
+        - link "로그인" [ref=e26] [cursor=pointer]:
+          - /url: /auth/login
+        - link "회원가입" [ref=e27] [cursor=pointer]:
+          - /url: /auth/register
+  - main [ref=e28]:
+    - generic [ref=e29]:
+      - generic [ref=e30]:
+        - heading "물품 관리" [level=1] [ref=e31]
+        - paragraph [ref=e32]: 동아리연합회 물품 현황을 확인하세요
+      - generic [ref=e33]:
+        - generic [ref=e34]:
+          - generic [ref=e35]: "0"
+          - generic [ref=e36]: 전체
+        - generic [ref=e37]:
+          - generic [ref=e38]: "0"
+          - generic [ref=e39]: 사용가능
+        - generic [ref=e40]:
+          - generic [ref=e41]: "0"
+          - generic [ref=e42]: 대여중
+        - generic [ref=e43]:
+          - generic [ref=e44]: "0"
+          - generic [ref=e45]: 수리중
+      - table [ref=e47]:
+        - rowgroup [ref=e48]:
+          - row "물품명 수량 상태 보관 위치 비고" [ref=e49]:
+            - columnheader "물품명" [ref=e50]
+            - columnheader "수량" [ref=e51]
+            - columnheader "상태" [ref=e52]
+            - columnheader "보관 위치" [ref=e53]
+            - columnheader "비고" [ref=e54]
+        - rowgroup [ref=e55]:
+          - row "등록된 물품이 없습니다." [ref=e56]:
+            - cell "등록된 물품이 없습니다." [ref=e57]
+  - contentinfo [ref=e58]:
+    - generic [ref=e59]:
+      - generic [ref=e60]:
+        - generic [ref=e61]:
+          - generic [ref=e62]:
+            - img "화란 로고" [ref=e63]
+            - generic [ref=e64]:
+              - heading "화란" [level=3] [ref=e65]
+              - paragraph [ref=e66]: 제4대 한국에너지공과대학교 동아리연합회
+          - paragraph [ref=e67]: 학우들의 동아리 활동이 아름답게 꽃피길 바라는 마음을 담아, 동아리 활동 지원과 행사 주최, 복지 향상을 위해 노력합니다.
+        - generic [ref=e68]:
+          - heading "바로가기" [level=4] [ref=e69]
+          - list [ref=e70]:
+            - listitem [ref=e71]:
+              - link "소개" [ref=e72] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=e73]:
+              - link "공지사항" [ref=e74] [cursor=pointer]:
+                - /url: /notices
+            - listitem [ref=e75]:
+              - link "동아리 소개" [ref=e76] [cursor=pointer]:
+                - /url: /clubs
+            - listitem [ref=e77]:
+              - link "캘린더" [ref=e78] [cursor=pointer]:
+                - /url: /calendar
+            - listitem [ref=e79]:
+              - link "갤러리" [ref=e80] [cursor=pointer]:
+                - /url: /gallery
+            - listitem [ref=e81]:
+              - link "자료실" [ref=e82] [cursor=pointer]:
+                - /url: /documents
+        - generic [ref=e83]:
+          - heading "연락처" [level=4] [ref=e84]
+          - list [ref=e85]:
+            - listitem [ref=e86]:
+              - img [ref=e87]
+              - generic [ref=e90]: 경상북도 나주시 한국에너지공과대학교
+            - listitem [ref=e91]:
+              - img [ref=e92]
+              - link "hwaran@kentech.ac.kr" [ref=e94] [cursor=pointer]:
+                - /url: mailto:hwaran@kentech.ac.kr
+            - listitem [ref=e95]:
+              - img [ref=e96]
+              - link "@hwaran_kentech" [ref=e98] [cursor=pointer]:
+                - /url: https://instagram.com/hwaran_kentech
+      - paragraph [ref=e100]: © 2026 제4대 한국에너지공과대학교 동아리연합회 화란. All Rights Reserved.
+  - button "Open Next.js Dev Tools" [ref=e106] [cursor=pointer]:
+    - img [ref=e107]
+  - alert [ref=e110]

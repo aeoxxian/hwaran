@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { getNoticeById } from "@/lib/data";
 import { notFound } from "next/navigation";
 
@@ -7,6 +8,15 @@ interface Props {
 }
 
 export const dynamic = "force-dynamic";
+
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
+  const { id } = await params;
+  const notice = await getNoticeById(id);
+  if (!notice) {
+    return { title: "공지사항" };
+  }
+  return { title: notice.title };
+}
 
 export default async function NoticeDetailPage({ params }: Props) {
   const { id } = await params;

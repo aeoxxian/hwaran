@@ -59,16 +59,25 @@ export default function BoardEditor({ category, postId }: BoardEditorProps) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ filename: file.name, contentType: file.type }),
       });
-      const signData = await signRes.json();
+      const signData = await signRes.json().catch(() => ({}));
       if (!signRes.ok) {
-        if (signRes.status === 503) continue;
-        throw new Error(signData.error || "Failed to get upload URL.");
+        // 503 = S3 환경변수 미설정. 첨부 없이 글만 등록되는 사고를 방지하기 위해
+        // 사용자에게 명확히 알리고 등록을 중단합니다.
+        if (signRes.status === 503) {
+          throw new Error(
+            "파일 업로드 서버가 설정되지 않았습니다. 첨부를 비우고 다시 시도하거나 관리자에게 문의해주세요.",
+          );
+        }
+        throw new Error(signData.error || `파일 업로드 URL 발급 실패 (${signRes.status})`);
       }
-      await fetch(signData.uploadUrl, {
+      const putRes = await fetch(signData.uploadUrl, {
         method: "PUT",
         headers: { "Content-Type": file.type },
         body: file,
       });
+      if (!putRes.ok) {
+        throw new Error(`'${file.name}' 업로드 실패 (HTTP ${putRes.status})`);
+      }
       uploaded.push(signData.fileUrl);
     }
     return uploaded;
@@ -100,15 +109,15 @@ export default function BoardEditor({ category, postId }: BoardEditorProps) {
       });
       const data = await res.json();
       if (!res.ok) {
-        setError(data.error || "Save failed.");
+        setError(data.error || "저장에 실패했습니다.");
         return;
       }
 
       const nextId = isEditMode ? postId : data.post?.id || data.id;
       router.push(nextId ? `/boards/${category}/${nextId}` : `/boards/${category}`);
       router.refresh();
-    } catch {
-      setError("요청에 실패했습니다. 잠시 후 다시 시도해주세요.");
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "요청에 실패했습니다. 잠시 후 다시 시도해주세요.");
     } finally {
       setSaving(false);
     }

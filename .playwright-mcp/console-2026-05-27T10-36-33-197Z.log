@@ -1,0 +1,242 @@
+[    1663ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_1e674e59._.js:14537
+[    2708ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5949
+[    2820ms] [LOG] [Fast Refresh] done in 215ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5809
+[    2923ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5949
+[    8836ms] [LOG] [Fast Refresh] done in 6009ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5809
+[    9060ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5949
+[    9062ms] [LOG] [Fast Refresh] done in 102ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5809
+[    9260ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5949
+[    9471ms] [LOG] [Fast Refresh] done in 312ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5809
+[    9991ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5949
+[   10012ms] [LOG] [Fast Refresh] done in 123ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5809
+[   18608ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5949
+[   18684ms] [LOG] [Fast Refresh] done in 178ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5809
+[   18850ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5949
+[   21549ms] [LOG] [Fast Refresh] done in 2796ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5809
+[   22643ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5949
+[   22662ms] [LOG] [Fast Refresh] done in 119ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5809
+[   31368ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5949
+[   34220ms] [LOG] [Fast Refresh] done in 2961ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5809
+[   34784ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5949
+[   34973ms] [LOG] [Fast Refresh] done in 290ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5809
+[   35139ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5949
+[   35189ms] [LOG] [Fast Refresh] done in 155ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5809
+[   35522ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5949
+[   35585ms] [LOG] [Fast Refresh] done in 165ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5809
+[   37518ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5949
+[   38516ms] [WARNING] [Fast Refresh] performing full reload
+
+Fast Refresh will perform a full reload when you edit a file that's imported by modules outside of the React rendering tree.
+You might have a file which exports a React component but also exports a value that is imported by a non-React component file.
+Consider migrating the non-React component export to a separate file and importing it into both files.
+
+It is also possible the parent component of the component you edited is a class component, which disables Fast Refresh.
+Fast Refresh requires at least one parent function component in your React tree. @ http://localhost:3000/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_c8c997ce._.js:34
+[   38531ms] [LOG] [Fast Refresh] done in 1097ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5809
+[   38643ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5949
+[   38676ms] [LOG] [Fast Refresh] done in 137ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5809
+[   39284ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5949
+[   39506ms] [LOG] [Fast Refresh] done in 323ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5809
+[   40159ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_1e674e59._.js:14537
+[   51949ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5949
+[   52008ms] [LOG] [Fast Refresh] done in 161ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5809
+[   52455ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5949
+[   52674ms] [WARNING] [Fast Refresh] performing full reload
+
+Fast Refresh will perform a full reload when you edit a file that's imported by modules outside of the React rendering tree.
+You might have a file which exports a React component but also exports a value that is imported by a non-React component file.
+Consider migrating the non-React component export to a separate file and importing it into both files.
+
+It is also possible the parent component of the component you edited is a class component, which disables Fast Refresh.
+Fast Refresh requires at least one parent function component in your React tree. @ http://localhost:3000/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_c8c997ce._.js:34
+[   52690ms] [LOG] [Fast Refresh] done in 318ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5809
+[   52801ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5949
+[   52824ms] [LOG] [Fast Refresh] done in 124ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5809
+[   54785ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_1e674e59._.js:14537
+[   55226ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5949
+[   55268ms] [LOG] [Fast Refresh] done in 143ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5809
+[   64193ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5949
+[   64366ms] [LOG] [Fast Refresh] done in 230ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5809
+[   69622ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5949
+[   70035ms] [LOG] [Fast Refresh] done in 318ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5809
+[   70188ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5949
+[   70211ms] [LOG] [Fast Refresh] done in 123ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5809
+[   71706ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5949
+[   71983ms] [LOG] [Fast Refresh] done in 377ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5809
+[   76405ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5949
+[   76635ms] [LOG] [Fast Refresh] done in 299ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5809
+[   76971ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5949
+[   77022ms] [LOG] [Fast Refresh] done in 152ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5809
+[   77929ms] [WARNING] %c%s%c @notionhq/client warn: background: #e6e6e6;background: light-dark(rgba(0,0,0,0.1), rgba(255,255,255,0.25));color: #000000;color: light-dark(#000000, #ffffff);border-radius: 2px  Server   request fail {code: rate_limited, message: You have been rate limited. Please try again in a few minutes.} @ about://React/Server/C:%5CUsers%5Cja010%5CDesktop%5Chwaran%5C.next%5Cserver%5Cchunks%5Cssr%5C%5Broot-of-the-server%5D__ad436db4._.js?168:1921
+[   77936ms] [ERROR] %c%s%c Failed to fetch documents: background: #e6e6e6;background: light-dark(rgba(0,0,0,0.1), rgba(255,255,255,0.25));color: #000000;color: light-dark(#000000, #ffffff);border-radius: 2px  Server   APIResponseError: You have been rate limited. Please try again in a few minutes.
+    at queryAllPages (about://React/Server/C:%5CUsers%5Cja010%5CDesktop%5Chwaran%5C.next%5Cserver%5Cchunks%5Cssr%5C%5Broot-of-the-server%5D__ad436db4._.js?168:1922:21)
+    at getDocuments (about://React/Server/C:%5CUsers%5Cja010%5CDesktop%5Chwaran%5C.next%5Cserver%5Cchunks%5Cssr%5C%5Broot-of-the-server%5D__ad436db4._.js?169:2576:23)
+    at Function.all (<anonymous>:1:21)
+    at HomePage (about://React/Server/C:%5CUsers%5Cja010%5CDesktop%5Chwaran%5C.next%5Cserver%5Cchunks%5Cssr%5C%5Broot-of-the-server%5D__ad436db4._.js?170:3613:80)
+    at resolveErrorDev (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_5150ccfd._.js:4306:48)
+    at getOutlinedModel (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_5150ccfd._.js:3914:28)
+    at parseModelString (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_5150ccfd._.js:4033:50)
+    at Object.<anonymous> (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_5150ccfd._.js:4639:55)
+    at JSON.parse (<anonymous>)
+    at initializeModelChunk (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_5150ccfd._.js:3594:30)
+    at getOutlinedModel (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_5150ccfd._.js:3868:17)
+    at parseModelString (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_5150ccfd._.js:4087:50)
+    at Array.<anonymous> (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_5150ccfd._.js:4639:55)
+    at JSON.parse (<anonymous>)
+    at initializeModelChunk (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_5150ccfd._.js:3594:30)
+    at resolveConsoleEntry (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_5150ccfd._.js:4423:96)
+    at processFullStringRow (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_5150ccfd._.js:4573:17)
+    at processFullBinaryRow (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_5150ccfd._.js:4513:9)
+    at processBinaryChunk (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_5150ccfd._.js:4622:98)
+    at progress (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_5150ccfd._.js:4790:25) @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_b0daae9a._.js:2359
+[   86264ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5949
+[   86294ms] [LOG] [Fast Refresh] done in 131ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5809
+[   94811ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5949
+[   97025ms] [LOG] [Fast Refresh] done in 2313ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5809
+[   97915ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5949
+[   97921ms] [LOG] [Fast Refresh] done in 107ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5809
+[  103956ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5949
+[  104160ms] [ERROR] ./src/app/admin/applications/page.tsx:3:1
+Module not found: Can't resolve './ApplicationsClient'
+  1 | import { getApplications } from "@/lib/data";
+  2 | import { requireAdminLevel } from "@/lib/server-auth";
+> 3 | import ApplicationsClient from "./ApplicationsClient";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 |
+  5 | export const metadata = { title: "서류신청 관리" };
+  6 | export const dynamic = "force-dynamic";
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_b0daae9a._.js:2359
+[  104177ms] [LOG] {file: Object} @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_next-devtools_index_a9cb0712.js:16058
+[  116105ms] [ERROR] ./src/app/admin/applications/page.tsx:3:1
+Module not found: Can't resolve './ApplicationsClient'
+  1 | import { getApplications } from "@/lib/data";
+  2 | import { requireAdminLevel } from "@/lib/server-auth";
+> 3 | import ApplicationsClient from "./ApplicationsClient";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 |
+  5 | export const metadata = { title: "서류신청 관리" };
+  6 | export const dynamic = "force-dynamic";
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_b0daae9a._.js:2359
+[  116161ms] [ERROR] ./src/app/admin/applications/page.tsx:3:1
+Module not found: Can't resolve './ApplicationsClient'
+  1 | import { getApplications } from "@/lib/data";
+  2 | import { requireAdminLevel } from "@/lib/server-auth";
+> 3 | import ApplicationsClient from "./ApplicationsClient";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 |
+  5 | export const metadata = { title: "서류신청 관리" };
+  6 | export const dynamic = "force-dynamic";
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_b0daae9a._.js:2359
+[  116208ms] [ERROR] ./src/app/admin/applications/page.tsx:3:1
+Module not found: Can't resolve './ApplicationsClient'
+  1 | import { getApplications } from "@/lib/data";
+  2 | import { requireAdminLevel } from "@/lib/server-auth";
+> 3 | import ApplicationsClient from "./ApplicationsClient";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 |
+  5 | export const metadata = { title: "서류신청 관리" };
+  6 | export const dynamic = "force-dynamic";
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_b0daae9a._.js:2359
+[  116270ms] [ERROR] ./src/app/admin/applications/page.tsx:3:1
+Module not found: Can't resolve './ApplicationsClient'
+  1 | import { getApplications } from "@/lib/data";
+  2 | import { requireAdminLevel } from "@/lib/server-auth";
+> 3 | import ApplicationsClient from "./ApplicationsClient";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 |
+  5 | export const metadata = { title: "서류신청 관리" };
+  6 | export const dynamic = "force-dynamic";
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_b0daae9a._.js:2359
+[  116312ms] [ERROR] ./src/app/admin/applications/page.tsx:3:1
+Module not found: Can't resolve './ApplicationsClient'
+  1 | import { getApplications } from "@/lib/data";
+  2 | import { requireAdminLevel } from "@/lib/server-auth";
+> 3 | import ApplicationsClient from "./ApplicationsClient";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 |
+  5 | export const metadata = { title: "서류신청 관리" };
+  6 | export const dynamic = "force-dynamic";
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_b0daae9a._.js:2359
+[  116382ms] [ERROR] ./src/app/admin/applications/page.tsx:3:1
+Module not found: Can't resolve './ApplicationsClient'
+  1 | import { getApplications } from "@/lib/data";
+  2 | import { requireAdminLevel } from "@/lib/server-auth";
+> 3 | import ApplicationsClient from "./ApplicationsClient";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 |
+  5 | export const metadata = { title: "서류신청 관리" };
+  6 | export const dynamic = "force-dynamic";
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_b0daae9a._.js:2359
+[  116485ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5949
+[  118223ms] [ERROR] ./src/app/admin/applications/page.tsx:3:1
+Module not found: Can't resolve './ApplicationsClient'
+  1 | import { getApplications } from "@/lib/data";
+  2 | import { requireAdminLevel } from "@/lib/server-auth";
+> 3 | import ApplicationsClient from "./ApplicationsClient";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 |
+  5 | export const metadata = { title: "서류신청 관리" };
+  6 | export const dynamic = "force-dynamic";
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_b0daae9a._.js:2359
+[  118325ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5949
+[  118359ms] [ERROR] ./src/app/admin/applications/page.tsx:3:1
+Module not found: Can't resolve './ApplicationsClient'
+  1 | import { getApplications } from "@/lib/data";
+  2 | import { requireAdminLevel } from "@/lib/server-auth";
+> 3 | import ApplicationsClient from "./ApplicationsClient";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 |
+  5 | export const metadata = { title: "서류신청 관리" };
+  6 | export const dynamic = "force-dynamic";
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_b0daae9a._.js:2359
+[  118465ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5949
+[  118743ms] [ERROR] ./src/app/admin/applications/page.tsx:3:1
+Module not found: Can't resolve './ApplicationsClient'
+  1 | import { getApplications } from "@/lib/data";
+  2 | import { requireAdminLevel } from "@/lib/server-auth";
+> 3 | import ApplicationsClient from "./ApplicationsClient";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 |
+  5 | export const metadata = { title: "서류신청 관리" };
+  6 | export const dynamic = "force-dynamic";
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_b0daae9a._.js:2359
+[  118787ms] [ERROR] ./src/app/admin/applications/page.tsx:3:1
+Module not found: Can't resolve './ApplicationsClient'
+  1 | import { getApplications } from "@/lib/data";
+  2 | import { requireAdminLevel } from "@/lib/server-auth";
+> 3 | import ApplicationsClient from "./ApplicationsClient";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 |
+  5 | export const metadata = { title: "서류신청 관리" };
+  6 | export const dynamic = "force-dynamic";
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_b0daae9a._.js:2359
+[  118910ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5949
+[  119525ms] [ERROR] ./src/app/admin/applications/page.tsx:3:1
+Module not found: Can't resolve './ApplicationsClient'
+  1 | import { getApplications } from "@/lib/data";
+  2 | import { requireAdminLevel } from "@/lib/server-auth";
+> 3 | import ApplicationsClient from "./ApplicationsClient";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 |
+  5 | export const metadata = { title: "서류신청 관리" };
+  6 | export const dynamic = "force-dynamic";
+
+https://nextjs.org/docs/messages/module-not-found @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_b0daae9a._.js:2359
+[  119526ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/api/admin/notifications:0
+[  138016ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5949
+[  138185ms] [LOG] [Fast Refresh] done in 243ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5809
+[  138580ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5949
+[  138596ms] [LOG] [Fast Refresh] done in 129ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5809
+[  176203ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5949
+[  176216ms] [LOG] [Fast Refresh] done in 120ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_cf1d9188._.js:5809

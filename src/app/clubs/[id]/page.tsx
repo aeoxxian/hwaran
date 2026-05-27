@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { getClubById } from "@/lib/data";
 import { notFound } from "next/navigation";
 
@@ -7,6 +8,15 @@ interface Props {
 }
 
 export const dynamic = "force-dynamic";
+
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
+  const { id } = await params;
+  const { club } = await getClubById(id);
+  if (!club) {
+    return { title: "동아리" };
+  }
+  return { title: club.name };
+}
 
 export default async function ClubDetailPage({ params }: Props) {
   const { id } = await params;

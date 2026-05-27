@@ -1,0 +1,349 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e4]:
+      - link "화란 로고 화란" [ref=e79] [cursor=pointer]:
+        - /url: /
+        - img "화란 로고" [ref=e6]
+        - generic [ref=e80]: 화란
+      - navigation [ref=e7]:
+        - link "소개" [ref=e9] [cursor=pointer]:
+          - /url: /about
+        - link "공지사항" [ref=e11] [cursor=pointer]:
+          - /url: /notices
+        - link "동아리 소개" [ref=e13] [cursor=pointer]:
+          - /url: /clubs
+        - link "캘린더" [ref=e15] [cursor=pointer]:
+          - /url: /calendar
+        - link "커뮤니티" [ref=e17] [cursor=pointer]:
+          - /url: /boards
+        - link "갤러리" [ref=e19] [cursor=pointer]:
+          - /url: /gallery
+        - link "자료실" [ref=e21] [cursor=pointer]:
+          - /url: /documents
+        - link "서류 양식" [ref=e23] [cursor=pointer]:
+          - /url: /forms
+        - link "물품 관리" [ref=e25] [cursor=pointer]:
+          - /url: /inventory
+      - generic [ref=e26]:
+        - link "로그인" [ref=e27] [cursor=pointer]:
+          - /url: /auth/login
+        - link "회원가입" [ref=e28] [cursor=pointer]:
+          - /url: /auth/register
+  - main [ref=e31]:
+    - generic [ref=e81]:
+      - generic [ref=e84]:
+        - img "화란 로고" [ref=e87]
+        - generic [ref=e88]:
+          - generic [ref=e89]: 제4대
+          - heading "한국에너지공과대학교 동아리연합회 ‘화란’" [level=2] [ref=e90]:
+            - text: 한국에너지공과대학교 동아리연합회
+            - generic [ref=e91]: ‘화란’
+          - paragraph [ref=e92]: ‘화란’은 ‘꽃이 활짝 피다’라는 뜻을 담고 있습니다. 한국에너지공과대학교 학우들의 동아리 활동이 아름답게 꽃피길 바라는 마음으로, 동아리 활동 지원, 행사 주최, 복지 향상을 위해 최선을 다하겠습니다.
+          - generic [ref=e93]:
+            - generic [ref=e94]:
+              - generic [ref=e95]: "0"
+              - generic [ref=e96]: 등록 동아리
+            - generic [ref=e97]:
+              - generic [ref=e98]: 0+
+              - generic [ref=e99]: 동아리 회원
+            - generic [ref=e100]:
+              - generic [ref=e101]: "5"
+              - generic [ref=e102]: 분과
+      - generic [ref=e104]:
+        - generic [ref=e105]:
+          - generic [ref=e106]:
+            - img "화란 로고" [ref=e107]
+            - heading "제4대 동아리연합회 화란 조직도" [level=2] [ref=e108]
+          - generic [ref=e109]:
+            - generic [ref=e110]:
+              - generic [ref=e112]: 김
+              - paragraph [ref=e113]: 김서정
+              - paragraph [ref=e114]: 동아리연합회장
+            - generic [ref=e115]:
+              - generic [ref=e117]: 박
+              - paragraph [ref=e118]: 박은규
+              - paragraph [ref=e119]: 동아리연합부회장
+          - generic [ref=e129]:
+            - generic [ref=e130]:
+              - paragraph [ref=e132]: 행사기획국
+              - generic [ref=e133]:
+                - generic [ref=e135]:
+                  - generic [ref=e137]: 서
+                  - paragraph [ref=e138]: 서민재
+                  - paragraph [ref=e139]: 국장
+                - generic [ref=e140]:
+                  - paragraph [ref=e141]: 국원
+                  - generic [ref=e142]:
+                    - generic [ref=e143]:
+                      - generic [ref=e144]: 송
+                      - text: 송정후
+                    - generic [ref=e145]:
+                      - generic [ref=e146]: 김
+                      - text: 김윤서
+            - generic [ref=e147]:
+              - paragraph [ref=e149]: 사무국
+              - generic [ref=e150]:
+                - generic [ref=e152]:
+                  - generic [ref=e154]: 전
+                  - paragraph [ref=e155]: 전은비
+                  - paragraph [ref=e156]: 국장
+                - generic [ref=e157]:
+                  - paragraph [ref=e158]: 국원
+                  - generic [ref=e159]:
+                    - generic [ref=e160]:
+                      - generic [ref=e161]: 이
+                      - text: 이승훈
+                    - generic [ref=e162]:
+                      - generic [ref=e163]: 김
+                      - text: 김도유
+                    - generic [ref=e164]:
+                      - generic [ref=e165]: 안
+                      - text: 안정웅
+            - generic [ref=e166]:
+              - paragraph [ref=e168]: 홍보디자인국
+              - generic [ref=e169]:
+                - generic [ref=e171]:
+                  - generic [ref=e173]: 이
+                  - paragraph [ref=e174]: 이서빈
+                  - paragraph [ref=e175]: 국장
+                - generic [ref=e176]:
+                  - generic [ref=e177]:
+                    - paragraph [ref=e178]: 디자인팀
+                    - generic [ref=e179]:
+                      - generic [ref=e181]: 남
+                      - generic [ref=e182]:
+                        - paragraph [ref=e183]: 남은수
+                        - paragraph [ref=e184]: 팀장
+                    - generic [ref=e185]:
+                      - generic [ref=e186]: 장준형
+                      - generic [ref=e187]: 조윤서
+                  - generic [ref=e188]:
+                    - paragraph [ref=e189]: 웹사이트 개발팀
+                    - generic [ref=e190]:
+                      - generic [ref=e192]: 김
+                      - generic [ref=e193]:
+                        - paragraph [ref=e194]: 김승우
+                        - paragraph [ref=e195]: 팀장
+                    - generic [ref=e196]:
+                      - generic [ref=e197]: 고이삭
+                      - generic [ref=e198]: 김현우
+                - generic [ref=e199]:
+                  - paragraph [ref=e200]: 국원
+                  - generic [ref=e202]:
+                    - generic [ref=e203]: 최
+                    - text: 최민
+            - generic [ref=e204]:
+              - paragraph [ref=e206]: 동아리관리국
+              - generic [ref=e207]:
+                - generic [ref=e209]:
+                  - generic [ref=e211]: 송
+                  - paragraph [ref=e212]: 송현우
+                  - paragraph [ref=e213]: 국장
+                - generic [ref=e214]:
+                  - generic [ref=e215]:
+                    - paragraph [ref=e216]: 대내업무팀
+                    - generic [ref=e217]:
+                      - generic [ref=e219]: 노
+                      - generic [ref=e220]:
+                        - paragraph [ref=e221]: 노윤서
+                        - paragraph [ref=e222]: 팀장
+                    - generic [ref=e223]:
+                      - generic [ref=e224]: 송은율
+                      - generic [ref=e225]: 황아진
+                  - generic [ref=e226]:
+                    - paragraph [ref=e227]: 대외업무팀
+                    - generic [ref=e228]:
+                      - generic [ref=e230]: 주
+                      - generic [ref=e231]:
+                        - paragraph [ref=e232]: 주예슬
+                        - paragraph [ref=e233]: 팀장
+                    - generic [ref=e234]:
+                      - generic [ref=e235]: 백시연
+                      - generic [ref=e236]: 이중헌
+        - generic [ref=e237]:
+          - heading "구성원" [level=2] [ref=e238]
+          - paragraph [ref=e239]: 제4대 동아리연합회 화란 — 총 24명
+          - generic [ref=e240]:
+            - generic [ref=e241]:
+              - generic [ref=e242]:
+                - generic [ref=e243]: 회장단
+                - generic [ref=e244]: 2명
+              - generic [ref=e245]:
+                - generic [ref=e246]:
+                  - generic [ref=e248]: 김
+                  - paragraph [ref=e249]: 김서정
+                  - generic [ref=e250]: 동아리연합회장
+                - generic [ref=e251]:
+                  - generic [ref=e253]: 박
+                  - paragraph [ref=e254]: 박은규
+                  - generic [ref=e255]: 동아리연합부회장
+            - generic [ref=e256]:
+              - generic [ref=e257]:
+                - generic [ref=e258]: 행사기획국
+                - generic [ref=e259]: 3명
+              - generic [ref=e260]:
+                - generic [ref=e261]:
+                  - generic [ref=e263]: 서
+                  - paragraph [ref=e264]: 서민재
+                  - generic [ref=e265]: 국장
+                - generic [ref=e266]:
+                  - generic [ref=e268]: 송
+                  - paragraph [ref=e269]: 송정후
+                  - generic [ref=e270]: 국원
+                - generic [ref=e271]:
+                  - generic [ref=e273]: 김
+                  - paragraph [ref=e274]: 김윤서
+                  - generic [ref=e275]: 국원
+            - generic [ref=e276]:
+              - generic [ref=e277]:
+                - generic [ref=e278]: 사무국
+                - generic [ref=e279]: 4명
+              - generic [ref=e280]:
+                - generic [ref=e281]:
+                  - generic [ref=e283]: 전
+                  - paragraph [ref=e284]: 전은비
+                  - generic [ref=e285]: 국장
+                - generic [ref=e286]:
+                  - generic [ref=e288]: 이
+                  - paragraph [ref=e289]: 이승훈
+                  - generic [ref=e290]: 국원
+                - generic [ref=e291]:
+                  - generic [ref=e293]: 김
+                  - paragraph [ref=e294]: 김도유
+                  - generic [ref=e295]: 국원
+                - generic [ref=e296]:
+                  - generic [ref=e298]: 안
+                  - paragraph [ref=e299]: 안정웅
+                  - generic [ref=e300]: 국원
+            - generic [ref=e301]:
+              - generic [ref=e302]:
+                - generic [ref=e303]: 홍보디자인국
+                - generic [ref=e304]: 8명
+              - generic [ref=e305]:
+                - generic [ref=e306]:
+                  - generic [ref=e308]: 이
+                  - paragraph [ref=e309]: 이서빈
+                  - generic [ref=e310]: 국장
+                - generic [ref=e311]:
+                  - generic [ref=e313]: 최
+                  - paragraph [ref=e314]: 최민
+                  - generic [ref=e315]: 국원
+              - generic [ref=e316]:
+                - generic [ref=e317]:
+                  - paragraph [ref=e318]: 디자인팀
+                  - generic [ref=e320]:
+                    - generic [ref=e321]:
+                      - generic [ref=e323]: 남
+                      - paragraph [ref=e324]: 남은수
+                      - generic [ref=e325]: 팀장
+                    - generic [ref=e326]:
+                      - generic [ref=e328]: 장
+                      - paragraph [ref=e329]: 장준형
+                      - generic [ref=e330]: 팀원
+                    - generic [ref=e331]:
+                      - generic [ref=e333]: 조
+                      - paragraph [ref=e334]: 조윤서
+                      - generic [ref=e335]: 팀원
+                - generic [ref=e336]:
+                  - paragraph [ref=e337]: 웹사이트 개발팀
+                  - generic [ref=e339]:
+                    - generic [ref=e340]:
+                      - generic [ref=e342]: 김
+                      - paragraph [ref=e343]: 김승우
+                      - generic [ref=e344]: 팀장
+                    - generic [ref=e345]:
+                      - generic [ref=e347]: 고
+                      - paragraph [ref=e348]: 고이삭
+                      - generic [ref=e349]: 팀원
+                    - generic [ref=e350]:
+                      - generic [ref=e352]: 김
+                      - paragraph [ref=e353]: 김현우
+                      - generic [ref=e354]: 팀원
+            - generic [ref=e355]:
+              - generic [ref=e356]:
+                - generic [ref=e357]: 동아리관리국
+                - generic [ref=e358]: 7명
+              - generic [ref=e360]:
+                - generic [ref=e362]: 송
+                - paragraph [ref=e363]: 송현우
+                - generic [ref=e364]: 국장
+              - generic [ref=e365]:
+                - generic [ref=e366]:
+                  - paragraph [ref=e367]: 대내업무팀
+                  - generic [ref=e369]:
+                    - generic [ref=e370]:
+                      - generic [ref=e372]: 노
+                      - paragraph [ref=e373]: 노윤서
+                      - generic [ref=e374]: 팀장
+                    - generic [ref=e375]:
+                      - generic [ref=e377]: 송
+                      - paragraph [ref=e378]: 송은율
+                      - generic [ref=e379]: 팀원
+                    - generic [ref=e380]:
+                      - generic [ref=e382]: 황
+                      - paragraph [ref=e383]: 황아진
+                      - generic [ref=e384]: 팀원
+                - generic [ref=e385]:
+                  - paragraph [ref=e386]: 대외업무팀
+                  - generic [ref=e388]:
+                    - generic [ref=e389]:
+                      - generic [ref=e391]: 주
+                      - paragraph [ref=e392]: 주예슬
+                      - generic [ref=e393]: 팀장
+                    - generic [ref=e394]:
+                      - generic [ref=e396]: 백
+                      - paragraph [ref=e397]: 백시연
+                      - generic [ref=e398]: 팀원
+                    - generic [ref=e399]:
+                      - generic [ref=e401]: 이
+                      - paragraph [ref=e402]: 이중헌
+                      - generic [ref=e403]: 팀원
+  - contentinfo [ref=e37]:
+    - generic [ref=e38]:
+      - generic [ref=e39]:
+        - generic [ref=e40]:
+          - generic [ref=e41]:
+            - img "화란 로고" [ref=e42]
+            - generic [ref=e43]:
+              - heading "화란" [level=3] [ref=e44]
+              - paragraph [ref=e45]: 제4대 한국에너지공과대학교 동아리연합회
+          - paragraph [ref=e46]: 학우들의 동아리 활동이 아름답게 꽃피길 바라는 마음을 담아, 동아리 활동 지원과 행사 주최, 복지 향상을 위해 노력합니다.
+        - generic [ref=e47]:
+          - heading "바로가기" [level=4] [ref=e48]
+          - list [ref=e49]:
+            - listitem [ref=e50]:
+              - link "소개" [ref=e51] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=e52]:
+              - link "공지사항" [ref=e53] [cursor=pointer]:
+                - /url: /notices
+            - listitem [ref=e54]:
+              - link "동아리 소개" [ref=e55] [cursor=pointer]:
+                - /url: /clubs
+            - listitem [ref=e56]:
+              - link "캘린더" [ref=e57] [cursor=pointer]:
+                - /url: /calendar
+            - listitem [ref=e58]:
+              - link "갤러리" [ref=e59] [cursor=pointer]:
+                - /url: /gallery
+            - listitem [ref=e60]:
+              - link "자료실" [ref=e61] [cursor=pointer]:
+                - /url: /documents
+        - generic [ref=e62]:
+          - heading "연락처" [level=4] [ref=e63]
+          - list [ref=e64]:
+            - listitem [ref=e65]:
+              - img [ref=e66]
+              - generic [ref=e404]: 경상북도 나주시 한국에너지공과대학교
+            - listitem [ref=e69]:
+              - img [ref=e70]
+              - link "hwaran@kentech.ac.kr" [ref=e72] [cursor=pointer]:
+                - /url: mailto:hwaran@kentech.ac.kr
+            - listitem [ref=e73]:
+              - img [ref=e74]
+              - link "@hwaran_kentech" [ref=e76] [cursor=pointer]:
+                - /url: https://instagram.com/hwaran_kentech
+      - paragraph [ref=e78]: © 2026 제4대 한국에너지공과대학교 동아리연합회 화란. All Rights Reserved.
+  - button "Open Next.js Dev Tools" [ref=e410] [cursor=pointer]:
+    - img [ref=e411]
+  - alert [ref=e414]

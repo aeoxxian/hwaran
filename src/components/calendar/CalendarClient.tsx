@@ -4,7 +4,10 @@ import { useState, useMemo } from "react";
 import type { CalendarEvent } from "@/lib/types";
 
 export default function CalendarClient({ events }: { events: CalendarEvent[] }) {
-  const [currentDate, setCurrentDate] = useState(new Date(2026, 2, 1));
+  const [currentDate, setCurrentDate] = useState(() => {
+    const now = new Date();
+    return new Date(now.getFullYear(), now.getMonth(), 1);
+  });
 
   const year = currentDate.getFullYear();
   const month = currentDate.getMonth();
@@ -75,17 +78,19 @@ export default function CalendarClient({ events }: { events: CalendarEvent[] }) 
               {days.map((day, idx) => {
                 const dayEvents = day ? getEventsForDay(day) : [];
                 const isSelected = day === selectedDay;
+                const today = new Date();
+                const isToday = day !== null && day === today.getDate() && month === today.getMonth() && year === today.getFullYear();
                 return (
                   <div
                     key={idx}
                     onClick={() => day && setSelectedDay(day)}
                     className={`min-h-[80px] sm:min-h-[100px] p-1 sm:p-2 border-b border-r border-gray-border cursor-pointer hover:bg-primary-50/50 transition-colors ${
-                      isSelected ? "bg-primary-50" : ""
+                      isToday ? "bg-primary-50 ring-2 ring-primary ring-inset" : isSelected ? "bg-primary-50" : ""
                     } ${!day ? "bg-gray-light/30" : ""}`}
                   >
                     {day && (
                       <>
-                        <span className={`text-sm font-medium ${idx % 7 === 0 ? "text-red-500" : idx % 7 === 6 ? "text-blue-500" : "text-dark"}`}>
+                        <span className={`text-sm ${isToday ? "font-bold" : "font-medium"} ${idx % 7 === 0 ? "text-red-500" : idx % 7 === 6 ? "text-blue-500" : "text-dark"}`}>
                           {day}
                         </span>
                         <div className="mt-1 space-y-0.5">

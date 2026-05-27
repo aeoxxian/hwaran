@@ -13,7 +13,6 @@ interface OrgForm {
   title: string;
   department: string;
   team: string;
-  order: number;
 }
 
 const EMPTY: OrgForm = {
@@ -21,7 +20,6 @@ const EMPTY: OrgForm = {
   title: "국원",
   department: "행사기획국",
   team: "",
-  order: 100,
 };
 
 const DEPT_SUGGESTIONS = ["회장단", "행사기획국", "사무국", "홍보디자인국", "동아리관리국"];
@@ -49,7 +47,6 @@ export default function OrgChartManager({ members }: Props) {
       title: m.title,
       department: m.department,
       team: m.team || "",
-      order: m.order,
     });
     setShowForm(true);
     setError("");
@@ -158,15 +155,6 @@ export default function OrgChartManager({ members }: Props) {
               className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
             />
           </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">정렬 순서 (낮을수록 위)</label>
-            <input
-              type="number"
-              value={form.order}
-              onChange={(e) => setForm({ ...form, order: Number(e.target.value) })}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
-            />
-          </div>
           {error && <p className="md:col-span-2 text-sm text-red-600">{error}</p>}
           <div className="md:col-span-2">
             <button
@@ -198,7 +186,6 @@ export default function OrgChartManager({ members }: Props) {
                     <th className="text-left px-4 py-2 font-medium text-gray-600">이름</th>
                     <th className="text-left px-4 py-2 font-medium text-gray-600">직책</th>
                     <th className="text-left px-4 py-2 font-medium text-gray-600">팀</th>
-                    <th className="text-left px-4 py-2 font-medium text-gray-600">순서</th>
                     <th className="text-right px-4 py-2 font-medium text-gray-600">관리</th>
                   </tr>
                 </thead>
@@ -208,7 +195,6 @@ export default function OrgChartManager({ members }: Props) {
                       <td className="px-4 py-2 font-medium text-gray-900">{m.name}</td>
                       <td className="px-4 py-2 text-gray-600">{m.title}</td>
                       <td className="px-4 py-2 text-gray-500">{m.team || "-"}</td>
-                      <td className="px-4 py-2 text-gray-500">{m.order}</td>
                       <td className="px-4 py-2 text-right space-x-2">
                         <button onClick={() => openEdit(m)} className="text-primary hover:underline text-sm">수정</button>
                         <button onClick={() => handleDelete(m.id)} className="text-red-500 hover:text-red-700 text-sm">삭제</button>

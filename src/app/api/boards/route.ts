@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import notion, { databaseIds } from "@/lib/notion";
-import { getBoardPosts } from "@/lib/data";
+import notion from "@/lib/notion";
+import { getBoardPosts, getDbIdForCategory, getBoardContentProp } from "@/lib/data";
 import { mockBoardPosts } from "@/lib/mock-data";
 import type { BoardPost } from "@/lib/types";
 import { guard } from "@/lib/api-auth";
@@ -9,16 +9,6 @@ type BoardCategory = BoardPost["category"];
 
 const VALID_CATEGORIES: BoardCategory[] = ["qna", "complaints", "lost-found", "promotions"];
 const USE_MOCK = !process.env.NOTION_API_KEY;
-
-function getDbIdForCategory(category: string): string {
-  switch (category) {
-    case "qna": return databaseIds.qna;
-    case "complaints": return databaseIds.complaints;
-    case "lost-found": return databaseIds.lostFound;
-    case "promotions": return databaseIds.promotions;
-    default: return "";
-  }
-}
 
 function isBoardCategory(value: string | null): value is BoardCategory {
   return !!value && VALID_CATEGORIES.includes(value as BoardCategory);
@@ -52,9 +42,20 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "제목과 내용을 입력해주세요." }, { status: 400 });
   }
 
-  const authorName = body.isAnonymous ? "익명" : user.name;
+  const isAnonymous = Boolean(body.isAnonymous);
+  const authorName = isAnonymous ? "익명" : user.name;
   const authorId = user.id;
   const today = new Date().toISOString().split("T")[0];
+
+  // 카테고리별 초기 상태값
+  const initialStatus =
+    category === "lost-found"
+      ? "미해결"
+      : category === "promotions"
+        ? "대기"
+        : "대기";
+  const initialApproval: BoardPost["approvalStatus"] =
+    category === "promotions" ? "pending" : "approved";
 
   if (USE_MOCK || !getDbIdForCategory(category)) {
     const newPost: BoardPost = {
@@ -66,45 +67,45 @@ export async function POST(request: NextRequest) {
       createdAt: today,
       updatedAt: today,
       category,
-      status: category === "lost-found" ? "미해결" : "대기",
-      isAnonymous: Boolean(body.isAnonymous),
+      status: initialStatus,
+      isAnonymous,
       clubId: body.clubId || undefined,
       clubName: body.clubName || undefined,
       location: body.location || undefined,
       attachments: body.attachments || [],
       images: body.images || [],
-      approvalStatus: category === "promotions" ? "pending" : "approved",
-      visibility: "public",
+      approvalStatus: initialApproval,
+      visibility: body.visibility === "internal" ? "internal" : "public",
     };
     mockBoardPosts.unshift(newPost);
     return NextResponse.json({ post: newPost }, { status: 201 });
   }
 
   try {
-    // Notion DB 스키마에 실제로 존재하는 공통 속성만 설정합니다.
-    // (작성자ID·공개범위·승인상태·수정일은 스키마에 없어 제외)
+    const contentProp = getBoardContentProp(category);
+    const content: string = (body.content as string).slice(0, 2000);
+
+    // 모든 게시판 DB에 공통으로 존재하는 속성.
+    // (setup-notion-dbs.ts 스키마와 정확히 1:1 대응)
     const properties: Record<string, unknown> = {
       제목: { title: [{ text: { content: body.title } }] },
-      작성일: { date: { start: today } },
+      [contentProp]: { rich_text: [{ text: { content } }] },
       작성자: { rich_text: [{ text: { content: authorName } }] },
+      작성자ID: { rich_text: [{ text: { content: authorId } }] },
+      작성일: { date: { start: today } },
+      수정일: { date: { start: today } },
+      상태: { select: { name: initialStatus } },
+      승인상태: { select: { name: initialApproval } },
+      공개범위: { select: { name: body.visibility === "internal" ? "internal" : "public" } },
     };
 
-    if (category === "qna") {
-      properties["내용"] = { rich_text: [{ text: { content: body.content.slice(0, 2000) } }] };
-      properties["상태"] = { select: { name: "대기" } };
-    }
-    if (category === "complaints") {
-      properties["내용"] = { rich_text: [{ text: { content: body.content.slice(0, 2000) } }] };
-      properties["상태"] = { select: { name: "대기" } };
-      properties["익명여부"] = { checkbox: Boolean(body.isAnonymous) };
+    if (category === "qna" || category === "complaints") {
+      properties["익명여부"] = { checkbox: isAnonymous };
     }
     if (category === "lost-found") {
-      properties["설명"] = { rich_text: [{ text: { content: body.content.slice(0, 2000) } }] };
       properties["장소"] = { rich_text: [{ text: { content: body.location || "" } }] };
-      properties["상태"] = { select: { name: "미해결" } };
     }
     if (category === "promotions") {
-      properties["내용"] = { rich_text: [{ text: { content: body.content.slice(0, 2000) } }] };
       properties["동아리ID"] = { rich_text: [{ text: { content: body.clubId || "" } }] };
       properties["동아리명"] = { rich_text: [{ text: { content: body.clubName || "" } }] };
     }
@@ -118,13 +119,22 @@ export async function POST(request: NextRequest) {
         })),
       };
     }
+    if (Array.isArray(body.images) && body.images.length > 0) {
+      properties["이미지"] = {
+        files: body.images.map((url: string, index: number) => ({
+          name: `이미지-${index + 1}`,
+          type: "external",
+          external: { url },
+        })),
+      };
+    }
 
     const response = await notion.pages.create({
       parent: { database_id: getDbIdForCategory(category) },
       properties: properties as Parameters<typeof notion.pages.create>[0]["properties"],
     });
 
-    return NextResponse.json({ id: response.id }, { status: 201 });
+    return NextResponse.json({ post: { id: response.id }, id: response.id }, { status: 201 });
   } catch (error) {
     console.error("Failed to create board post:", error);
     return NextResponse.json({ error: "게시글 작성에 실패했습니다." }, { status: 500 });

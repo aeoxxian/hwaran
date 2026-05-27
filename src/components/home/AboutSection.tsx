@@ -1,7 +1,14 @@
 import Image from "next/image";
 import { SITE_NAME, SITE_FULL_NAME, SITE_GENERATION } from "@/lib/constants";
+import { getClubs, getOrgChartMembers } from "@/lib/data";
 
-export default function AboutSection() {
+export default async function AboutSection() {
+  // 동아리/구성원 수치를 Notion(mock 폴백) 데이터에서 직접 계산합니다.
+  const [clubs, members] = await Promise.all([getClubs(), getOrgChartMembers()]);
+  const clubCount = clubs.length;
+  const memberSum = clubs.reduce((acc, c) => acc + (c.memberCount || 0), 0);
+  const departmentCount = new Set(members.map((m) => m.department)).size;
+
   return (
     <section className="py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -9,7 +16,7 @@ export default function AboutSection() {
           <div className="flex justify-center">
             <div className="relative w-64 h-64">
               <Image
-                src="/logo.png"
+                src="/logo_white.webp"
                 alt="화란 로고"
                 fill
                 className="object-contain"
@@ -30,15 +37,15 @@ export default function AboutSection() {
             </p>
             <div className="grid grid-cols-3 gap-4">
               <div className="text-center p-4 rounded-lg bg-primary-50">
-                <div className="text-2xl font-bold text-primary">6</div>
+                <div className="text-2xl font-bold text-primary">{clubCount}</div>
                 <div className="text-sm text-gray-text mt-1">등록 동아리</div>
               </div>
               <div className="text-center p-4 rounded-lg bg-primary-50">
-                <div className="text-2xl font-bold text-primary">130+</div>
+                <div className="text-2xl font-bold text-primary">{memberSum}+</div>
                 <div className="text-sm text-gray-text mt-1">동아리 회원</div>
               </div>
               <div className="text-center p-4 rounded-lg bg-primary-50">
-                <div className="text-2xl font-bold text-primary">5+</div>
+                <div className="text-2xl font-bold text-primary">{departmentCount}</div>
                 <div className="text-sm text-gray-text mt-1">분과</div>
               </div>
             </div>

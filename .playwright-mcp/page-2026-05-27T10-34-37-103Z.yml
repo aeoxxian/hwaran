@@ -1,0 +1,241 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e4]:
+      - link "화란 로고 화란" [ref=e5] [cursor=pointer]:
+        - /url: /
+        - img "화란 로고" [ref=e6]
+        - generic [ref=e7]: 화란
+      - navigation [ref=e8]:
+        - link "소개" [ref=e10] [cursor=pointer]:
+          - /url: /about
+        - link "공지사항" [ref=e12] [cursor=pointer]:
+          - /url: /notices
+        - link "동아리 소개" [ref=e14] [cursor=pointer]:
+          - /url: /clubs
+        - link "캘린더" [ref=e16] [cursor=pointer]:
+          - /url: /calendar
+        - link "커뮤니티" [ref=e18] [cursor=pointer]:
+          - /url: /boards
+        - link "갤러리" [ref=e20] [cursor=pointer]:
+          - /url: /gallery
+        - link "자료실" [ref=e22] [cursor=pointer]:
+          - /url: /documents
+        - link "서류 양식" [ref=e24] [cursor=pointer]:
+          - /url: /forms
+        - link "물품 관리" [ref=e26] [cursor=pointer]:
+          - /url: /inventory
+      - generic [ref=e27]:
+        - link "로그인" [ref=e28] [cursor=pointer]:
+          - /url: /auth/login
+        - link "회원가입" [ref=e29] [cursor=pointer]:
+          - /url: /auth/register
+  - main [ref=e30]:
+    - generic [ref=e33]:
+      - generic [ref=e34]:
+        - generic [ref=e35]:
+          - heading "중요 공지사항" [level=2] [ref=e36]
+          - link "전체보기" [ref=e37] [cursor=pointer]:
+            - /url: /notices
+        - link "중요 중요 공지 테스트 2026-05-27" [ref=e39] [cursor=pointer]:
+          - /url: /notices/36dce5c2-b899-816f-a4a4-c3ecb26ac9e5
+          - generic [ref=e40]:
+            - generic [ref=e41]: 중요
+            - generic [ref=e42]:
+              - paragraph [ref=e43]: 중요 공지 테스트
+              - paragraph [ref=e44]: 2026-05-27
+      - generic [ref=e45]:
+        - generic [ref=e46]:
+          - heading "다가오는 일정" [level=2] [ref=e47]
+          - link "캘린더 보기" [ref=e48] [cursor=pointer]:
+            - /url: /calendar
+        - generic [ref=e49]:
+          - button "이전 달" [ref=e50]:
+            - img [ref=e51]
+          - paragraph [ref=e53]: 2026년 5월
+          - button "다음 달" [ref=e54]:
+            - img [ref=e55]
+        - generic [ref=e57]:
+          - generic [ref=e58]: 일
+          - generic [ref=e59]: 월
+          - generic [ref=e60]: 화
+          - generic [ref=e61]: 수
+          - generic [ref=e62]: 목
+          - generic [ref=e63]: 금
+          - generic [ref=e64]: 토
+        - generic [ref=e65]:
+          - generic [ref=e72]: "1"
+          - generic [ref=e74]: "2"
+          - generic [ref=e76]: "3"
+          - generic [ref=e78]: "4"
+          - generic [ref=e80]: "5"
+          - generic [ref=e82]: "6"
+          - generic [ref=e84]: "7"
+          - generic [ref=e86]: "8"
+          - generic [ref=e88]: "9"
+          - generic [ref=e90]: "10"
+          - generic [ref=e92]: "11"
+          - generic [ref=e94]: "12"
+          - generic [ref=e96]: "13"
+          - generic [ref=e98]: "14"
+          - generic [ref=e100]: "15"
+          - generic [ref=e102]: "16"
+          - generic [ref=e104]: "17"
+          - generic [ref=e106]: "18"
+          - generic [ref=e108]: "19"
+          - generic [ref=e110]: "20"
+          - generic [ref=e112]: "21"
+          - generic [ref=e114]: "22"
+          - generic [ref=e116]: "23"
+          - generic [ref=e118]: "24"
+          - generic [ref=e120]: "25"
+          - generic [ref=e122]: "26"
+          - generic [ref=e124]: "27"
+          - generic [ref=e126]: "28"
+          - generic [ref=e128]: "29"
+          - generic [ref=e130]: "30"
+          - generic [ref=e132]: "31"
+    - generic [ref=e135]:
+      - generic [ref=e136]:
+        - generic [ref=e137]:
+          - generic [ref=e138]:
+            - heading "물품 관리 현황" [level=2] [ref=e139]
+            - link "전체 보기" [ref=e140] [cursor=pointer]:
+              - /url: /inventory
+          - generic [ref=e141]:
+            - generic [ref=e142]:
+              - paragraph [ref=e143]: "1"
+              - paragraph [ref=e144]: 등록 물품
+            - generic [ref=e145]:
+              - paragraph [ref=e146]: "1"
+              - paragraph [ref=e147]: 사용가능
+            - generic [ref=e148]:
+              - paragraph [ref=e149]: "0"
+              - paragraph [ref=e150]: 대여중
+            - generic [ref=e151]:
+              - paragraph [ref=e152]: "0"
+              - paragraph [ref=e153]: 수리중
+          - table [ref=e155]:
+            - rowgroup [ref=e156]:
+              - row "물품 위치 상태" [ref=e157]:
+                - columnheader "물품" [ref=e158]
+                - columnheader "위치" [ref=e159]
+                - columnheader "상태" [ref=e160]
+            - rowgroup [ref=e161]:
+              - row "은바오의 망토 학생회실 사용가능" [ref=e162]:
+                - cell "은바오의 망토" [ref=e163]
+                - cell "학생회실" [ref=e164]
+                - cell "사용가능" [ref=e165]:
+                  - generic [ref=e166]: 사용가능
+        - generic [ref=e167]:
+          - generic [ref=e168]:
+            - heading "분실물 게시" [level=2] [ref=e169]
+            - link "게시판으로 이동" [ref=e170] [cursor=pointer]:
+              - /url: /boards/lost-found
+          - paragraph [ref=e172]: 등록된 글이 없습니다.
+        - generic [ref=e174]:
+          - heading "자료실 · 중요 양식" [level=2] [ref=e175]
+          - link "자료실 전체" [ref=e176] [cursor=pointer]:
+            - /url: /documents
+      - complementary [ref=e177]:
+        - paragraph [ref=e178]: 바로가기
+        - generic [ref=e179]:
+          - link "공지사항" [ref=e180] [cursor=pointer]:
+            - /url: /notices
+            - img [ref=e182]
+            - generic [ref=e184]: 공지사항
+          - link "동아리 소개" [ref=e185] [cursor=pointer]:
+            - /url: /clubs
+            - img [ref=e187]
+            - generic [ref=e189]: 동아리 소개
+          - link "캘린더" [ref=e190] [cursor=pointer]:
+            - /url: /calendar
+            - img [ref=e192]
+            - generic [ref=e194]: 캘린더
+          - link "문의 게시판" [ref=e195] [cursor=pointer]:
+            - /url: /boards/qna
+            - img [ref=e197]
+            - generic [ref=e199]: 문의 게시판
+    - generic [ref=e201]:
+      - generic [ref=e202]:
+        - heading "외부 채널" [level=2] [ref=e203]
+        - paragraph [ref=e204]: 화란과 연결된 SNS 및 외부 채널을 확인하세요
+      - generic [ref=e205]:
+        - link "화란 공식 인스타그램 동아리연합회 공식 인스타그램" [ref=e206] [cursor=pointer]:
+          - /url: https://instagram.com/hwaran_kentech
+          - img [ref=e208]
+          - generic [ref=e210]:
+            - heading "화란 공식 인스타그램" [level=3] [ref=e211]
+            - paragraph [ref=e212]: 동아리연합회 공식 인스타그램
+          - img [ref=e213]
+        - link "KENTECH 공연 정보 교내 공연 및 행사 소식" [ref=e215] [cursor=pointer]:
+          - /url: https://instagram.com/kentech_stage
+          - img [ref=e217]
+          - generic [ref=e219]:
+            - heading "KENTECH 공연 정보" [level=3] [ref=e220]
+            - paragraph [ref=e221]: 교내 공연 및 행사 소식
+          - img [ref=e222]
+        - link "KENTECH 학생회 총학생회 공식 계정" [ref=e224] [cursor=pointer]:
+          - /url: https://instagram.com/kentech_student
+          - img [ref=e226]
+          - generic [ref=e228]:
+            - heading "KENTECH 학생회" [level=3] [ref=e229]
+            - paragraph [ref=e230]: 총학생회 공식 계정
+          - img [ref=e231]
+  - contentinfo [ref=e233]:
+    - generic [ref=e234]:
+      - generic [ref=e235]:
+        - generic [ref=e236]:
+          - generic [ref=e237]:
+            - img "화란 로고" [ref=e238]
+            - generic [ref=e239]:
+              - heading "화란" [level=3] [ref=e240]
+              - paragraph [ref=e241]: 제4대 한국에너지공과대학교 동아리연합회
+          - paragraph [ref=e242]: 학우들의 동아리 활동이 아름답게 꽃피길 바라는 마음을 담아, 동아리 활동 지원과 행사 주최, 복지 향상을 위해 노력합니다.
+        - generic [ref=e243]:
+          - heading "바로가기" [level=4] [ref=e244]
+          - list [ref=e245]:
+            - listitem [ref=e246]:
+              - link "소개" [ref=e247] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=e248]:
+              - link "공지사항" [ref=e249] [cursor=pointer]:
+                - /url: /notices
+            - listitem [ref=e250]:
+              - link "동아리 소개" [ref=e251] [cursor=pointer]:
+                - /url: /clubs
+            - listitem [ref=e252]:
+              - link "캘린더" [ref=e253] [cursor=pointer]:
+                - /url: /calendar
+            - listitem [ref=e254]:
+              - link "갤러리" [ref=e255] [cursor=pointer]:
+                - /url: /gallery
+            - listitem [ref=e256]:
+              - link "자료실" [ref=e257] [cursor=pointer]:
+                - /url: /documents
+        - generic [ref=e258]:
+          - heading "연락처" [level=4] [ref=e259]
+          - list [ref=e260]:
+            - listitem [ref=e261]:
+              - img [ref=e262]
+              - generic [ref=e265]: 경상북도 나주시 한국에너지공과대학교
+            - listitem [ref=e266]:
+              - img [ref=e267]
+              - link "hwaran@kentech.ac.kr" [ref=e269] [cursor=pointer]:
+                - /url: mailto:hwaran@kentech.ac.kr
+            - listitem [ref=e270]:
+              - img [ref=e271]
+              - link "@hwaran_kentech" [ref=e273] [cursor=pointer]:
+                - /url: https://instagram.com/hwaran_kentech
+      - paragraph [ref=e275]: © 2026 제4대 한국에너지공과대학교 동아리연합회 화란. All Rights Reserved.
+  - generic [ref=e280] [cursor=pointer]:
+    - button "Open Next.js Dev Tools" [ref=e281]:
+      - img [ref=e282]
+    - generic [ref=e285]:
+      - button "Open issues overlay" [ref=e286]:
+        - generic [ref=e287]:
+          - generic [ref=e288]: "0"
+          - generic [ref=e289]: "1"
+        - generic [ref=e290]: Issue
+      - button "Collapse issues badge" [ref=e291]:
+        - img [ref=e292]
+  - alert [ref=e294]

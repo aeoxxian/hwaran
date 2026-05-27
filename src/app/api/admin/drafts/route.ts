@@ -5,7 +5,7 @@ import { mockDrafts } from "@/lib/mock-data";
 import { SUBMIT_STATUS, NEXT_REVIEWER } from "@/lib/constants";
 import { sendNotificationEmail } from "@/lib/email";
 import { guard } from "@/lib/api-auth";
-import { getDrafts } from "@/lib/data";
+import { getDrafts, createNotification } from "@/lib/data";
 
 const USE_MOCK = !process.env.NOTION_API_KEY || !databaseIds.drafts;
 
@@ -36,6 +36,7 @@ export async function POST(request: NextRequest) {
 
   const reviewerRole = asDraft ? undefined : NEXT_REVIEWER[user.role as UserRole];
   const status = asDraft ? "임시저장" : (SUBMIT_STATUS[user.role as UserRole] ?? "1차검토중");
+  const baseUrl = process.env.NEXT_PUBLIC_URL || "http://localhost:3000";
 
   if (USE_MOCK) {
     const newDraft = {
@@ -54,6 +55,18 @@ export async function POST(request: NextRequest) {
       updatedAt: new Date().toISOString(),
     };
     mockDrafts.unshift(newDraft as (typeof mockDrafts)[number]);
+
+    if (!asDraft && reviewerRole) {
+      // 다음 결재자 모두에게 사이트 내 알림 생성 (mock 모드 폴백)
+      await createNotification({
+        recipientId: `role:${reviewerRole}`,
+        title: "새 기안이 도착했습니다",
+        message: `${user.name}님이 '${title}'을 상신했습니다.`,
+        link: `${baseUrl}/admin/drafts/${newDraft.id}`,
+        kind: "기안",
+      });
+    }
+
     return NextResponse.json({ draft: newDraft }, { status: 201 });
   }
 
@@ -97,12 +110,24 @@ export async function POST(request: NextRequest) {
       properties: properties as Parameters<typeof notion.pages.create>[0]["properties"],
     });
 
-    if (!asDraft && process.env.ADMIN_EMAIL) {
-      await sendNotificationEmail({
-        to: process.env.ADMIN_EMAIL,
-        subject: `[화란] 새 기안: ${title}`,
-        html: `<p>${user.name}님이 새 기안을 상신했습니다: <strong>${title}</strong></p>`,
+    if (!asDraft && reviewerRole) {
+      // 사이트 내 알림: recipientId 는 역할 식별자(`role:국장팀장` 등)로 저장.
+      // 알림 벨/페이지에서는 본인 ID + 본인 역할 두 종류를 모두 조회하면 됩니다.
+      await createNotification({
+        recipientId: `role:${reviewerRole}`,
+        title: "새 기안이 도착했습니다",
+        message: `${user.name}님이 '${title}'을 상신했습니다.`,
+        link: `${baseUrl}/admin/drafts/${page.id}`,
+        kind: "기안",
       });
+
+      if (process.env.ADMIN_EMAIL) {
+        await sendNotificationEmail({
+          to: process.env.ADMIN_EMAIL,
+          subject: `[화란] 새 기안: ${title}`,
+          html: `<p>${user.name}님이 새 기안을 상신했습니다: <strong>${title}</strong></p>`,
+        });
+      }
     }
 
     return NextResponse.json({ draft: { id: page.id } }, { status: 201 });

@@ -11,13 +11,13 @@ import {
   mockBoardPosts, mockGalleryAlbums, mockDocuments,
   mockInventory, mockBanners, mockExternalChannels,
   mockDrafts, mockApplications, mockNotifications,
-  mockOrgChartMembers,
+  mockOrgChartMembers, mockModerationLogs,
 } from "./mock-data";
 import type {
   Notice, Club, ClubMember, CalendarEvent, BoardPost,
   GalleryAlbum, Document, InventoryItem, Banner, ExternalChannel,
   Draft, ClubApplication, AppNotification, DraftComment, UserRole,
-  OrgChartMember,
+  OrgChartMember, ModerationLog, ApplicationType, User,
 } from "./types";
 
 const USE_MOCK = !process.env.NOTION_API_KEY;
@@ -352,7 +352,7 @@ export async function deleteEvent(id: string): Promise<boolean> {
 
 type BoardCategory = BoardPost["category"];
 
-function getDbIdForCategory(category: string): string {
+export function getDbIdForCategory(category: string): string {
   switch (category) {
     case "qna": return databaseIds.qna;
     case "complaints": return databaseIds.complaints;
@@ -360,6 +360,14 @@ function getDbIdForCategory(category: string): string {
     case "promotions": return databaseIds.promotions;
     default: return "";
   }
+}
+
+/**
+ * 게시판 카테고리별 본문 속성명.
+ * - lost-found 만 "설명" 을 본문 컬럼으로 사용하고, 나머지는 "내용".
+ */
+export function getBoardContentProp(category: BoardCategory): "내용" | "설명" {
+  return category === "lost-found" ? "설명" : "내용";
 }
 
 function mapNotionToBoardPost(page: Record<string, unknown>, category: BoardCategory): BoardPost {
@@ -597,7 +605,8 @@ export async function createDocument(input: DocumentInput): Promise<Document> {
   const today = new Date().toISOString().split("T")[0];
   const properties: Record<string, unknown> = {
     제목: { title: [{ text: { content: input.title } }] },
-    분류: { rich_text: [{ text: { content: input.category } }] },
+    // DB 스키마: 분류는 select 타입 (회칙/양식/회의록/기타)
+    분류: { select: { name: input.category } },
     작성일: { date: { start: today } },
     파일: {
       files: [{ name: input.title, type: "external", external: { url: input.fileUrl } }],
@@ -772,7 +781,7 @@ export interface OrgChartInput {
   title: string;
   department: string;
   team?: string;
-  order: number;
+  order?: number;
 }
 
 function buildOrgChartProperties(input: Partial<OrgChartInput>): Record<string, unknown> {
@@ -781,21 +790,46 @@ function buildOrgChartProperties(input: Partial<OrgChartInput>): Record<string, 
   if (input.title !== undefined) props["직책"] = { rich_text: [{ text: { content: input.title } }] };
   if (input.department !== undefined) props["부서"] = { rich_text: [{ text: { content: input.department } }] };
   if (input.team !== undefined) props["팀"] = { rich_text: [{ text: { content: input.team || "" } }] };
-  if (input.order !== undefined) props["순서"] = { rich_text: [{ text: { content: String(input.order) } }] };
+  // DB 스키마: 순서는 number 타입 (setup-notion-dbs.ts 와 일치)
+  if (input.order !== undefined) props["순서"] = { number: input.order };
   return props;
 }
 
 export async function createOrgChartMember(input: OrgChartInput): Promise<OrgChartMember> {
   if (USE_MOCK || !databaseIds.orgchart) {
-    const newMember: OrgChartMember = { id: `o${Date.now()}`, ...input };
+    // 같은 부서 내 기존 멤버의 최대 순서 + 10 으로 자동 부여 (지정값 없거나 0 인 경우).
+    let order = input.order;
+    if (!order) {
+      const sameDept = mockOrgChartMembers.filter((m) => m.department === input.department);
+      const maxOrder = sameDept.length > 0 ? Math.max(0, ...sameDept.map((m) => m.order)) : 0;
+      order = maxOrder + 10;
+    }
+    const newMember: OrgChartMember = { id: `o${Date.now()}`, ...input, order };
     mockOrgChartMembers.push(newMember);
     return newMember;
   }
+
+  // 같은 부서의 기존 순서를 조회해 max + 10 으로 자동 부여 (지정값 없거나 0 인 경우).
+  let order = input.order;
+  if (!order) {
+    try {
+      const existing = await queryAllPages(databaseIds.orgchart, {
+        filter: { property: "부서", rich_text: { equals: input.department } },
+      });
+      const orders = existing.map((p) => parseInt(getTextProperty(p, "순서")) || 0);
+      const maxOrder = orders.length > 0 ? Math.max(0, ...orders) : 0;
+      order = maxOrder + 10;
+    } catch {
+      order = 10;
+    }
+  }
+
+  const finalInput: OrgChartInput = { ...input, order };
   const page = await notion.pages.create({
     parent: { database_id: databaseIds.orgchart },
-    properties: buildOrgChartProperties(input) as Parameters<typeof notion.pages.create>[0]["properties"],
+    properties: buildOrgChartProperties(finalInput) as Parameters<typeof notion.pages.create>[0]["properties"],
   });
-  return { id: page.id, ...input };
+  return { id: page.id, ...finalInput, order };
 }
 
 export async function updateOrgChartMember(id: string, input: Partial<OrgChartInput>): Promise<OrgChartMember | null> {
@@ -826,7 +860,7 @@ export async function deleteOrgChartMember(id: string): Promise<boolean> {
 
 // ─── 관리자: 기안 ──────────────────────────────────────────
 
-function mapNotionToDraft(p: Record<string, unknown>): Draft {
+function mapNotionToDraft(p: Record<string, unknown>, comments: DraftComment[] = []): Draft {
   return {
     id: p.id as string,
     title: getTextProperty(p, "제목"),
@@ -838,10 +872,72 @@ function mapNotionToDraft(p: Record<string, unknown>): Draft {
     authorRole: getTextProperty(p, "작성자역할") as UserRole,
     currentReviewerRole: (getTextProperty(p, "현재결재자역할") as UserRole) || undefined,
     attachments: getFilesProperty(p, "첨부파일"),
-    comments: [] as DraftComment[],
+    comments,
     createdAt: getTextProperty(p, "작성일"),
     updatedAt: getTextProperty(p, "수정일"),
   };
+}
+
+function mapNotionToDraftComment(p: Record<string, unknown>): DraftComment {
+  return {
+    id: p.id as string,
+    authorId: getTextProperty(p, "작성자ID"),
+    authorName: getTextProperty(p, "작성자명"),
+    authorRole: getTextProperty(p, "작성자역할") as UserRole,
+    content: getTextProperty(p, "내용"),
+    action: (getTextProperty(p, "액션") as DraftComment["action"]) || "검토의견",
+    createdAt: getTextProperty(p, "작성일"),
+  };
+}
+
+export async function getDraftComments(draftId: string): Promise<DraftComment[]> {
+  if (USE_MOCK || !databaseIds.draftComments) {
+    const draft = mockDrafts.find((d) => d.id === draftId);
+    return draft?.comments ?? [];
+  }
+  try {
+    const pages = await queryAllPages(databaseIds.draftComments, {
+      filter: { property: "기안ID", title: { equals: draftId } },
+      sorts: [{ property: "작성일", direction: "ascending" }],
+    });
+    return pages.map(mapNotionToDraftComment);
+  } catch (error) {
+    console.error("Failed to fetch draft comments:", error);
+    return [];
+  }
+}
+
+export async function createDraftComment(
+  draftId: string,
+  input: Omit<DraftComment, "id" | "createdAt">,
+): Promise<DraftComment> {
+  const now = new Date().toISOString();
+
+  if (USE_MOCK || !databaseIds.draftComments) {
+    const newComment: DraftComment = {
+      id: `c${Date.now()}`,
+      ...input,
+      createdAt: now,
+    };
+    const draft = mockDrafts.find((d) => d.id === draftId);
+    if (draft) draft.comments.push(newComment);
+    return newComment;
+  }
+
+  const today = now.split("T")[0];
+  const page = await notion.pages.create({
+    parent: { database_id: databaseIds.draftComments },
+    properties: {
+      기안ID: { title: [{ text: { content: draftId } }] },
+      내용: { rich_text: [{ text: { content: input.content || "" } }] },
+      작성자ID: { rich_text: [{ text: { content: input.authorId } }] },
+      작성자명: { rich_text: [{ text: { content: input.authorName } }] },
+      작성자역할: { select: { name: input.authorRole } },
+      액션: { select: { name: input.action } },
+      작성일: { date: { start: today } },
+    } as Parameters<typeof notion.pages.create>[0]["properties"],
+  });
+  return { id: page.id, ...input, createdAt: now };
 }
 
 export async function getDrafts(): Promise<Draft[]> {
@@ -852,7 +948,8 @@ export async function getDrafts(): Promise<Draft[]> {
       sorts: [{ property: "작성일", direction: "descending" }],
     });
 
-    return pages.map(mapNotionToDraft);
+    // 목록 화면에서는 코멘트를 로드하지 않습니다(상세에서만 로드).
+    return pages.map((p) => mapNotionToDraft(p));
   } catch (error) {
     console.error("Failed to fetch drafts:", error);
     return mockDrafts;
@@ -864,11 +961,61 @@ export async function getDraftById(id: string): Promise<Draft | null> {
     return mockDrafts.find((d) => d.id === id) || null;
   }
   try {
-    const page = await notion.pages.retrieve({ page_id: id });
-    return mapNotionToDraft(page as Record<string, unknown>);
+    const [page, comments] = await Promise.all([
+      notion.pages.retrieve({ page_id: id }),
+      getDraftComments(id),
+    ]);
+    return mapNotionToDraft(page as Record<string, unknown>, comments);
   } catch (error) {
     console.error("Failed to fetch draft:", error);
     return mockDrafts.find((d) => d.id === id) || null;
+  }
+}
+
+/**
+ * 결재 흐름의 부수효과로 호출되는 사이트 내 알림 생성.
+ * Notion 알림 DB가 비활성화되어 있으면 메모리 mockNotifications에 기록합니다.
+ */
+export async function createNotification(input: Omit<AppNotification, "id" | "createdAt" | "isRead">): Promise<AppNotification> {
+  const now = new Date().toISOString();
+  const today = now.split("T")[0];
+
+  if (USE_MOCK || !databaseIds.notifications) {
+    const newNoti: AppNotification = {
+      id: `n${Date.now()}`,
+      ...input,
+      isRead: false,
+      createdAt: now,
+    };
+    mockNotifications.unshift(newNoti);
+    return newNoti;
+  }
+
+  try {
+    const page = await notion.pages.create({
+      parent: { database_id: databaseIds.notifications },
+      properties: {
+        제목: { title: [{ text: { content: input.title } }] },
+        메시지: { rich_text: [{ text: { content: input.message } }] },
+        수신자ID: { rich_text: [{ text: { content: input.recipientId } }] },
+        링크: { url: input.link || null },
+        읽음여부: { checkbox: false },
+        생성일: { date: { start: today } },
+        유형: { select: { name: input.kind } },
+      } as Parameters<typeof notion.pages.create>[0]["properties"],
+    });
+    return { id: page.id, ...input, isRead: false, createdAt: now };
+  } catch (error) {
+    console.error("Failed to create notification:", error);
+    // Notion 실패 시 최소한 메모리에는 적재해 UI가 빈 화면이 되지 않도록 fallback.
+    const fallback: AppNotification = {
+      id: `n${Date.now()}`,
+      ...input,
+      isRead: false,
+      createdAt: now,
+    };
+    mockNotifications.unshift(fallback);
+    return fallback;
   }
 }
 
@@ -918,19 +1065,164 @@ export async function getApplicationById(id: string): Promise<ClubApplication | 
   }
 }
 
-// ─── 관리자: 알림 ──────────────────────────────────────────
+// ─── 서류신청 제출 (사용자) ─────────────────────────────────
+export interface ApplicationInput {
+  title: string;
+  type: ApplicationType;
+  clubName: string;
+  attachments: string[];
+  /** 양식 카탈로그 id (forms-catalog.ts) - Notion 에 "양식ID" 속성이 있을 때만 저장. */
+  formTemplateId?: string;
+  /** 제출자 메모. Notion DB 에 별도 속성이 없으면 검토의견 영역에 기록한다. */
+  note?: string;
+}
 
-export async function getNotifications(recipientId?: string): Promise<AppNotification[]> {
-  if (USE_MOCK || !databaseIds.notifications) {
-    return recipientId
-      ? mockNotifications.filter((n) => n.recipientId === recipientId)
-      : mockNotifications;
+export async function createApplication(input: ApplicationInput, user: User): Promise<ClubApplication> {
+  const today = new Date().toISOString().split("T")[0];
+
+  if (USE_MOCK || !databaseIds.applications) {
+    const newApp: ClubApplication = {
+      id: `a${Date.now()}`,
+      title: input.title,
+      type: input.type,
+      clubName: input.clubName,
+      submitterName: user.name,
+      submittedAt: today,
+      status: "대기",
+      attachments: input.attachments,
+      reviewComment: input.note || undefined,
+    };
+    mockApplications.unshift(newApp);
+    return newApp;
+  }
+
+  const properties: Record<string, unknown> = {
+    제목: { title: [{ text: { content: input.title } }] },
+    유형: { select: { name: input.type } },
+    동아리명: { rich_text: [{ text: { content: input.clubName } }] },
+    제출자: { rich_text: [{ text: { content: user.name } }] },
+    제출일: { date: { start: today } },
+    상태: { select: { name: "대기" } },
+    첨부파일: {
+      files: input.attachments.map((url, i) => ({
+        name: `attachment-${i + 1}`,
+        type: "external",
+        external: { url },
+      })),
+    },
+  };
+
+  // TODO: Notion DB 에 "양식ID" rich_text 속성을 추가하면 자동으로 기록된다.
+  // 속성이 없는 환경에서는 Notion 이 무시하지 않고 400 을 내므로 환경 변수로 제어한다.
+  if (input.formTemplateId && process.env.NOTION_APPLICATIONS_HAS_FORM_ID === "true") {
+    properties["양식ID"] = { rich_text: [{ text: { content: input.formTemplateId } }] };
+  }
+  if (input.note) {
+    // "검토의견" 은 검토자가 채우는 속성이지만 제출시 메모를 같이 적어둘 수 있도록 prefix 표시.
+    properties["검토의견"] = { rich_text: [{ text: { content: `[제출자메모] ${input.note}` } }] };
   }
 
   try {
-    const filter = recipientId
-      ? { property: "수신자ID", rich_text: { equals: recipientId } }
-      : undefined;
+    const page = await notion.pages.create({
+      parent: { database_id: databaseIds.applications },
+      properties: properties as Parameters<typeof notion.pages.create>[0]["properties"],
+    });
+    return {
+      id: page.id,
+      title: input.title,
+      type: input.type,
+      clubName: input.clubName,
+      submitterName: user.name,
+      submittedAt: today,
+      status: "대기",
+      attachments: input.attachments,
+      reviewComment: input.note || undefined,
+    };
+  } catch (error) {
+    console.error("Failed to create application:", error);
+    // Notion 실패 시에도 mock 에 적재해 사용자 UX 가 끊기지 않도록 fallback.
+    const fallback: ClubApplication = {
+      id: `a${Date.now()}`,
+      title: input.title,
+      type: input.type,
+      clubName: input.clubName,
+      submitterName: user.name,
+      submittedAt: today,
+      status: "대기",
+      attachments: input.attachments,
+      reviewComment: input.note || undefined,
+    };
+    mockApplications.unshift(fallback);
+    return fallback;
+  }
+}
+
+/**
+ * 본인이 제출한 서류 목록.
+ * 현 스키마는 제출자ID를 별도로 기록하지 않으므로 "제출자" 이름으로 매칭한다.
+ * 동명이인이 있을 경우 한계가 있다 — 향후 제출자ID 컬럼 추가 시 교체.
+ */
+export async function getApplicationsByUserId(user: User): Promise<ClubApplication[]> {
+  if (USE_MOCK || !databaseIds.applications) {
+    return mockApplications
+      .filter((a) => a.submitterName === user.name)
+      .sort((a, b) => (a.submittedAt < b.submittedAt ? 1 : -1));
+  }
+  try {
+    const pages = await queryAllPages(databaseIds.applications, {
+      filter: { property: "제출자", rich_text: { equals: user.name } },
+      sorts: [{ property: "제출일", direction: "descending" }],
+    });
+    return pages.map(mapNotionToApplication);
+  } catch (error) {
+    console.error("Failed to fetch user applications:", error);
+    return mockApplications
+      .filter((a) => a.submitterName === user.name)
+      .sort((a, b) => (a.submittedAt < b.submittedAt ? 1 : -1));
+  }
+}
+
+// ─── 관리자: 알림 ──────────────────────────────────────────
+
+export interface NotificationRecipient {
+  userId?: string;
+  role?: UserRole;
+}
+
+/**
+ * 알림 조회.
+ * - recipient 가 객체이면 본인 userId 와 `role:<역할>` 모두 매칭.
+ * - 문자열을 그대로 넘기면 기존 호환을 위해 해당 값과 정확히 일치하는 것만 매칭.
+ */
+export async function getNotifications(
+  recipient?: string | NotificationRecipient,
+): Promise<AppNotification[]> {
+  // 매칭 대상 키 목록 계산
+  const keys: string[] = [];
+  if (typeof recipient === "string") {
+    keys.push(recipient);
+  } else if (recipient) {
+    if (recipient.userId) keys.push(recipient.userId);
+    if (recipient.role) keys.push(`role:${recipient.role}`);
+  }
+
+  if (USE_MOCK || !databaseIds.notifications) {
+    if (keys.length === 0) return mockNotifications;
+    return mockNotifications.filter((n) => keys.includes(n.recipientId));
+  }
+
+  try {
+    const filter =
+      keys.length === 0
+        ? undefined
+        : keys.length === 1
+          ? { property: "수신자ID", rich_text: { equals: keys[0] } }
+          : {
+              or: keys.map((k) => ({
+                property: "수신자ID",
+                rich_text: { equals: k },
+              })),
+            };
 
     const pages = await queryAllPages(databaseIds.notifications, {
       sorts: [{ property: "생성일", direction: "descending" }],
@@ -950,5 +1242,78 @@ export async function getNotifications(recipientId?: string): Promise<AppNotific
   } catch (error) {
     console.error("Failed to fetch notifications:", error);
     return mockNotifications;
+  }
+}
+
+// ─── 관리자: 모더레이션 로그 ────────────────────────────────
+
+function mapNotionToModerationLog(p: Record<string, unknown>): ModerationLog {
+  return {
+    id: p.id as string,
+    postId: getTextProperty(p, "게시글ID"),
+    action: (getTextProperty(p, "액션") as ModerationLog["action"]) || "pending",
+    status: getTextProperty(p, "상태"),
+    note: getTextProperty(p, "사유") || undefined,
+    actorId: getTextProperty(p, "처리자ID"),
+    actorName: getTextProperty(p, "처리자명"),
+    actorRole: getTextProperty(p, "처리자역할") as UserRole,
+    createdAt: getTextProperty(p, "생성일"),
+  };
+}
+
+export async function getModerationLogs(postId: string): Promise<ModerationLog[]> {
+  if (USE_MOCK || !databaseIds.moderationLogs) {
+    return mockModerationLogs
+      .filter((l) => l.postId === postId)
+      .sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1));
+  }
+  try {
+    const pages = await queryAllPages(databaseIds.moderationLogs, {
+      filter: { property: "게시글ID", title: { equals: postId } },
+      sorts: [{ property: "생성일", direction: "descending" }],
+    });
+    return pages.map(mapNotionToModerationLog);
+  } catch (error) {
+    console.error("Failed to fetch moderation logs:", error);
+    return mockModerationLogs
+      .filter((l) => l.postId === postId)
+      .sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1));
+  }
+}
+
+export async function createModerationLog(
+  input: Omit<ModerationLog, "id" | "createdAt">,
+): Promise<ModerationLog> {
+  const now = new Date().toISOString();
+  const today = now.split("T")[0];
+
+  if (USE_MOCK || !databaseIds.moderationLogs) {
+    const log: ModerationLog = { id: `mlog-${Date.now()}`, ...input, createdAt: now };
+    mockModerationLogs.push(log);
+    return log;
+  }
+
+  try {
+    const page = await notion.pages.create({
+      parent: { database_id: databaseIds.moderationLogs },
+      properties: {
+        게시글ID: { title: [{ text: { content: input.postId } }] },
+        액션: { select: { name: input.action } },
+        상태: { rich_text: [{ text: { content: input.status } }] },
+        ...(input.note
+          ? { 사유: { rich_text: [{ text: { content: input.note } }] } }
+          : {}),
+        처리자ID: { rich_text: [{ text: { content: input.actorId } }] },
+        처리자명: { rich_text: [{ text: { content: input.actorName } }] },
+        처리자역할: { select: { name: input.actorRole } },
+        생성일: { date: { start: today } },
+      } as Parameters<typeof notion.pages.create>[0]["properties"],
+    });
+    return { id: page.id, ...input, createdAt: now };
+  } catch (error) {
+    console.error("Failed to create moderation log:", error);
+    const fallback: ModerationLog = { id: `mlog-${Date.now()}`, ...input, createdAt: now };
+    mockModerationLogs.push(fallback);
+    return fallback;
   }
 }

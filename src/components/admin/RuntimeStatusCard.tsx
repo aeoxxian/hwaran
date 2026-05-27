@@ -28,8 +28,11 @@ const DB_LABELS: Record<string, string> = {
   banners: "배너",
   boardComments: "게시판 댓글",
   drafts: "기안",
+  draftComments: "기안 코멘트",
   applications: "서류신청",
   notifications: "알림",
+  orgchart: "조직도",
+  moderationLogs: "모더레이션 로그",
 };
 
 export default function RuntimeStatusCard() {

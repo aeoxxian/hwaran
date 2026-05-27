@@ -1,0 +1,133 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e4]:
+      - link "화란 로고 화란" [ref=e5] [cursor=pointer]:
+        - /url: /
+        - img "화란 로고" [ref=e6]
+        - generic [ref=e7]: 화란
+      - navigation [ref=e8]:
+        - link "소개" [ref=e10] [cursor=pointer]:
+          - /url: /about
+        - link "공지사항" [ref=e12] [cursor=pointer]:
+          - /url: /notices
+        - link "동아리 소개" [ref=e14] [cursor=pointer]:
+          - /url: /clubs
+        - link "캘린더" [ref=e16] [cursor=pointer]:
+          - /url: /calendar
+        - link "커뮤니티" [ref=e18] [cursor=pointer]:
+          - /url: /boards
+        - link "갤러리" [ref=e20] [cursor=pointer]:
+          - /url: /gallery
+        - link "자료실" [ref=e22] [cursor=pointer]:
+          - /url: /documents
+        - link "물품 관리" [ref=e24] [cursor=pointer]:
+          - /url: /inventory
+      - generic [ref=e25]:
+        - link "로그인" [ref=e26] [cursor=pointer]:
+          - /url: /auth/login
+        - link "회원가입" [ref=e27] [cursor=pointer]:
+          - /url: /auth/register
+  - main [ref=e28]:
+    - generic [ref=e29]:
+      - generic [ref=e30]:
+        - heading "캘린더" [level=1] [ref=e31]
+        - paragraph [ref=e32]: 동아리별 일정을 한눈에 확인하세요
+      - generic [ref=e33]:
+        - generic [ref=e35]:
+          - generic [ref=e36]:
+            - button [ref=e37]:
+              - img [ref=e38]
+            - heading "2026년 5월" [level=2] [ref=e40]
+            - button [ref=e41]:
+              - img [ref=e42]
+          - generic [ref=e44]:
+            - generic [ref=e45]: 일
+            - generic [ref=e46]: 월
+            - generic [ref=e47]: 화
+            - generic [ref=e48]: 수
+            - generic [ref=e49]: 목
+            - generic [ref=e50]: 금
+            - generic [ref=e51]: 토
+            - generic [ref=e57] [cursor=pointer]: "1"
+            - generic [ref=e58] [cursor=pointer]: "2"
+            - generic [ref=e59] [cursor=pointer]: "3"
+            - generic [ref=e60] [cursor=pointer]: "4"
+            - generic [ref=e61] [cursor=pointer]: "5"
+            - generic [ref=e62] [cursor=pointer]: "6"
+            - generic [ref=e63] [cursor=pointer]: "7"
+            - generic [ref=e64] [cursor=pointer]: "8"
+            - generic [ref=e65] [cursor=pointer]: "9"
+            - generic [ref=e66] [cursor=pointer]: "10"
+            - generic [ref=e67] [cursor=pointer]: "11"
+            - generic [ref=e68] [cursor=pointer]: "12"
+            - generic [ref=e69] [cursor=pointer]: "13"
+            - generic [ref=e70] [cursor=pointer]: "14"
+            - generic [ref=e71] [cursor=pointer]: "15"
+            - generic [ref=e72] [cursor=pointer]: "16"
+            - generic [ref=e73] [cursor=pointer]: "17"
+            - generic [ref=e74] [cursor=pointer]: "18"
+            - generic [ref=e75] [cursor=pointer]: "19"
+            - generic [ref=e76] [cursor=pointer]: "20"
+            - generic [ref=e77] [cursor=pointer]: "21"
+            - generic [ref=e78] [cursor=pointer]: "22"
+            - generic [ref=e79] [cursor=pointer]: "23"
+            - generic [ref=e80] [cursor=pointer]: "24"
+            - generic [ref=e81] [cursor=pointer]: "25"
+            - generic [ref=e82] [cursor=pointer]: "26"
+            - generic [ref=e83] [cursor=pointer]: "27"
+            - generic [ref=e84] [cursor=pointer]: "28"
+            - generic [ref=e85] [cursor=pointer]: "29"
+            - generic [ref=e86] [cursor=pointer]: "30"
+            - generic [ref=e87] [cursor=pointer]: "31"
+        - generic [ref=e89]:
+          - heading "5월 전체 일정" [level=3] [ref=e90]
+          - paragraph [ref=e92]: 등록된 일정이 없습니다.
+  - contentinfo [ref=e93]:
+    - generic [ref=e94]:
+      - generic [ref=e95]:
+        - generic [ref=e96]:
+          - generic [ref=e97]:
+            - img "화란 로고" [ref=e98]
+            - generic [ref=e99]:
+              - heading "화란" [level=3] [ref=e100]
+              - paragraph [ref=e101]: 제4대 한국에너지공과대학교 동아리연합회
+          - paragraph [ref=e102]: 학우들의 동아리 활동이 아름답게 꽃피길 바라는 마음을 담아, 동아리 활동 지원과 행사 주최, 복지 향상을 위해 노력합니다.
+        - generic [ref=e103]:
+          - heading "바로가기" [level=4] [ref=e104]
+          - list [ref=e105]:
+            - listitem [ref=e106]:
+              - link "소개" [ref=e107] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=e108]:
+              - link "공지사항" [ref=e109] [cursor=pointer]:
+                - /url: /notices
+            - listitem [ref=e110]:
+              - link "동아리 소개" [ref=e111] [cursor=pointer]:
+                - /url: /clubs
+            - listitem [ref=e112]:
+              - link "캘린더" [ref=e113] [cursor=pointer]:
+                - /url: /calendar
+            - listitem [ref=e114]:
+              - link "갤러리" [ref=e115] [cursor=pointer]:
+                - /url: /gallery
+            - listitem [ref=e116]:
+              - link "자료실" [ref=e117] [cursor=pointer]:
+                - /url: /documents
+        - generic [ref=e118]:
+          - heading "연락처" [level=4] [ref=e119]
+          - list [ref=e120]:
+            - listitem [ref=e121]:
+              - img [ref=e122]
+              - generic [ref=e125]: 경상북도 나주시 한국에너지공과대학교
+            - listitem [ref=e126]:
+              - img [ref=e127]
+              - link "hwaran@kentech.ac.kr" [ref=e129] [cursor=pointer]:
+                - /url: mailto:hwaran@kentech.ac.kr
+            - listitem [ref=e130]:
+              - img [ref=e131]
+              - link "@hwaran_kentech" [ref=e133] [cursor=pointer]:
+                - /url: https://instagram.com/hwaran_kentech
+      - paragraph [ref=e135]: © 2026 제4대 한국에너지공과대학교 동아리연합회 화란. All Rights Reserved.
+  - button "Open Next.js Dev Tools" [ref=e141] [cursor=pointer]:
+    - img [ref=e142]
+  - alert [ref=e145]

@@ -67,6 +67,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const logout = useCallback(async () => {
     await fetch("/api/auth/logout", { method: "POST" });
     setUser(null);
+    // 메인으로 보내면서 SSR 캐시까지 무효화하기 위해 전체 새로고침을 사용합니다.
+    if (typeof window !== "undefined") {
+      window.location.href = "/";
+    }
   }, []);
 
   const adminLevel = user ? getAdminLevel(user.role) : 0;

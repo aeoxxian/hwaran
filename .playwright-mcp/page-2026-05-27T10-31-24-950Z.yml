@@ -1,0 +1,487 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e4]:
+      - link "화란 로고 화란" [ref=e5] [cursor=pointer]:
+        - /url: /
+        - img "화란 로고" [ref=e6]
+        - generic [ref=e7]: 화란
+      - navigation [ref=e8]:
+        - link "소개" [ref=e10] [cursor=pointer]:
+          - /url: /about
+        - link "공지사항" [ref=e12] [cursor=pointer]:
+          - /url: /notices
+        - link "동아리 소개" [ref=e14] [cursor=pointer]:
+          - /url: /clubs
+        - link "캘린더" [ref=e16] [cursor=pointer]:
+          - /url: /calendar
+        - link "커뮤니티" [ref=e18] [cursor=pointer]:
+          - /url: /boards
+        - link "갤러리" [ref=e20] [cursor=pointer]:
+          - /url: /gallery
+        - link "자료실" [ref=e22] [cursor=pointer]:
+          - /url: /documents
+        - link "서류 양식" [ref=e24] [cursor=pointer]:
+          - /url: /forms
+        - link "물품 관리" [ref=e26] [cursor=pointer]:
+          - /url: /inventory
+      - generic [ref=e27]:
+        - link "로그인" [ref=e28] [cursor=pointer]:
+          - /url: /auth/login
+        - link "회원가입" [ref=e29] [cursor=pointer]:
+          - /url: /auth/register
+  - main [ref=e30]:
+    - generic [ref=e31]:
+      - generic [ref=e32]:
+        - heading "서류 양식" [level=1] [ref=e33]
+        - paragraph [ref=e34]: 동아리 운영에 필요한 공식 양식을 다운로드하세요
+        - paragraph [ref=e35]: 총 40개 양식 · 11개 분류
+      - generic [ref=e36]:
+        - region [ref=e37]:
+          - generic [ref=e38]:
+            - generic [ref=e39]:
+              - heading "동아리 등록" [level=2] [ref=e40]: 동아리 등록
+              - paragraph [ref=e42]: 신규/재등록 동아리가 매 학기 제출해야 하는 등록 서류
+            - generic [ref=e43]: 10개
+          - list [ref=e44]:
+            - listitem [ref=e45]:
+              - generic [ref=e47]: docx
+              - heading "동아리 등록 신청서" [level=3] [ref=e48]
+              - paragraph [ref=e49]: 신규/재등록 동아리 등록 신청용
+              - link "다운로드" [ref=e51] [cursor=pointer]:
+                - /url: /forms/동아리등록/동아리_등록_신청서.docx
+                - img [ref=e52]
+                - text: 다운로드
+            - listitem [ref=e54]:
+              - generic [ref=e56]: xlsx
+              - heading "예산 계획서" [level=3] [ref=e57]
+              - paragraph [ref=e58]: 학기 예산 계획 (xlsx)
+              - link "다운로드" [ref=e60] [cursor=pointer]:
+                - /url: /forms/동아리등록/예산_계획서.xlsx
+                - img [ref=e61]
+                - text: 다운로드
+            - listitem [ref=e63]:
+              - generic [ref=e65]: docx
+              - heading "행사 기획서" [level=3] [ref=e66]
+              - paragraph [ref=e67]: 학기 중 진행할 행사 기획안
+              - link "다운로드" [ref=e69] [cursor=pointer]:
+                - /url: /forms/동아리등록/행사_기획서.docx
+                - img [ref=e70]
+                - text: 다운로드
+            - listitem [ref=e72]:
+              - generic [ref=e74]: docx
+              - heading "활동 계획서" [level=3] [ref=e75]
+              - paragraph [ref=e76]: 학기 활동 계획 제출용
+              - link "다운로드" [ref=e78] [cursor=pointer]:
+                - /url: /forms/동아리등록/활동_계획서.docx
+                - img [ref=e79]
+                - text: 다운로드
+            - listitem [ref=e81]:
+              - generic [ref=e83]: docx
+              - heading "활동 보고서" [level=3] [ref=e84]
+              - paragraph [ref=e85]: 이전 학기 활동 결과 보고
+              - link "다운로드" [ref=e87] [cursor=pointer]:
+                - /url: /forms/동아리등록/활동_보고서.docx
+                - img [ref=e88]
+                - text: 다운로드
+            - listitem [ref=e90]:
+              - generic [ref=e92]: docx
+              - heading "정규 동아리 회칙" [level=3] [ref=e93]
+              - paragraph [ref=e94]: 정규 동아리 회칙 양식
+              - link "다운로드" [ref=e96] [cursor=pointer]:
+                - /url: /forms/동아리등록/정규동아리_회칙.docx
+                - img [ref=e97]
+                - text: 다운로드
+            - listitem [ref=e99]:
+              - generic [ref=e101]: docx
+              - heading "동아리 초과 가입 신청서" [level=3] [ref=e102]
+              - paragraph [ref=e103]: 초과 가입 신청용 (이름·학번 기재)
+              - link "다운로드" [ref=e105] [cursor=pointer]:
+                - /url: /forms/동아리등록/동아리_초과가입_신청서.docx
+                - img [ref=e106]
+                - text: 다운로드
+            - listitem [ref=e108]:
+              - generic [ref=e110]: docx
+              - heading "예시 — 주동 활동 보고서" [level=3] [ref=e111]
+              - paragraph [ref=e112]: 작성 예시 (2025-2학기 주동)
+              - link "다운로드" [ref=e114] [cursor=pointer]:
+                - /url: /forms/동아리등록/예시_주동_활동보고서.docx
+                - img [ref=e115]
+                - text: 다운로드
+            - listitem [ref=e117]:
+              - generic [ref=e119]: xlsx
+              - heading "예시 — 주동 예산 계획서" [level=3] [ref=e120]
+              - paragraph [ref=e121]: 작성 예시 (2026-1학기 주동)
+              - link "다운로드" [ref=e123] [cursor=pointer]:
+                - /url: /forms/동아리등록/예시_주동_예산계획서.xlsx
+                - img [ref=e124]
+                - text: 다운로드
+            - listitem [ref=e126]:
+              - generic [ref=e128]: docx
+              - heading "예시 — 주동 활동 계획서" [level=3] [ref=e129]
+              - paragraph [ref=e130]: 작성 예시 (2026-1학기 주동)
+              - link "다운로드" [ref=e132] [cursor=pointer]:
+                - /url: /forms/동아리등록/예시_주동_활동계획서.docx
+                - img [ref=e133]
+                - text: 다운로드
+        - region "예산안" [ref=e135]:
+          - generic [ref=e136]:
+            - generic [ref=e137]:
+              - heading "예산안" [level=2] [ref=e138]: 예산안
+              - paragraph [ref=e140]: 분기별·동아리별 예산 계획서 양식
+            - generic [ref=e141]: 2개
+          - list [ref=e142]:
+            - listitem [ref=e143]:
+              - generic [ref=e145]: xlsx
+              - heading "분기 예산안 (단위체)" [level=3] [ref=e146]
+              - paragraph [ref=e147]: 단위체별 분기 예산안 (2025-1분기 기준)
+              - link "다운로드" [ref=e149] [cursor=pointer]:
+                - /url: /forms/예산안/분기_예산안_단위체.xlsx
+                - img [ref=e150]
+                - text: 다운로드
+            - listitem [ref=e152]:
+              - generic [ref=e154]: xlsx
+              - heading "동아리 예산 계획서" [level=3] [ref=e155]
+              - paragraph [ref=e156]: 동아리별 예산 계획서 양식
+              - link "다운로드" [ref=e158] [cursor=pointer]:
+                - /url: /forms/예산안/동아리_예산계획서.xlsx
+                - img [ref=e159]
+                - text: 다운로드
+        - region "결산" [ref=e161]:
+          - generic [ref=e162]:
+            - generic [ref=e163]:
+              - heading "결산" [level=2] [ref=e164]: 결산
+              - paragraph [ref=e166]: 학기말 결산 보고에 필요한 내역서, 영수증, 자산목록 양식
+            - generic [ref=e167]: 5개
+          - list [ref=e168]:
+            - listitem [ref=e169]:
+              - generic [ref=e171]: xlsx
+              - heading "결산 내역서" [level=3] [ref=e172]
+              - paragraph [ref=e173]: 학기별 결산 내역 정리 (xlsx)
+              - link "다운로드" [ref=e175] [cursor=pointer]:
+                - /url: /forms/결산/결산_내역서.xlsx
+                - img [ref=e176]
+                - text: 다운로드
+            - listitem [ref=e178]:
+              - generic [ref=e180]: docx
+              - heading "영수증 첨부지" [level=3] [ref=e181]
+              - paragraph [ref=e182]: 영수증 부착용 표지
+              - link "다운로드" [ref=e184] [cursor=pointer]:
+                - /url: /forms/결산/영수증_첨부지.docx
+                - img [ref=e185]
+                - text: 다운로드
+            - listitem [ref=e187]:
+              - generic [ref=e189]: xlsx
+              - heading "자산 목록 (학기)" [level=3] [ref=e190]
+              - paragraph [ref=e191]: 학기별 동아리 자산 목록
+              - link "다운로드" [ref=e193] [cursor=pointer]:
+                - /url: /forms/결산/자산목록_학기.xlsx
+                - img [ref=e194]
+                - text: 다운로드
+            - listitem [ref=e196]:
+              - generic [ref=e198]: xlsx
+              - heading "자산 목록 (연간)" [level=3] [ref=e199]
+              - paragraph [ref=e200]: 연간 자산 목록 정리
+              - link "다운로드" [ref=e202] [cursor=pointer]:
+                - /url: /forms/결산/자산목록_연간.xlsx
+                - img [ref=e203]
+                - text: 다운로드
+            - listitem [ref=e205]:
+              - generic [ref=e207]: docx
+              - heading "활동 보고서 (결산용)" [level=3] [ref=e208]
+              - paragraph [ref=e209]: 결산과 함께 제출하는 학기 활동 보고서
+              - link "다운로드" [ref=e211] [cursor=pointer]:
+                - /url: /forms/결산/활동보고서_결산.docx
+                - img [ref=e212]
+                - text: 다운로드
+        - region "회의록" [ref=e214]:
+          - generic [ref=e215]:
+            - generic [ref=e216]:
+              - heading "회의록" [level=2] [ref=e217]: 회의록
+              - paragraph [ref=e219]: 정기회의 등 회의록 작성 양식
+            - generic [ref=e220]: 1개
+          - list [ref=e221]:
+            - listitem [ref=e222]:
+              - generic [ref=e224]: docx
+              - heading "정기 회의록" [level=3] [ref=e225]
+              - paragraph [ref=e226]: 정기 회의록 작성 양식
+              - link "다운로드" [ref=e228] [cursor=pointer]:
+                - /url: /forms/회의록/정기회의록.docx
+                - img [ref=e229]
+                - text: 다운로드
+        - region [ref=e231]:
+          - generic [ref=e232]:
+            - generic [ref=e233]:
+              - heading "일반 행정" [level=2] [ref=e234]: 일반 행정
+              - paragraph [ref=e236]: 회의 공고, 제안서, 경위서 등 일상적인 행정 처리 양식
+            - generic [ref=e237]: 11개
+          - list [ref=e238]:
+            - listitem [ref=e239]:
+              - generic [ref=e241]: docx
+              - heading "결석 사유서" [level=3] [ref=e242]
+              - paragraph [ref=e243]: 회의·행사 결석 시 제출 (소속·직위·이름 기재)
+              - link "다운로드" [ref=e245] [cursor=pointer]:
+                - /url: /forms/일반행정/결석_사유서.docx
+                - img [ref=e246]
+                - text: 다운로드
+            - listitem [ref=e248]:
+              - generic [ref=e250]: docx
+              - heading "물품 수령 확인서" [level=3] [ref=e251]
+              - paragraph [ref=e252]: 사업명·날짜별 물품 수령 확인용
+              - link "다운로드" [ref=e254] [cursor=pointer]:
+                - /url: /forms/일반행정/물품_수령_확인서.docx
+                - img [ref=e255]
+                - text: 다운로드
+            - listitem [ref=e257]:
+              - generic [ref=e259]: docx
+              - heading "상품 수령 확인서" [level=3] [ref=e260]
+              - paragraph [ref=e261]: 행사 시상품 수령 확인용
+              - link "다운로드" [ref=e263] [cursor=pointer]:
+                - /url: /forms/일반행정/상품_수령_확인서.docx
+                - img [ref=e264]
+                - text: 다운로드
+            - listitem [ref=e266]:
+              - generic [ref=e268]: docx
+              - heading "안건 양식 (운영·총회·투표)" [level=3] [ref=e269]
+              - paragraph [ref=e270]: 운영·총회·투표 등 회의 안건 작성용
+              - link "다운로드" [ref=e272] [cursor=pointer]:
+                - /url: /forms/일반행정/안건_운영_총회_투표.docx
+                - img [ref=e273]
+                - text: 다운로드
+            - listitem [ref=e275]:
+              - generic [ref=e277]: docx
+              - heading "참여 명단" [level=3] [ref=e278]
+              - paragraph [ref=e279]: 행사·회의 참여자 명단 정리용
+              - link "다운로드" [ref=e281] [cursor=pointer]:
+                - /url: /forms/일반행정/참여_명단.docx
+                - img [ref=e282]
+                - text: 다운로드
+            - listitem [ref=e284]:
+              - generic [ref=e286]: docx
+              - heading "회의 실시 공고문" [level=3] [ref=e287]
+              - paragraph [ref=e288]: 회의 일정·장소 사전 공지용
+              - link "다운로드" [ref=e290] [cursor=pointer]:
+                - /url: /forms/일반행정/회의실시_공고문.docx
+                - img [ref=e291]
+                - text: 다운로드
+            - listitem [ref=e293]:
+              - generic [ref=e295]: docx
+              - heading "업무 협조 요청서" [level=3] [ref=e296]
+              - paragraph [ref=e297]: 타 국·서로 업무 협조 요청 시 사용 (소속·제목·수신국서·날짜)
+              - link "다운로드" [ref=e299] [cursor=pointer]:
+                - /url: /forms/일반행정/업무협조_요청서.docx
+                - img [ref=e300]
+                - text: 다운로드
+            - listitem [ref=e302]:
+              - generic [ref=e304]: docx
+              - heading "제안서" [level=3] [ref=e305]
+              - paragraph [ref=e306]: 사업·행사 제안 제출용 (제목·소속·이름·날짜)
+              - link "다운로드" [ref=e308] [cursor=pointer]:
+                - /url: /forms/일반행정/제안서.docx
+                - img [ref=e309]
+                - text: 다운로드
+            - listitem [ref=e311]:
+              - generic [ref=e313]: docx
+              - heading "회의 자료" [level=3] [ref=e314]
+              - paragraph [ref=e315]: 회의 종류·소속·날짜별 자료 작성용
+              - link "다운로드" [ref=e317] [cursor=pointer]:
+                - /url: /forms/일반행정/회의자료.docx
+                - img [ref=e318]
+                - text: 다운로드
+            - listitem [ref=e320]:
+              - generic [ref=e322]: docx
+              - heading "경위서" [level=3] [ref=e323]
+              - paragraph [ref=e324]: 사건·사고 경위 보고용 (소속·제목·이름)
+              - link "다운로드" [ref=e326] [cursor=pointer]:
+                - /url: /forms/일반행정/경위서.docx
+                - img [ref=e327]
+                - text: 다운로드
+            - listitem [ref=e329]:
+              - generic [ref=e331]: docx
+              - heading "화란 국원 지원서" [level=3] [ref=e332]
+              - paragraph [ref=e333]: 화란 본부 국원 지원 시 제출
+              - link "다운로드" [ref=e335] [cursor=pointer]:
+                - /url: /forms/일반행정/화란_국원_지원서.docx
+                - img [ref=e336]
+                - text: 다운로드
+        - region [ref=e338]:
+          - generic [ref=e339]:
+            - generic [ref=e340]:
+              - heading "본부원 모집" [level=2] [ref=e341]: 본부원 모집
+              - paragraph [ref=e343]: 동아리연합회 본부원 모집 및 결과 공고 양식
+            - generic [ref=e344]: 2개
+          - list [ref=e345]:
+            - listitem [ref=e346]:
+              - generic [ref=e348]: docx
+              - heading "본부원 지원서" [level=3] [ref=e349]
+              - paragraph [ref=e350]: 동아리연합회 본부원 지원용 (2025-2학기 기준)
+              - link "다운로드" [ref=e352] [cursor=pointer]:
+                - /url: /forms/본부원모집/본부원_지원서.docx
+                - img [ref=e353]
+                - text: 다운로드
+            - listitem [ref=e355]:
+              - generic [ref=e357]: docx
+              - heading "본부원 모집 결과 공고" [level=3] [ref=e358]
+              - paragraph [ref=e359]: 본부원 모집 결과 공고문 양식
+              - link "다운로드" [ref=e361] [cursor=pointer]:
+                - /url: /forms/본부원모집/본부원_모집_결과공고.docx
+                - img [ref=e362]
+                - text: 다운로드
+        - region "불참사유서" [ref=e364]:
+          - generic [ref=e365]:
+            - generic [ref=e366]:
+              - heading "불참사유서" [level=2] [ref=e367]: 불참사유서
+              - paragraph [ref=e369]: 동아리연합회의 불참 시 제출하는 사유서
+            - generic [ref=e370]: 2개
+          - list [ref=e371]:
+            - listitem [ref=e372]:
+              - generic [ref=e374]: docx
+              - heading "불참 사유서" [level=3] [ref=e375]
+              - paragraph [ref=e376]: 동아리연합회의 불참 시 제출
+              - link "다운로드" [ref=e378] [cursor=pointer]:
+                - /url: /forms/불참사유서/불참_사유서.docx
+                - img [ref=e379]
+                - text: 다운로드
+            - listitem [ref=e381]:
+              - generic [ref=e383]: pdf
+              - heading "불참 사유서 예시" [level=3] [ref=e384]
+              - paragraph [ref=e385]: 작성 예시 (PDF)
+              - link "다운로드" [ref=e387] [cursor=pointer]:
+                - /url: /forms/불참사유서/불참사유서_예시.pdf
+                - img [ref=e388]
+                - text: 다운로드
+        - region "징계" [ref=e390]:
+          - generic [ref=e391]:
+            - generic [ref=e392]:
+              - heading "징계" [level=2] [ref=e393]: 징계
+              - paragraph [ref=e395]: 동아리 징계의결 결과 통보 양식
+            - generic [ref=e396]: 1개
+          - list [ref=e397]:
+            - listitem [ref=e398]:
+              - generic [ref=e400]: docx
+              - heading "동아리 징계의결 통보서" [level=3] [ref=e401]
+              - paragraph [ref=e402]: 징계의결 결과 통보 양식
+              - link "다운로드" [ref=e404] [cursor=pointer]:
+                - /url: /forms/징계/징계의결_통보서.docx
+                - img [ref=e405]
+                - text: 다운로드
+        - region [ref=e407]:
+          - generic [ref=e408]:
+            - generic [ref=e409]:
+              - heading "초과 등록" [level=2] [ref=e410]: 초과 등록
+              - paragraph [ref=e412]: 동아리 가입 인원 초과 신청 양식
+            - generic [ref=e413]: 1개
+          - list [ref=e414]:
+            - listitem [ref=e415]:
+              - generic [ref=e417]: docx
+              - heading "동아리 초과 가입 신청서" [level=3] [ref=e418]
+              - paragraph [ref=e419]: 정원 초과 가입 신청용
+              - link "다운로드" [ref=e421] [cursor=pointer]:
+                - /url: /forms/초과등록/동아리_초과가입_신청서.docx
+                - img [ref=e422]
+                - text: 다운로드
+        - region "선거권" [ref=e424]:
+          - generic [ref=e425]:
+            - generic [ref=e426]:
+              - heading "선거권" [level=2] [ref=e427]: 선거권
+              - paragraph [ref=e429]: 총선거 선거권 사전 신청 양식
+            - generic [ref=e430]: 1개
+          - list [ref=e431]:
+            - listitem [ref=e432]:
+              - generic [ref=e434]: docx
+              - heading "선거권 사전 신청서" [level=3] [ref=e435]
+              - paragraph [ref=e436]: 총선거 선거권 사전 신청용
+              - link "다운로드" [ref=e438] [cursor=pointer]:
+                - /url: /forms/선거권/선거권_사전_신청서.docx
+                - img [ref=e439]
+                - text: 다운로드
+        - region [ref=e441]:
+          - generic [ref=e442]:
+            - generic [ref=e443]:
+              - heading "회장단 선거" [level=2] [ref=e444]: 회장단 선거
+              - paragraph [ref=e446]: 동아리연합회 회장·부회장 후보자 등록 및 공약 양식
+            - generic [ref=e447]: 4개
+          - list [ref=e448]:
+            - listitem [ref=e449]:
+              - generic [ref=e451]: docx
+              - heading "1. 후보자 등록 신청서" [level=3] [ref=e452]
+              - paragraph [ref=e453]: 회장단 선거 후보자 등록 1단계
+              - link "다운로드" [ref=e455] [cursor=pointer]:
+                - /url: /forms/회장단선거/1_후보자_등록_신청서.docx
+                - img [ref=e456]
+                - text: 다운로드
+            - listitem [ref=e458]:
+              - generic [ref=e460]: docx
+              - heading "2. 후보자 이력서 (회장)" [level=3] [ref=e461]
+              - paragraph [ref=e462]: 회장 후보자 이력서
+              - link "다운로드" [ref=e464] [cursor=pointer]:
+                - /url: /forms/회장단선거/2_후보자_이력서_회장.docx
+                - img [ref=e465]
+                - text: 다운로드
+            - listitem [ref=e467]:
+              - generic [ref=e469]: docx
+              - heading "2. 후보자 이력서 (부회장)" [level=3] [ref=e470]
+              - paragraph [ref=e471]: 부회장 후보자 이력서
+              - link "다운로드" [ref=e473] [cursor=pointer]:
+                - /url: /forms/회장단선거/2_후보자_이력서_부회장.docx
+                - img [ref=e474]
+                - text: 다운로드
+            - listitem [ref=e476]:
+              - generic [ref=e478]: docx
+              - heading "3. 핵심 선거 공약" [level=3] [ref=e479]
+              - paragraph [ref=e480]: 핵심 공약 작성 양식
+              - link "다운로드" [ref=e482] [cursor=pointer]:
+                - /url: /forms/회장단선거/3_핵심_선거공약.docx
+                - img [ref=e483]
+                - text: 다운로드
+      - generic [ref=e485]:
+        - heading "안내" [level=2] [ref=e486]
+        - list [ref=e487]:
+          - listitem [ref=e488]: 모든 양식은 화란 동아리연합회가 배포하는 공식 문서입니다.
+          - listitem [ref=e489]: 파일 형식은 한글(.docx), 엑셀(.xlsx), PDF(.pdf) 중 하나이며 분류별로 정리되어 있습니다.
+          - listitem [ref=e490]: 제출 절차 및 마감일은 별도 공지를 확인하거나 담당 부서로 문의해 주세요.
+  - contentinfo [ref=e491]:
+    - generic [ref=e492]:
+      - generic [ref=e493]:
+        - generic [ref=e494]:
+          - generic [ref=e495]:
+            - img "화란 로고" [ref=e496]
+            - generic [ref=e497]:
+              - heading "화란" [level=3] [ref=e498]
+              - paragraph [ref=e499]: 제4대 한국에너지공과대학교 동아리연합회
+          - paragraph [ref=e500]: 학우들의 동아리 활동이 아름답게 꽃피길 바라는 마음을 담아, 동아리 활동 지원과 행사 주최, 복지 향상을 위해 노력합니다.
+        - generic [ref=e501]:
+          - heading "바로가기" [level=4] [ref=e502]
+          - list [ref=e503]:
+            - listitem [ref=e504]:
+              - link "소개" [ref=e505] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=e506]:
+              - link "공지사항" [ref=e507] [cursor=pointer]:
+                - /url: /notices
+            - listitem [ref=e508]:
+              - link "동아리 소개" [ref=e509] [cursor=pointer]:
+                - /url: /clubs
+            - listitem [ref=e510]:
+              - link "캘린더" [ref=e511] [cursor=pointer]:
+                - /url: /calendar
+            - listitem [ref=e512]:
+              - link "갤러리" [ref=e513] [cursor=pointer]:
+                - /url: /gallery
+            - listitem [ref=e514]:
+              - link "자료실" [ref=e515] [cursor=pointer]:
+                - /url: /documents
+        - generic [ref=e516]:
+          - heading "연락처" [level=4] [ref=e517]
+          - list [ref=e518]:
+            - listitem [ref=e519]:
+              - img [ref=e520]
+              - generic [ref=e523]: 경상북도 나주시 한국에너지공과대학교
+            - listitem [ref=e524]:
+              - img [ref=e525]
+              - link "hwaran@kentech.ac.kr" [ref=e527] [cursor=pointer]:
+                - /url: mailto:hwaran@kentech.ac.kr
+            - listitem [ref=e528]:
+              - img [ref=e529]
+              - link "@hwaran_kentech" [ref=e531] [cursor=pointer]:
+                - /url: https://instagram.com/hwaran_kentech
+      - paragraph [ref=e533]: © 2026 제4대 한국에너지공과대학교 동아리연합회 화란. All Rights Reserved.

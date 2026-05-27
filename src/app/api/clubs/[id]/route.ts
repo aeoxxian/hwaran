@@ -1,6 +1,25 @@
 import { NextRequest, NextResponse } from "next/server";
-import { updateClub, deleteClub } from "@/lib/data";
+import { getClubById, updateClub, deleteClub } from "@/lib/data";
 import { guard } from "@/lib/api-auth";
+
+export async function GET(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  const { id } = await params;
+  const { searchParams } = new URL(request.url);
+  const includeMembers = searchParams.get("members") === "true";
+
+  const result = await getClubById(id);
+  if (!result.club) {
+    return NextResponse.json({ error: "동아리를 찾을 수 없습니다." }, { status: 404 });
+  }
+
+  return NextResponse.json({
+    club: result.club,
+    members: includeMembers ? result.members : [],
+  });
+}
 
 export async function PATCH(
   request: NextRequest,

@@ -12,7 +12,7 @@ export async function GET(request: NextRequest) {
   const user = g.user;
 
   try {
-    const notifications = await getNotifications(user.id);
+    const notifications = await getNotifications({ userId: user.id, role: user.role });
     return NextResponse.json({ notifications });
   } catch (e) {
     console.error(e);
@@ -27,17 +27,18 @@ export async function PATCH(request: NextRequest) {
   const user = g.user;
 
   const body = await request.json();
+  const recipientKeys = [user.id, `role:${user.role}`];
 
   if (USE_MOCK) {
     if (body.all) {
-      const target = mockNotifications.filter((n) => n.recipientId === user.id);
+      const target = mockNotifications.filter((n) => recipientKeys.includes(n.recipientId));
       target.forEach((n) => (n.isRead = true));
       return NextResponse.json({ success: true, updated: target.length });
     }
     if (body.id) {
       const n = mockNotifications.find((n) => n.id === body.id);
       if (!n) return NextResponse.json({ error: "알림을 찾을 수 없습니다." }, { status: 404 });
-      if (n.recipientId !== user.id) {
+      if (!recipientKeys.includes(n.recipientId)) {
         return NextResponse.json({ error: "권한이 없습니다." }, { status: 403 });
       }
       n.isRead = true;
@@ -52,7 +53,12 @@ export async function PATCH(request: NextRequest) {
         database_id: databaseIds.notifications,
         filter: {
           and: [
-            { property: "수신자ID", rich_text: { equals: user.id } },
+            {
+              or: recipientKeys.map((k) => ({
+                property: "수신자ID",
+                rich_text: { equals: k },
+              })),
+            },
             { property: "읽음여부", checkbox: { equals: false } },
           ],
         },
@@ -74,8 +80,9 @@ export async function PATCH(request: NextRequest) {
     if (body.id) {
       const page = (await notion.pages.retrieve({ page_id: body.id })) as Record<string, unknown>;
       const props = page.properties as Record<string, Record<string, unknown>>;
-      const recipientId = (props["수신자ID"]?.rich_text as Array<{ plain_text: string }> | undefined)?.[0]?.plain_text || "";
-      if (recipientId && recipientId !== user.id) {
+      const recipientId =
+        (props["수신자ID"]?.rich_text as Array<{ plain_text: string }> | undefined)?.[0]?.plain_text || "";
+      if (recipientId && !recipientKeys.includes(recipientId)) {
         return NextResponse.json({ error: "권한이 없습니다." }, { status: 403 });
       }
       await notion.pages.update({

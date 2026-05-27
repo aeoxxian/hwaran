@@ -11,10 +11,12 @@ export async function sendNotificationEmail(options: EmailOptions): Promise<void
 
   try {
     const nodemailer = await import("nodemailer");
+    const port = Number(process.env.SMTP_PORT) || 587;
     const transporter = nodemailer.default.createTransport({
       host: process.env.SMTP_HOST,
-      port: Number(process.env.SMTP_PORT) || 587,
-      secure: false,
+      port,
+      // 465는 SSL, 587은 STARTTLS. Nodemailer 권장 패턴.
+      secure: port === 465,
       auth: {
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASS,

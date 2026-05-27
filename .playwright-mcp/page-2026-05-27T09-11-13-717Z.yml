@@ -1,0 +1,105 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e4]:
+      - link "화란 로고 화란" [ref=e5] [cursor=pointer]:
+        - /url: /
+        - img "화란 로고" [ref=e6]
+        - generic [ref=e7]: 화란
+      - navigation [ref=e8]:
+        - link "소개" [ref=e10] [cursor=pointer]:
+          - /url: /about
+        - link "공지사항" [ref=e12] [cursor=pointer]:
+          - /url: /notices
+        - link "동아리 소개" [ref=e14] [cursor=pointer]:
+          - /url: /clubs
+        - link "캘린더" [ref=e16] [cursor=pointer]:
+          - /url: /calendar
+        - link "커뮤니티" [ref=e18] [cursor=pointer]:
+          - /url: /boards
+        - link "갤러리" [ref=e20] [cursor=pointer]:
+          - /url: /gallery
+        - link "자료실" [ref=e22] [cursor=pointer]:
+          - /url: /documents
+        - link "물품 관리" [ref=e24] [cursor=pointer]:
+          - /url: /inventory
+      - generic [ref=e25]:
+        - link "로그인" [ref=e26] [cursor=pointer]:
+          - /url: /auth/login
+        - link "회원가입" [ref=e27] [cursor=pointer]:
+          - /url: /auth/register
+  - main [ref=e28]:
+    - generic [ref=e29]:
+      - complementary [ref=e30]:
+        - generic [ref=e31]:
+          - link "화란" [ref=e32] [cursor=pointer]:
+            - /url: /
+          - paragraph [ref=e33]: 관리자 포털
+        - navigation [ref=e34]
+        - button "로그아웃" [ref=e36]
+      - main [ref=e38]:
+        - generic [ref=e39]:
+          - generic [ref=e40]:
+            - heading "커뮤니티 관리" [level=1] [ref=e41]
+            - paragraph [ref=e42]: 게시글 승인/반려/해결 상태를 처리합니다.
+          - generic [ref=e43]:
+            - generic [ref=e44]:
+              - paragraph [ref=e45]: 전체
+              - paragraph [ref=e46]: "0"
+            - generic [ref=e47]:
+              - paragraph [ref=e48]: 처리대기
+              - paragraph [ref=e49]: "0"
+            - generic [ref=e50]:
+              - paragraph [ref=e51]: 처리완료
+              - paragraph [ref=e52]: "0"
+          - generic [ref=e53]:
+            - button "문의" [ref=e54]
+            - button "민원" [ref=e55]
+            - button "분실물" [ref=e56]
+            - button "홍보글" [ref=e57]
+          - generic [ref=e58]: 불러오는 중...
+  - contentinfo [ref=e59]:
+    - generic [ref=e60]:
+      - generic [ref=e61]:
+        - generic [ref=e62]:
+          - generic [ref=e63]:
+            - img "화란 로고" [ref=e64]
+            - generic [ref=e65]:
+              - heading "화란" [level=3] [ref=e66]
+              - paragraph [ref=e67]: 제4대 한국에너지공과대학교 동아리연합회
+          - paragraph [ref=e68]: 학우들의 동아리 활동이 아름답게 꽃피길 바라는 마음을 담아, 동아리 활동 지원과 행사 주최, 복지 향상을 위해 노력합니다.
+        - generic [ref=e69]:
+          - heading "바로가기" [level=4] [ref=e70]
+          - list [ref=e71]:
+            - listitem [ref=e72]:
+              - link "소개" [ref=e73] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=e74]:
+              - link "공지사항" [ref=e75] [cursor=pointer]:
+                - /url: /notices
+            - listitem [ref=e76]:
+              - link "동아리 소개" [ref=e77] [cursor=pointer]:
+                - /url: /clubs
+            - listitem [ref=e78]:
+              - link "캘린더" [ref=e79] [cursor=pointer]:
+                - /url: /calendar
+            - listitem [ref=e80]:
+              - link "갤러리" [ref=e81] [cursor=pointer]:
+                - /url: /gallery
+            - listitem [ref=e82]:
+              - link "자료실" [ref=e83] [cursor=pointer]:
+                - /url: /documents
+        - generic [ref=e84]:
+          - heading "연락처" [level=4] [ref=e85]
+          - list [ref=e86]:
+            - listitem [ref=e87]:
+              - img [ref=e88]
+              - generic [ref=e91]: 경상북도 나주시 한국에너지공과대학교
+            - listitem [ref=e92]:
+              - img [ref=e93]
+              - link "hwaran@kentech.ac.kr" [ref=e95] [cursor=pointer]:
+                - /url: mailto:hwaran@kentech.ac.kr
+            - listitem [ref=e96]:
+              - img [ref=e97]
+              - link "@hwaran_kentech" [ref=e99] [cursor=pointer]:
+                - /url: https://instagram.com/hwaran_kentech
+      - paragraph [ref=e101]: © 2026 제4대 한국에너지공과대학교 동아리연합회 화란. All Rights Reserved.

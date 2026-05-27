@@ -83,7 +83,7 @@ export interface BoardPost {
   createdAt: string;
   updatedAt?: string;
   category: "qna" | "complaints" | "lost-found" | "promotions";
-  status?: "대기" | "답변완료" | "해결" | "미해결";
+  status?: "대기" | "답변완료" | "해결" | "미해결" | "승인" | "반려";
   visibility?: "public" | "internal";
   approvalStatus?: "pending" | "approved" | "rejected";
   isAnonymous?: boolean;

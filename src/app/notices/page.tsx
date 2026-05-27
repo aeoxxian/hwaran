@@ -49,18 +49,26 @@ export default async function NoticesPage() {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-border">
-            {regular.map((notice, idx) => (
-              <tr key={notice.id} className="hover:bg-gray-light/50 transition-colors">
-                <td className="px-6 py-4 text-sm text-gray-text">{regular.length - idx}</td>
-                <td className="px-6 py-4">
-                  <Link href={`/notices/${notice.id}`} className="font-medium text-dark hover:text-primary transition-colors">
-                    {notice.title}
-                  </Link>
+            {regular.length === 0 ? (
+              <tr>
+                <td colSpan={4} className="px-6 py-12 text-center text-sm text-gray-text">
+                  등록된 공지사항이 없습니다.
                 </td>
-                <td className="px-6 py-4 text-sm text-gray-text hidden sm:table-cell">{notice.author}</td>
-                <td className="px-6 py-4 text-sm text-gray-text hidden md:table-cell">{notice.createdAt}</td>
               </tr>
-            ))}
+            ) : (
+              regular.map((notice, idx) => (
+                <tr key={notice.id} className="hover:bg-gray-light/50 transition-colors">
+                  <td className="px-6 py-4 text-sm text-gray-text">{regular.length - idx}</td>
+                  <td className="px-6 py-4">
+                    <Link href={`/notices/${notice.id}`} className="font-medium text-dark hover:text-primary transition-colors">
+                      {notice.title}
+                    </Link>
+                  </td>
+                  <td className="px-6 py-4 text-sm text-gray-text hidden sm:table-cell">{notice.author}</td>
+                  <td className="px-6 py-4 text-sm text-gray-text hidden md:table-cell">{notice.createdAt}</td>
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
       </div>

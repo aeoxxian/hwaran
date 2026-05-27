@@ -23,9 +23,11 @@ export const databaseIds = {
   boardComments: process.env.NOTION_BOARD_COMMENTS_DB || "",
   // 관리자 포털
   drafts: process.env.NOTION_DRAFTS_DB || "",
+  draftComments: process.env.NOTION_DRAFT_COMMENTS_DB || "",
   applications: process.env.NOTION_APPLICATIONS_DB || "",
   notifications: process.env.NOTION_NOTIFICATIONS_DB || "",
   orgchart: process.env.NOTION_ORGCHART_DB || "",
+  moderationLogs: process.env.NOTION_MODERATION_LOGS_DB || "",
 };
 
 export function getTextProperty(page: Record<string, unknown>, prop: string): string {

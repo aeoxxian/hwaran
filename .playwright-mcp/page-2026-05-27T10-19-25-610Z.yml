@@ -1,0 +1,325 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e4]:
+      - link "화란 로고 화란" [ref=e5] [cursor=pointer]:
+        - /url: /
+        - img "화란 로고" [ref=e6]
+        - generic [ref=e7]: 화란
+      - navigation [ref=e8]:
+        - link "소개" [ref=e10] [cursor=pointer]:
+          - /url: /about
+        - link "공지사항" [ref=e12] [cursor=pointer]:
+          - /url: /notices
+        - link "동아리 소개" [ref=e14] [cursor=pointer]:
+          - /url: /clubs
+        - link "캘린더" [ref=e16] [cursor=pointer]:
+          - /url: /calendar
+        - link "커뮤니티" [ref=e18] [cursor=pointer]:
+          - /url: /boards
+        - link "갤러리" [ref=e20] [cursor=pointer]:
+          - /url: /gallery
+        - link "자료실" [ref=e22] [cursor=pointer]:
+          - /url: /documents
+        - link "서류 양식" [ref=e24] [cursor=pointer]:
+          - /url: /forms
+        - link "물품 관리" [ref=e26] [cursor=pointer]:
+          - /url: /inventory
+      - generic [ref=e27]:
+        - link "로그인" [ref=e28] [cursor=pointer]:
+          - /url: /auth/login
+        - link "회원가입" [ref=e29] [cursor=pointer]:
+          - /url: /auth/register
+  - main [ref=e30]:
+    - generic [ref=e31]:
+      - complementary [ref=e32]:
+        - generic [ref=e33]:
+          - link "화란" [ref=e34] [cursor=pointer]:
+            - /url: /
+          - paragraph [ref=e35]: 관리자 포털
+        - navigation [ref=e36]
+        - button "로그아웃" [ref=e38]
+      - main [ref=e40]:
+        - generic [ref=e41]:
+          - generic [ref=e42]:
+            - generic [ref=e43]:
+              - heading "조직도 관리" [level=1] [ref=e44]
+              - paragraph [ref=e45]: 동아리연합회 조직도의 구성원을 관리합니다.
+            - button "+ 구성원 추가" [ref=e46]
+          - generic [ref=e47]:
+            - generic [ref=e48]:
+              - generic [ref=e49]:
+                - text: 회장단
+                - generic [ref=e50]: 2명
+              - table [ref=e51]:
+                - rowgroup [ref=e52]:
+                  - row "이름 직책 팀 관리" [ref=e53]:
+                    - columnheader "이름" [ref=e54]
+                    - columnheader "직책" [ref=e55]
+                    - columnheader "팀" [ref=e56]
+                    - columnheader "관리" [ref=e57]
+                - rowgroup [ref=e58]:
+                  - row "김서정 동아리연합회장 - 수정 삭제" [ref=e59]:
+                    - cell "김서정" [ref=e60]
+                    - cell "동아리연합회장" [ref=e61]
+                    - cell "-" [ref=e62]
+                    - cell "수정 삭제" [ref=e63]:
+                      - button "수정" [ref=e64]
+                      - button "삭제" [ref=e65]
+                  - row "박은규 동아리연합부회장 - 수정 삭제" [ref=e66]:
+                    - cell "박은규" [ref=e67]
+                    - cell "동아리연합부회장" [ref=e68]
+                    - cell "-" [ref=e69]
+                    - cell "수정 삭제" [ref=e70]:
+                      - button "수정" [ref=e71]
+                      - button "삭제" [ref=e72]
+            - generic [ref=e73]:
+              - generic [ref=e74]:
+                - text: 행사기획국
+                - generic [ref=e75]: 3명
+              - table [ref=e76]:
+                - rowgroup [ref=e77]:
+                  - row "이름 직책 팀 관리" [ref=e78]:
+                    - columnheader "이름" [ref=e79]
+                    - columnheader "직책" [ref=e80]
+                    - columnheader "팀" [ref=e81]
+                    - columnheader "관리" [ref=e82]
+                - rowgroup [ref=e83]:
+                  - row "서민재 국장 - 수정 삭제" [ref=e84]:
+                    - cell "서민재" [ref=e85]
+                    - cell "국장" [ref=e86]
+                    - cell "-" [ref=e87]
+                    - cell "수정 삭제" [ref=e88]:
+                      - button "수정" [ref=e89]
+                      - button "삭제" [ref=e90]
+                  - row "송정후 국원 - 수정 삭제" [ref=e91]:
+                    - cell "송정후" [ref=e92]
+                    - cell "국원" [ref=e93]
+                    - cell "-" [ref=e94]
+                    - cell "수정 삭제" [ref=e95]:
+                      - button "수정" [ref=e96]
+                      - button "삭제" [ref=e97]
+                  - row "김윤서 국원 - 수정 삭제" [ref=e98]:
+                    - cell "김윤서" [ref=e99]
+                    - cell "국원" [ref=e100]
+                    - cell "-" [ref=e101]
+                    - cell "수정 삭제" [ref=e102]:
+                      - button "수정" [ref=e103]
+                      - button "삭제" [ref=e104]
+            - generic [ref=e105]:
+              - generic [ref=e106]:
+                - text: 사무국
+                - generic [ref=e107]: 4명
+              - table [ref=e108]:
+                - rowgroup [ref=e109]:
+                  - row "이름 직책 팀 관리" [ref=e110]:
+                    - columnheader "이름" [ref=e111]
+                    - columnheader "직책" [ref=e112]
+                    - columnheader "팀" [ref=e113]
+                    - columnheader "관리" [ref=e114]
+                - rowgroup [ref=e115]:
+                  - row "전은비 국장 - 수정 삭제" [ref=e116]:
+                    - cell "전은비" [ref=e117]
+                    - cell "국장" [ref=e118]
+                    - cell "-" [ref=e119]
+                    - cell "수정 삭제" [ref=e120]:
+                      - button "수정" [ref=e121]
+                      - button "삭제" [ref=e122]
+                  - row "이승훈 국원 - 수정 삭제" [ref=e123]:
+                    - cell "이승훈" [ref=e124]
+                    - cell "국원" [ref=e125]
+                    - cell "-" [ref=e126]
+                    - cell "수정 삭제" [ref=e127]:
+                      - button "수정" [ref=e128]
+                      - button "삭제" [ref=e129]
+                  - row "김도유 국원 - 수정 삭제" [ref=e130]:
+                    - cell "김도유" [ref=e131]
+                    - cell "국원" [ref=e132]
+                    - cell "-" [ref=e133]
+                    - cell "수정 삭제" [ref=e134]:
+                      - button "수정" [ref=e135]
+                      - button "삭제" [ref=e136]
+                  - row "안정웅 국원 - 수정 삭제" [ref=e137]:
+                    - cell "안정웅" [ref=e138]
+                    - cell "국원" [ref=e139]
+                    - cell "-" [ref=e140]
+                    - cell "수정 삭제" [ref=e141]:
+                      - button "수정" [ref=e142]
+                      - button "삭제" [ref=e143]
+            - generic [ref=e144]:
+              - generic [ref=e145]:
+                - text: 홍보디자인국
+                - generic [ref=e146]: 8명
+              - table [ref=e147]:
+                - rowgroup [ref=e148]:
+                  - row "이름 직책 팀 관리" [ref=e149]:
+                    - columnheader "이름" [ref=e150]
+                    - columnheader "직책" [ref=e151]
+                    - columnheader "팀" [ref=e152]
+                    - columnheader "관리" [ref=e153]
+                - rowgroup [ref=e154]:
+                  - row "이서빈 국장 - 수정 삭제" [ref=e155]:
+                    - cell "이서빈" [ref=e156]
+                    - cell "국장" [ref=e157]
+                    - cell "-" [ref=e158]
+                    - cell "수정 삭제" [ref=e159]:
+                      - button "수정" [ref=e160]
+                      - button "삭제" [ref=e161]
+                  - row "남은수 팀장 디자인팀 수정 삭제" [ref=e162]:
+                    - cell "남은수" [ref=e163]
+                    - cell "팀장" [ref=e164]
+                    - cell "디자인팀" [ref=e165]
+                    - cell "수정 삭제" [ref=e166]:
+                      - button "수정" [ref=e167]
+                      - button "삭제" [ref=e168]
+                  - row "장준형 팀원 디자인팀 수정 삭제" [ref=e169]:
+                    - cell "장준형" [ref=e170]
+                    - cell "팀원" [ref=e171]
+                    - cell "디자인팀" [ref=e172]
+                    - cell "수정 삭제" [ref=e173]:
+                      - button "수정" [ref=e174]
+                      - button "삭제" [ref=e175]
+                  - row "조윤서 팀원 디자인팀 수정 삭제" [ref=e176]:
+                    - cell "조윤서" [ref=e177]
+                    - cell "팀원" [ref=e178]
+                    - cell "디자인팀" [ref=e179]
+                    - cell "수정 삭제" [ref=e180]:
+                      - button "수정" [ref=e181]
+                      - button "삭제" [ref=e182]
+                  - row "김승우 팀장 웹사이트 개발팀 수정 삭제" [ref=e183]:
+                    - cell "김승우" [ref=e184]
+                    - cell "팀장" [ref=e185]
+                    - cell "웹사이트 개발팀" [ref=e186]
+                    - cell "수정 삭제" [ref=e187]:
+                      - button "수정" [ref=e188]
+                      - button "삭제" [ref=e189]
+                  - row "고이삭 팀원 웹사이트 개발팀 수정 삭제" [ref=e190]:
+                    - cell "고이삭" [ref=e191]
+                    - cell "팀원" [ref=e192]
+                    - cell "웹사이트 개발팀" [ref=e193]
+                    - cell "수정 삭제" [ref=e194]:
+                      - button "수정" [ref=e195]
+                      - button "삭제" [ref=e196]
+                  - row "김현우 팀원 웹사이트 개발팀 수정 삭제" [ref=e197]:
+                    - cell "김현우" [ref=e198]
+                    - cell "팀원" [ref=e199]
+                    - cell "웹사이트 개발팀" [ref=e200]
+                    - cell "수정 삭제" [ref=e201]:
+                      - button "수정" [ref=e202]
+                      - button "삭제" [ref=e203]
+                  - row "최민 국원 - 수정 삭제" [ref=e204]:
+                    - cell "최민" [ref=e205]
+                    - cell "국원" [ref=e206]
+                    - cell "-" [ref=e207]
+                    - cell "수정 삭제" [ref=e208]:
+                      - button "수정" [ref=e209]
+                      - button "삭제" [ref=e210]
+            - generic [ref=e211]:
+              - generic [ref=e212]:
+                - text: 동아리관리국
+                - generic [ref=e213]: 7명
+              - table [ref=e214]:
+                - rowgroup [ref=e215]:
+                  - row "이름 직책 팀 관리" [ref=e216]:
+                    - columnheader "이름" [ref=e217]
+                    - columnheader "직책" [ref=e218]
+                    - columnheader "팀" [ref=e219]
+                    - columnheader "관리" [ref=e220]
+                - rowgroup [ref=e221]:
+                  - row "송현우 국장 - 수정 삭제" [ref=e222]:
+                    - cell "송현우" [ref=e223]
+                    - cell "국장" [ref=e224]
+                    - cell "-" [ref=e225]
+                    - cell "수정 삭제" [ref=e226]:
+                      - button "수정" [ref=e227]
+                      - button "삭제" [ref=e228]
+                  - row "노윤서 팀장 대내업무팀 수정 삭제" [ref=e229]:
+                    - cell "노윤서" [ref=e230]
+                    - cell "팀장" [ref=e231]
+                    - cell "대내업무팀" [ref=e232]
+                    - cell "수정 삭제" [ref=e233]:
+                      - button "수정" [ref=e234]
+                      - button "삭제" [ref=e235]
+                  - row "송은율 팀원 대내업무팀 수정 삭제" [ref=e236]:
+                    - cell "송은율" [ref=e237]
+                    - cell "팀원" [ref=e238]
+                    - cell "대내업무팀" [ref=e239]
+                    - cell "수정 삭제" [ref=e240]:
+                      - button "수정" [ref=e241]
+                      - button "삭제" [ref=e242]
+                  - row "황아진 팀원 대내업무팀 수정 삭제" [ref=e243]:
+                    - cell "황아진" [ref=e244]
+                    - cell "팀원" [ref=e245]
+                    - cell "대내업무팀" [ref=e246]
+                    - cell "수정 삭제" [ref=e247]:
+                      - button "수정" [ref=e248]
+                      - button "삭제" [ref=e249]
+                  - row "주예슬 팀장 대외업무팀 수정 삭제" [ref=e250]:
+                    - cell "주예슬" [ref=e251]
+                    - cell "팀장" [ref=e252]
+                    - cell "대외업무팀" [ref=e253]
+                    - cell "수정 삭제" [ref=e254]:
+                      - button "수정" [ref=e255]
+                      - button "삭제" [ref=e256]
+                  - row "백시연 팀원 대외업무팀 수정 삭제" [ref=e257]:
+                    - cell "백시연" [ref=e258]
+                    - cell "팀원" [ref=e259]
+                    - cell "대외업무팀" [ref=e260]
+                    - cell "수정 삭제" [ref=e261]:
+                      - button "수정" [ref=e262]
+                      - button "삭제" [ref=e263]
+                  - row "이중헌 팀원 대외업무팀 수정 삭제" [ref=e264]:
+                    - cell "이중헌" [ref=e265]
+                    - cell "팀원" [ref=e266]
+                    - cell "대외업무팀" [ref=e267]
+                    - cell "수정 삭제" [ref=e268]:
+                      - button "수정" [ref=e269]
+                      - button "삭제" [ref=e270]
+  - contentinfo [ref=e271]:
+    - generic [ref=e272]:
+      - generic [ref=e273]:
+        - generic [ref=e274]:
+          - generic [ref=e275]:
+            - img "화란 로고" [ref=e276]
+            - generic [ref=e277]:
+              - heading "화란" [level=3] [ref=e278]
+              - paragraph [ref=e279]: 제4대 한국에너지공과대학교 동아리연합회
+          - paragraph [ref=e280]: 학우들의 동아리 활동이 아름답게 꽃피길 바라는 마음을 담아, 동아리 활동 지원과 행사 주최, 복지 향상을 위해 노력합니다.
+        - generic [ref=e281]:
+          - heading "바로가기" [level=4] [ref=e282]
+          - list [ref=e283]:
+            - listitem [ref=e284]:
+              - link "소개" [ref=e285] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=e286]:
+              - link "공지사항" [ref=e287] [cursor=pointer]:
+                - /url: /notices
+            - listitem [ref=e288]:
+              - link "동아리 소개" [ref=e289] [cursor=pointer]:
+                - /url: /clubs
+            - listitem [ref=e290]:
+              - link "캘린더" [ref=e291] [cursor=pointer]:
+                - /url: /calendar
+            - listitem [ref=e292]:
+              - link "갤러리" [ref=e293] [cursor=pointer]:
+                - /url: /gallery
+            - listitem [ref=e294]:
+              - link "자료실" [ref=e295] [cursor=pointer]:
+                - /url: /documents
+        - generic [ref=e296]:
+          - heading "연락처" [level=4] [ref=e297]
+          - list [ref=e298]:
+            - listitem [ref=e299]:
+              - img [ref=e300]
+              - generic [ref=e303]: 경상북도 나주시 한국에너지공과대학교
+            - listitem [ref=e304]:
+              - img [ref=e305]
+              - link "hwaran@kentech.ac.kr" [ref=e307] [cursor=pointer]:
+                - /url: mailto:hwaran@kentech.ac.kr
+            - listitem [ref=e308]:
+              - img [ref=e309]
+              - link "@hwaran_kentech" [ref=e311] [cursor=pointer]:
+                - /url: https://instagram.com/hwaran_kentech
+      - paragraph [ref=e313]: © 2026 제4대 한국에너지공과대학교 동아리연합회 화란. All Rights Reserved.
+  - button "Open Next.js Dev Tools" [ref=e319] [cursor=pointer]:
+    - img [ref=e320]
+  - alert [ref=e323]

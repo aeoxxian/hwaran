@@ -1,0 +1,99 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e4]:
+      - link "화란 로고 화란" [ref=e5] [cursor=pointer]:
+        - /url: /
+        - img "화란 로고" [ref=e6]
+        - generic [ref=e7]: 화란
+      - navigation [ref=e8]:
+        - link "소개" [ref=e10] [cursor=pointer]:
+          - /url: /about
+        - link "공지사항" [ref=e12] [cursor=pointer]:
+          - /url: /notices
+        - link "동아리 소개" [ref=e14] [cursor=pointer]:
+          - /url: /clubs
+        - link "캘린더" [ref=e16] [cursor=pointer]:
+          - /url: /calendar
+        - link "커뮤니티" [ref=e18] [cursor=pointer]:
+          - /url: /boards
+        - link "갤러리" [ref=e20] [cursor=pointer]:
+          - /url: /gallery
+        - link "자료실" [ref=e22] [cursor=pointer]:
+          - /url: /documents
+        - link "물품 관리" [ref=e24] [cursor=pointer]:
+          - /url: /inventory
+      - generic [ref=e25]:
+        - link "로그인" [ref=e26] [cursor=pointer]:
+          - /url: /auth/login
+        - link "회원가입" [ref=e27] [cursor=pointer]:
+          - /url: /auth/register
+  - main [ref=e28]:
+    - generic [ref=e29]:
+      - generic [ref=e30]:
+        - heading "자료실" [level=1] [ref=e31]
+        - paragraph [ref=e32]: 회칙, 양식, 회의록 등 내부 자료를 확인하세요
+      - generic [ref=e33]:
+        - button "전체" [ref=e34]
+        - button "회칙" [ref=e35]
+        - button "양식" [ref=e36]
+        - button "회의록" [ref=e37]
+        - button "기타" [ref=e38]
+      - table [ref=e40]:
+        - rowgroup [ref=e41]:
+          - row "분류 제목 등록일 다운로드" [ref=e42]:
+            - columnheader "분류" [ref=e43]
+            - columnheader "제목" [ref=e44]
+            - columnheader "등록일" [ref=e45]
+            - columnheader "다운로드" [ref=e46]
+        - rowgroup [ref=e47]:
+          - row "등록된 자료가 없습니다." [ref=e48]:
+            - cell "등록된 자료가 없습니다." [ref=e49]
+  - contentinfo [ref=e50]:
+    - generic [ref=e51]:
+      - generic [ref=e52]:
+        - generic [ref=e53]:
+          - generic [ref=e54]:
+            - img "화란 로고" [ref=e55]
+            - generic [ref=e56]:
+              - heading "화란" [level=3] [ref=e57]
+              - paragraph [ref=e58]: 제4대 한국에너지공과대학교 동아리연합회
+          - paragraph [ref=e59]: 학우들의 동아리 활동이 아름답게 꽃피길 바라는 마음을 담아, 동아리 활동 지원과 행사 주최, 복지 향상을 위해 노력합니다.
+        - generic [ref=e60]:
+          - heading "바로가기" [level=4] [ref=e61]
+          - list [ref=e62]:
+            - listitem [ref=e63]:
+              - link "소개" [ref=e64] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=e65]:
+              - link "공지사항" [ref=e66] [cursor=pointer]:
+                - /url: /notices
+            - listitem [ref=e67]:
+              - link "동아리 소개" [ref=e68] [cursor=pointer]:
+                - /url: /clubs
+            - listitem [ref=e69]:
+              - link "캘린더" [ref=e70] [cursor=pointer]:
+                - /url: /calendar
+            - listitem [ref=e71]:
+              - link "갤러리" [ref=e72] [cursor=pointer]:
+                - /url: /gallery
+            - listitem [ref=e73]:
+              - link "자료실" [ref=e74] [cursor=pointer]:
+                - /url: /documents
+        - generic [ref=e75]:
+          - heading "연락처" [level=4] [ref=e76]
+          - list [ref=e77]:
+            - listitem [ref=e78]:
+              - img [ref=e79]
+              - generic [ref=e82]: 경상북도 나주시 한국에너지공과대학교
+            - listitem [ref=e83]:
+              - img [ref=e84]
+              - link "hwaran@kentech.ac.kr" [ref=e86] [cursor=pointer]:
+                - /url: mailto:hwaran@kentech.ac.kr
+            - listitem [ref=e87]:
+              - img [ref=e88]
+              - link "@hwaran_kentech" [ref=e90] [cursor=pointer]:
+                - /url: https://instagram.com/hwaran_kentech
+      - paragraph [ref=e92]: © 2026 제4대 한국에너지공과대학교 동아리연합회 화란. All Rights Reserved.
+  - button "Open Next.js Dev Tools" [ref=e98] [cursor=pointer]:
+    - img [ref=e99]
+  - alert [ref=e102]

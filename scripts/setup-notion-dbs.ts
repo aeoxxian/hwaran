@@ -27,6 +27,26 @@ interface DbConfig {
   properties: Record<string, unknown>;
 }
 
+/**
+ * 게시판 공통 모더레이션 상태 옵션.
+ * 모더레이션 API는 어떤 게시판이든 approve/reject/resolve/pending 으로 전환할 수 있어야 하므로
+ * 모든 게시판의 `상태` select 옵션에 동일한 슈퍼셋을 부여합니다.
+ */
+const BOARD_STATUS_OPTIONS = [
+  { name: "대기" },
+  { name: "답변완료" },
+  { name: "해결" },
+  { name: "미해결" },
+  { name: "승인" },
+  { name: "반려" },
+];
+
+const BOARD_APPROVAL_OPTIONS = [
+  { name: "pending" },
+  { name: "approved" },
+  { name: "rejected" },
+];
+
 const databases: DbConfig[] = [
   {
     envKey: "NOTION_MEMBERS_DB",
@@ -109,10 +129,16 @@ const databases: DbConfig[] = [
       제목: { title: {} },
       내용: { rich_text: {} },
       작성자: { rich_text: {} },
+      작성자ID: { rich_text: {} },
       작성일: { date: {} },
+      수정일: { date: {} },
       답변: { rich_text: {} },
       답변일: { date: {} },
-      상태: { select: { options: [{ name: "대기" }, { name: "답변완료" }] } },
+      상태: { select: { options: BOARD_STATUS_OPTIONS } },
+      승인상태: { select: { options: BOARD_APPROVAL_OPTIONS } },
+      익명여부: { checkbox: {} },
+      공개범위: { select: { options: [{ name: "public" }, { name: "internal" }] } },
+      첨부파일: { files: {} },
     },
   },
   {
@@ -122,9 +148,16 @@ const databases: DbConfig[] = [
       제목: { title: {} },
       내용: { rich_text: {} },
       작성자: { rich_text: {} },
+      작성자ID: { rich_text: {} },
       작성일: { date: {} },
-      상태: { select: { options: [{ name: "대기" }, { name: "해결" }] } },
+      수정일: { date: {} },
+      답변: { rich_text: {} },
+      답변일: { date: {} },
+      상태: { select: { options: BOARD_STATUS_OPTIONS } },
+      승인상태: { select: { options: BOARD_APPROVAL_OPTIONS } },
       익명여부: { checkbox: {} },
+      공개범위: { select: { options: [{ name: "public" }, { name: "internal" }] } },
+      첨부파일: { files: {} },
     },
   },
   {
@@ -135,9 +168,16 @@ const databases: DbConfig[] = [
       설명: { rich_text: {} },
       이미지: { files: {} },
       장소: { rich_text: {} },
-      상태: { select: { options: [{ name: "미해결" }, { name: "해결" }] } },
+      상태: { select: { options: BOARD_STATUS_OPTIONS } },
+      승인상태: { select: { options: BOARD_APPROVAL_OPTIONS } },
+      공개범위: { select: { options: [{ name: "public" }, { name: "internal" }] } },
       작성자: { rich_text: {} },
+      작성자ID: { rich_text: {} },
       작성일: { date: {} },
+      수정일: { date: {} },
+      답변: { rich_text: {} },
+      답변일: { date: {} },
+      첨부파일: { files: {} },
     },
   },
   {
@@ -149,8 +189,16 @@ const databases: DbConfig[] = [
       동아리ID: { rich_text: {} },
       동아리명: { rich_text: {} },
       작성자: { rich_text: {} },
+      작성자ID: { rich_text: {} },
       작성일: { date: {} },
+      수정일: { date: {} },
       이미지: { files: {} },
+      첨부파일: { files: {} },
+      상태: { select: { options: BOARD_STATUS_OPTIONS } },
+      승인상태: { select: { options: BOARD_APPROVAL_OPTIONS } },
+      공개범위: { select: { options: [{ name: "public" }, { name: "internal" }] } },
+      답변: { rich_text: {} },
+      답변일: { date: {} },
     },
   },
   {
@@ -221,11 +269,62 @@ const databases: DbConfig[] = [
       상태: { select: { options: [{ name: "임시저장" }, { name: "1차검토중" }, { name: "최종검토중" }, { name: "승인" }, { name: "반려" }] } },
       작성자ID: { rich_text: {} },
       작성자명: { rich_text: {} },
-      작성자역할: { select: { options: [{ name: "국원" }, { name: "국장팀장" }, { name: "회장단" }] } },
-      현재결재자역할: { select: { options: [{ name: "국장팀장" }, { name: "회장단" }] } },
+      작성자역할: {
+        select: {
+          options: [
+            { name: "국원" },
+            { name: "국장팀장" },
+            { name: "회장단" },
+            { name: "관리자" },
+          ],
+        },
+      },
+      현재결재자역할: {
+        select: {
+          options: [
+            { name: "국장팀장" },
+            { name: "회장단" },
+            { name: "관리자" },
+          ],
+        },
+      },
       첨부파일: { files: {} },
       작성일: { date: {} },
       수정일: { date: {} },
+    },
+  },
+  {
+    envKey: "NOTION_DRAFT_COMMENTS_DB",
+    title: "기안 결재 코멘트 (DraftComments)",
+    properties: {
+      기안ID: { title: {} },
+      내용: { rich_text: {} },
+      작성자ID: { rich_text: {} },
+      작성자명: { rich_text: {} },
+      작성자역할: {
+        select: {
+          options: [
+            { name: "국원" },
+            { name: "국장팀장" },
+            { name: "회장단" },
+            { name: "관리자" },
+            { name: "동아리장" },
+            { name: "부동아리장" },
+            { name: "회원" },
+          ],
+        },
+      },
+      액션: {
+        select: {
+          options: [
+            { name: "검토의견" },
+            { name: "승인" },
+            { name: "반려" },
+            { name: "수정요청" },
+          ],
+        },
+      },
+      작성일: { date: {} },
     },
   },
   {
@@ -255,6 +354,49 @@ const databases: DbConfig[] = [
       읽음여부: { checkbox: {} },
       생성일: { date: {} },
       유형: { select: { options: [{ name: "기안" }, { name: "서류신청" }, { name: "공지" }, { name: "기타" }] } },
+    },
+  },
+  {
+    envKey: "NOTION_ORGCHART_DB",
+    title: "조직도 (OrgChart)",
+    properties: {
+      이름: { title: {} },
+      직책: { rich_text: {} },
+      부서: { rich_text: {} },
+      팀: { rich_text: {} },
+      순서: { number: {} },
+    },
+  },
+  {
+    envKey: "NOTION_MODERATION_LOGS_DB",
+    title: "모더레이션 로그 (ModerationLogs)",
+    properties: {
+      게시글ID: { title: {} },
+      액션: {
+        select: {
+          options: [
+            { name: "approve" },
+            { name: "reject" },
+            { name: "resolve" },
+            { name: "pending" },
+          ],
+        },
+      },
+      상태: { rich_text: {} },
+      사유: { rich_text: {} },
+      처리자ID: { rich_text: {} },
+      처리자명: { rich_text: {} },
+      처리자역할: {
+        select: {
+          options: [
+            { name: "회장단" },
+            { name: "국장팀장" },
+            { name: "국원" },
+            { name: "관리자" },
+          ],
+        },
+      },
+      생성일: { date: {} },
     },
   },
 ];
